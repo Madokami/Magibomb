@@ -38,6 +38,7 @@ public class Game {
 	public static boolean TITLE_DONE;
 	
 	//test make change
+	//test change number 2
 	private GameData gameData;
 	private Player player;
 	private BufferedImage background;
