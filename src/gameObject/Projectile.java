@@ -1,0 +1,114 @@
+package gameObject;
+
+import game.Game;
+import gameObject.GameObject.ORIENTATION;
+
+import java.util.LinkedList;
+
+import system.GameSystem;
+
+public abstract class Projectile extends MovableObject {
+	protected ImageSequence flyRight;
+	protected ImageSequence flyDown;
+	protected int flySpeed;
+	private ProjectileAnimation pAnimate = new ProjectileAnimation(this);;
+	
+	public int damage;
+	public GameObject owner;
+	public Projectile(int x, int y, Game game,GameObject o) {
+		super(x, y, game);
+		owner=o;
+		allignOrientationWithOwner(owner);
+		damage = 10;
+		// TODO Auto-generated constructor stub
+	}
+	public void tick(){
+		LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
+		for(int i=0;i<enemies.size();i++){
+			applyDamage(damage,10,enemies.get(i));
+		}
+		x+=getVelX();
+		y+=getVelY();
+		pAnimate.tick();
+	}
+	
+	public void removeIfOutSideScreen(){
+		if(x<=-ssWidth||y<=-ssHeight||x>=GameSystem.GAME_WIDTH||y>=GameSystem.GAME_HEIGHT){
+			remove();
+		}
+	}
+	public void allignOrientationWithOwner(GameObject owner){
+		if(owner.orientation==ORIENTATION.DOWN){
+			this.orientation=ORIENTATION.DOWN;
+			
+		}
+		else if(owner.orientation==ORIENTATION.RIGHT){
+			this.orientation=ORIENTATION.RIGHT;
+			
+		}
+		else if(owner.orientation==ORIENTATION.UP){
+			this.orientation=ORIENTATION.UP;
+			y-=imageHeight;
+		}
+		else if(owner.orientation==ORIENTATION.LEFT){
+			this.orientation=ORIENTATION.LEFT;
+			x-=imageWidth;
+		}
+	}
+	public void setStartingAnimation(){
+		if(this.orientation==ORIENTATION.RIGHT||this.orientation==ORIENTATION.LEFT){
+			pAnimate.startSequence(flyRight);
+		}
+		else{
+			pAnimate.startSequence(flyDown);
+		}
+	}
+	public void setStartingVelocity(int flySpeed){
+		if(orientation==ORIENTATION.RIGHT){
+			setVelX(flySpeed);
+			direction="right";
+		}
+		else if(orientation==ORIENTATION.LEFT){
+			setVelX(-flySpeed);
+			direction="left";
+		}
+		if(orientation==ORIENTATION.UP){
+			setVelY(-flySpeed);
+			direction="up";
+		}
+		if(orientation==ORIENTATION.DOWN){
+			setVelY(flySpeed);
+			direction="down";
+		}
+	}
+	public void remove(){
+		game.getController().removeEntity(this);
+	}
+	public void setCollisionToImageSize(){
+		if(orientation==ORIENTATION.RIGHT||orientation==ORIENTATION.DOWN){
+			collisionWidth=imageWidth;
+			collisionHeight=imageHeight;
+		}
+		else if(orientation==ORIENTATION.LEFT){
+			collisionWidth=-imageWidth;
+			collisionHeight=imageHeight;
+		}
+		else if(orientation==ORIENTATION.UP){
+			collisionWidth=imageWidth;
+			collisionHeight=-imageHeight;
+		}
+	}
+	
+	public void useUltimate(){
+		return;
+	}
+	public  void useAbility1(){
+		
+	}
+	public  void useAbility2(){
+		
+	}
+	public  void useAbility3(){
+		
+	}
+}

@@ -1,0 +1,81 @@
+package gameObject;
+
+import system.IntToImage;
+import game.Game;
+import game.Game.CHARACTER;
+
+public class Player_Mami extends Player{
+
+	public Player_Mami(int x, int y, Game game) {
+		super(x, y, game);
+		pVoice=new MaVoice();
+		
+		name="  Mami";
+		skill1 = loader.loadImage("/image/skills/maSkill1.png");
+		skill2 = loader.loadImage("/image/skills/maSkill2.png");
+		skillUlt = loader.loadImage("/image/skills/maSkillUlt.png");
+		
+		
+		run=new ImageSequence("/image/spriteSheet/actors/player/mami/run",8);
+		stand=new ImageSequence("/image/spriteSheet/actors/player/mami/stand",7);
+		damage=new ImageSequence("/image/spriteSheet/actors/player/mami/damage",5);		
+		dead=new ImageSequence("/image/spriteSheet/actors/player/mami/dead",13);
+		sequence.startSequence(stand);
+		
+		soulGemSprite=SpriteData.gem_mami;
+		soulGemImage=soulGemSprite.grabImage(1, 1, soulGemWidth, soulGemHeight);
+		
+		status = SpriteData.maStatus;
+		setStatusImages();
+		
+		if(Game.cChosen==CHARACTER.MAMI){
+			pData.loadPlayerStatus(this);
+		}
+		
+		levelImage=IntToImage.toImageSmall(level);
+		soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
+		maxHp=hp;
+		maxMp=mp;
+		maxSoul=soul;
+	}
+	public void useUltimate(){
+		if(channelling==true) {
+			if(mp<=0){
+				stopChannelling();
+			}
+			mp-=0;
+			return;
+		}
+		if(mp<50){
+			return;
+		}
+		else{
+			mp-=5;
+			channelling=true;
+			game.getController().addEntity(new TiroFinale(this.xGridNearest,yGridNearest,game,this));
+			setVelX(0);
+			setVelY(0);
+		}
+		//pVoice.playUltimateSound();
+	}
+	
+	public void updatePlayerData(){
+		pData.upDatePlayerData(this);
+	}
+	@Override
+	public void useAbility2() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void useAbility3() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void useAbility1() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
