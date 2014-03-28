@@ -72,6 +72,7 @@ public class GameSystem extends Canvas implements Runnable{
 	
 	public static boolean musicOn;
 	
+	//test locale change
 	public static enum STATE{
 		MENU,
 		GAME,
