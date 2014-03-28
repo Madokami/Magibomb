@@ -2,21 +2,15 @@ package gameObject;
 
 import game.Game;
 
-import java.awt.Graphics;
+public class Enemy_2_1 extends Enemy{
 
-public class Enemy_1_2 extends Enemy{
-	public int counter=0;
-	public int time=1;
-	public Enemy_1_2(int x, int y, Game game) {
+	public Enemy_2_1(int x, int y, Game game) {
 		super(x, y, game);
-		
-		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_2/run",8);
-		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_2/stand",8);	
+		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_2_1/run",6);
+		damage=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_2_1/damage",6);	
+		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_2_1/stand",3);	
 		sequence.startSequence(stand);
-		
-		// TODO Auto-generated constructor stub
 	}
-	
 
 	@Override
 	public void useUltimate() {
@@ -24,15 +18,11 @@ public class Enemy_1_2 extends Enemy{
 		
 	}
 
-
-
 	@Override
 	public void useAbility1() {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 	@Override
 	public void useAbility2() {
@@ -40,11 +30,10 @@ public class Enemy_1_2 extends Enemy{
 		
 	}
 
-
-
 	@Override
 	public void useAbility3() {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

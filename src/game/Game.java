@@ -63,7 +63,11 @@ public class Game {
 	public static int curLevel;
 	private LevelLoader levelLoader;
 	public BufferedImageLoader loader;
+	
+	
 	private int lastStage=4;
+	
+	
 	private int enemyCount;
 	private boolean victory;
 	

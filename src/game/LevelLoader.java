@@ -1,10 +1,17 @@
 package game;
 
-import gameObject.Brick;
 import gameObject.Controller;
 import gameObject.Enemy;
 import gameObject.Enemy_1_1;
 import gameObject.Enemy_1_2;
+import gameObject.Enemy_2_1;
+import gameObject.Enemy_3_1;
+import gameObject.Enemy_3_2;
+import gameObject.Enemy_4_1;
+import gameObject.Enemy_4_2;
+import gameObject.Enemy_4_3;
+import gameObject.Enemy_5_1;
+import gameObject.Enemy_5_2;
 import gameObject.Enemy_Boss_1;
 import gameObject.HitableBrick;
 import gameObject.PlaceHolder;
@@ -18,8 +25,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.net.URLDecoder;
 
 import system.BufferedImageLoader;
 import system.GameSystem;
@@ -43,6 +48,8 @@ public class LevelLoader {
 	}
 	public synchronized void load(){
 		int stage = game.getCurLevel();
+		
+		
 		if(GameSystem.twoPlayerMode){
 			if(!GameSystem.isPlayerOne){
 				stage = MultiplayerStats.CURSTAGE;
@@ -58,6 +65,9 @@ public class LevelLoader {
 		}
 		else if(stage==3){
 			stage3();
+		}
+		else if(stage==4){
+			stage4();
 		}
 		updateList();
 	}
@@ -128,13 +138,13 @@ public class LevelLoader {
 		int[][] data = new int[][]{
 				{3,0,0,2,2,0,0,0,21,2,2,0,0,3,2,2},
 				{3,1,0,2,2,0,0,0,0,2,0,0,0,3,2,2},
-				{0,2,0,0,0,0,0,10,0,0,0,0,12,0,2,0},
-				{2,0,3,0,0,0,0,0,0,0,0,0,0,3,0,2},
-				{0,2,0,2,2,2,0,0,0,0,2,2,2,0,2,0},
-				{0,2,0,2,2,2,0,0,0,0,2,2,2,0,2,0},
+				{0,2,0,0,52,0,0,10,0,0,0,0,12,0,2,0},
+				{2,0,3,0,0,0,0,0,21,31,32,41,0,3,0,2},
+				{0,2,0,2,2,2,42,43,51,0,2,2,2,0,2,0},
+				{0,2,0,2,2,2,11,0,0,11,2,2,2,0,2,0},
 				{2,0,3,0,0,0,0,0,0,0,0,0,0,3,0,2},
 				{0,2,0,0,3,3,3,3,3,3,3,3,0,0,2,0},
-				{2,0,2,0,2,0,0,0,0,0,11,2,0,2,0,2},
+				{2,0,2,0,2,0,0,0,0,0,0,2,0,2,0,2},
 				{3,2,0,2,1,0,0,0,0,0,0,0,2,0,2,3},
 
 		};
@@ -268,6 +278,30 @@ public class LevelLoader {
 				}
 				else if(mapData[i][j]==10){
 					addEnemy(new Enemy_Boss_1(j+1,i+1,game));
+				}
+				else if(mapData[i][j]==21){
+					addEnemy(new Enemy_2_1(j+1,i+1,game));
+				}
+				else if(mapData[i][j]==31){
+					addEnemy(new Enemy_3_1(j+1,i+1,game));
+				}
+				else if(mapData[i][j]==32){
+					addEnemy(new Enemy_3_2(j+1,i+1,game));
+				}
+				else if(mapData[i][j]==41){
+					addEnemy(new Enemy_4_1(j+1,i+1,game));
+				}
+				else if(mapData[i][j]==42){
+					addEnemy(new Enemy_4_2(j+1,i+1,game));
+				}
+				else if(mapData[i][j]==43){
+					addEnemy(new Enemy_4_3(j+1,i+1,game));
+				}
+				else if(mapData[i][j]==51){
+					addEnemy(new Enemy_5_1(j+1,i+1,game));
+				}
+				else if(mapData[i][j]==52){
+					addEnemy(new Enemy_5_2(j+1,i+1,game));
 				}
 				else if(mapData[i][j]==2){
 					addBrick(new HitableBrick(j+1,i+1,game));

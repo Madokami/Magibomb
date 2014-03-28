@@ -23,9 +23,17 @@ public abstract class Projectile extends MovableObject {
 		// TODO Auto-generated constructor stub
 	}
 	public void tick(){
-		LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
-		for(int i=0;i<enemies.size();i++){
-			applyDamage(damage,10,enemies.get(i));
+		if(owner==game.getPlayer()){
+			LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
+			for(int i=0;i<enemies.size();i++){
+				applyDamage(damage,10,enemies.get(i));
+			}
+		}
+		else{
+			LinkedList<Player> playerHit = Physics.hitPlayer(this, controller.getPlayerList());
+			for(int i=0;i<playerHit.size();i++){
+				applyDamage(damage,10,playerHit.get(i));
+			}
 		}
 		x+=getVelX();
 		y+=getVelY();
@@ -37,6 +45,15 @@ public abstract class Projectile extends MovableObject {
 			remove();
 		}
 	}
+	public void removeIfHitWall(){
+		if(Physics.hitWall(this, controller.getBrickList())!=-1){
+			remove();
+		}
+		if(Physics.hitPlaceHolder(this, controller.getPlaceHolderList())!=-1){
+			remove();
+		}
+	}
+	
 	public void allignOrientationWithOwner(GameObject owner){
 		if(owner.orientation==ORIENTATION.DOWN){
 			this.orientation=ORIENTATION.DOWN;
@@ -110,5 +127,9 @@ public abstract class Projectile extends MovableObject {
 	}
 	public  void useAbility3(){
 		
+	}
+	
+	public void setDamage(int damage){
+		this.damage=damage;
 	}
 }
