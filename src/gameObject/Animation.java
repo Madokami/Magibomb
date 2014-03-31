@@ -14,6 +14,14 @@ public class Animation {
 		this.owner=o;
 	}
 	public void animate(){
+		if(owner.dontFlip){
+			owner.image=currentSequence.getImage((int)counter);
+			owner.imageWidth=currentSequence.getWidth();
+			owner.imageHeight=currentSequence.getHeight();
+			owner.renderXShift=currentSequence.getX();
+			owner.renderYShift=currentSequence.getY();
+			return;
+		}
 		if(owner.facing==FACING.RIGHT){
 			owner.image=currentSequence.getImage((int)counter);
 			owner.imageWidth=currentSequence.getWidth();

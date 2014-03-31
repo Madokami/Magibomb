@@ -53,6 +53,7 @@ public class Player_Mami extends Player{
 			mp-=5;
 			channelling=true;
 			game.getController().addEntity(new TiroFinale(this.xGridNearest,yGridNearest,game,this));
+			//game.getController().addEntity(new Projectile_blackBeam(this.xGridNearest,yGridNearest,game,this));
 			setVelX(0);
 			setVelY(0);
 		}

@@ -1,5 +1,7 @@
 package gameObject;
 
+import java.util.LinkedList;
+
 import game.Game;
 
 public class Enemy_5_1 extends Enemy_4{
@@ -9,8 +11,10 @@ public class Enemy_5_1 extends Enemy_4{
 		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_1/run",8);
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_1/stand",8);	
 		attack=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_1/attack",13);	
+		attack.setAnimationSpeed(0.5);
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_1/damage",5);
 		sequence.startSequence(stand);
+		ultyTimerDuration = 50;
 	}
 
 
@@ -29,7 +33,15 @@ public class Enemy_5_1 extends Enemy_4{
 
 	@Override
 	public void useUltimate() {
-		// TODO Auto-generated method stub
+		String dir = ai.isValidStraightLine(controller.wallArray, game.getPlayer().xGridNearest, game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
+		if(dir!="stop"){
+			moveToDirection(dir);
+			setVelX(0);
+			setVelY(0);
+			sequence.startSequence(attack, stand);
+			controller.addEntity(new Projectile_blackBeam(xGridNearest,yGridNearest,game,this));
+			ultyTimer=0;
+		}
 		
 	}
 

@@ -1,5 +1,8 @@
 package gameObject;
 
+import java.util.LinkedList;
+import java.util.Random;
+
 public class Ai
 {
 	//for make step, written by Liu Ge
@@ -17,12 +20,53 @@ public class Ai
 	int boundy;
 	String d;
 	
-	//for other AI stuff, written by Xu Zhi Shu
+	
 	
 	public Ai(){
 		
 	}
 	
+	public LinkedList<Point> obtainRandomValidPoints(boolean[][] map, int number){
+		LinkedList<Point> ret= new LinkedList<Point>();
+		LinkedList<Point> points = new LinkedList<Point>();
+		Random rand = new Random();
+		int counter;
+		
+		for(int i=1;i<map.length;i++){
+			for(int j=1;j<map[i].length;j++){
+				if(map[i][j]==false){
+					points.add(new Point(i,j));
+				}
+			}
+		}
+		for(int i=0;i<number;i++){
+			if(points.size()>0){
+				int index = rand.nextInt(points.size());
+				ret.add(points.get(index));
+				points.remove(index);
+			}
+		}
+		
+		
+		return ret;
+	}
+	
+	public boolean nextToPlayer(int pX,int pY,int aiX,int aiY){
+		if(pX==aiX&&pY==aiY){
+			return true;
+		}
+		else if(pX==aiX){
+			if(pY==aiY+1||pY==aiY-1){
+				return true;
+			}
+		}
+		else if(pY==aiY){
+			if(pX==aiX+1||pX==aiX-1){
+				return true;
+			}
+		}
+		return false;
+	}
 	public String isValidStraightLine(boolean[][] m,int pX,int pY,int aiX,int aiY){
 		if(pX==aiX&&pY==aiY) return "stop";
 		if(pX==aiX||pY==aiY){

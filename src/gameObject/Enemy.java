@@ -17,6 +17,9 @@ public abstract class Enemy extends MovableObject{
 	public int collisionDamage;
 	protected Ai ai;
 	public int actionOffSet;
+	protected boolean canMove=true;
+	
+	protected int ultyTimer,ultyTimerDuration,abi1Timer,abi1TimerDuration,abi2Timer,abi2TimerDuration;
 	
 	public Enemy(int x,int y, Game game){
 		super(x,y,game);
@@ -34,6 +37,8 @@ public abstract class Enemy extends MovableObject{
 		rand = new Random();
 		ai=new Ai();
 		actionOffSet = rand.nextInt(20);
+		
+		controller.addEntity(new Projectile_SpawnEffect(xGridNearest,yGridNearest,game,this));
 	}
 	public void tick(){
 		super.tick();
@@ -58,26 +63,42 @@ public abstract class Enemy extends MovableObject{
 			}
 		}
 		counter++;
-		
-		if(counter>(20+actionOffSet)){
-			counter=0;
-			actionOffSet=rand.nextInt(20);
-			if(rand.nextInt(10)<8){
-				if(GameSystem.isPlayerOne){
-					moveRandomly();
-					//chasePlayer();
+		if(this.canMove){
+			if(counter>(20+actionOffSet)){
+				counter=0;
+				actionOffSet=rand.nextInt(20);
+				if(rand.nextInt(10)<8){
+					if(GameSystem.isPlayerOne){
+						moveRandomly();
+						//chasePlayer();
+					}
+					
 				}
-				
-			}
-			else{
-				if(GameSystem.isPlayerOne){
-					moveRandomly();
+				else{
+					if(GameSystem.isPlayerOne){
+						moveRandomly();
+					}
 				}
 			}
 		}
 		int bombKicked=Physics.onTopOfBomb(this, game.getBombList());
 		if(bombKicked!=-1){
 			this.kickBomb();
+		}
+		
+		ultyTimer++;
+		if(ultyTimer>ultyTimerDuration){
+			useUltimate();
+		}
+		abi1Timer++;
+		if(abi1Timer>abi1TimerDuration){
+			useAbility1();
+			abi1Timer=0;
+		}
+		abi2Timer++;
+		if(abi2Timer>abi2TimerDuration){
+			useAbility2();
+			abi2Timer=0;
 		}
 		/*
 		if(counter>40){
@@ -86,13 +107,8 @@ public abstract class Enemy extends MovableObject{
 		}
 		*/
 		
-		this.curX=super.curX;
-		this.curY=super.curY;
-		
 		if(hp<=0){
-			game.decreaseEnemyCount();
-			game.getController().removeEntity(this);
-			providePoints(game.getPlayer());
+			remove();
 		}
 		/*
 		if(super.x<=0)
@@ -163,10 +179,10 @@ public abstract class Enemy extends MovableObject{
 			moveRandomly();
 		}
 	}
-	public void chargeAtPlayer(int speed,int duration){
+	public boolean chargeAtPlayer(int speed,int duration){
 		String dir=ai.isValidStraightLine(game.getWallArray(), game.getPlayer().xGridNearest, game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
 		if(dir.equals("stop")){
-			return;
+			return false;
 		}
 		else if(dir.equals("right")){
 			moveRight();
@@ -184,10 +200,30 @@ public abstract class Enemy extends MovableObject{
 			moveDown();
 			startCharge(speed,duration);
 		}
+		return true;
+	}
+	
+	public void moveToDirection(String dir){
+		
+		if(dir.equals("right")){
+			moveRight();
+		}
+		else if(dir.equals("left")){
+			moveLeft();
+		}
+		else if(dir.equals("up")){
+			moveUp();
+		}
+		else if(dir.equals("down")){
+			moveDown();
+		}
+		return;
 	}
 	
 	public void remove(){
+		game.decreaseEnemyCount();
 		game.getController().removeEntity(this);
+		providePoints(game.getPlayer());
 	}
 	
 	public abstract void useUltimate();

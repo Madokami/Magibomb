@@ -9,11 +9,29 @@ public class Enemy_1_3 extends Enemy{
 		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_3/run",9);
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_3/stand",9);	
 		sequence.startSequence(stand);
+		ultyTimerDuration=150;
 	}
 
 	@Override
 	public void useUltimate() {
-		// TODO Auto-generated method stub
+		String dir = ai.isValidStraightLine(controller.getWallArray(), this.xGridNearest,yGridNearest,game.getPlayer().xGridNearest,game.getPlayer().yGridNearest);
+		if(dir!="stop"){
+			if(dir=="right"){
+				controller.addEntity(new Enemy_1_2(xGridNearest-1,yGridNearest,game));
+			}
+			else if(dir=="left"){
+				controller.addEntity(new Enemy_1_2(xGridNearest+1,yGridNearest,game));
+			}
+			else if(dir=="up"){
+				controller.addEntity(new Enemy_1_2(xGridNearest,yGridNearest+1,game));
+			}
+			else if(dir=="down"){
+				controller.addEntity(new Enemy_1_2(xGridNearest,yGridNearest-1,game));
+			}
+			game.increaseEnemyCount();
+			this.ultyTimer=0;
+		}
+	
 		
 	}
 

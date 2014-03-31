@@ -11,7 +11,8 @@ public abstract class Projectile extends MovableObject {
 	protected ImageSequence flyRight;
 	protected ImageSequence flyDown;
 	protected int flySpeed;
-	private ProjectileAnimation pAnimate = new ProjectileAnimation(this);;
+	protected ProjectileAnimation pAnimate = new ProjectileAnimation(this);
+	protected int invincibleDuration;
 	
 	public int damage;
 	public GameObject owner;
@@ -20,20 +21,25 @@ public abstract class Projectile extends MovableObject {
 		owner=o;
 		allignOrientationWithOwner(owner);
 		damage = 10;
+		hp=5;
+		invincibleDuration = 10;
 		// TODO Auto-generated constructor stub
 	}
 	public void tick(){
 		if(owner==game.getPlayer()){
 			LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
 			for(int i=0;i<enemies.size();i++){
-				applyDamage(damage,10,enemies.get(i));
+				applyDamage(damage,invincibleDuration,enemies.get(i));
 			}
 		}
 		else{
 			LinkedList<Player> playerHit = Physics.hitPlayer(this, controller.getPlayerList());
 			for(int i=0;i<playerHit.size();i++){
-				applyDamage(damage,10,playerHit.get(i));
+				applyDamage(damage,invincibleDuration,playerHit.get(i));
 			}
+		}
+		if(hp<=0){
+			remove();
 		}
 		x+=getVelX();
 		y+=getVelY();

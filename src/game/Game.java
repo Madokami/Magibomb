@@ -203,11 +203,9 @@ public class Game {
 			}
 		}
 		if(Game.gState==Game.GameState.PLAY){
-			System.out.println(this.bombList.size());
 			timer.tick();
 			event1.tick();
 			event2.tick();
-			GameSystem.getCommand=GameSystem.sendCommand;
 			checkVictoryCondition();
 			if(stopTick){
 				return;
@@ -653,6 +651,9 @@ public class Game {
 
 	public void setEnemyCount(int enemyCount) {
 		this.enemyCount = enemyCount;
+	}
+	public void increaseEnemyCount(){
+		this.enemyCount++;
 	}
 
 	public boolean isVictory() {

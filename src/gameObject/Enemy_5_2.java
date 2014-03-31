@@ -10,11 +10,14 @@ public class Enemy_5_2 extends Enemy_4{
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_2/stand",8);	
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_2/damage",4);
 		sequence.startSequence(stand);
+		ultyTimer=300;
 	}
 
 	@Override
 	public void useUltimate() {
-		// TODO Auto-generated method stub
+		if(chargeAtPlayer(30,20)){
+			ultyTimer=0;
+		}
 		
 	}
 

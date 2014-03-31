@@ -18,30 +18,26 @@ public class Enemy_1_1 extends Enemy{
 		//stand=new ImageSequence("/image/spriteSheet/actors/enemy/boss_6/stand",10);
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_1/damage",4);		
 		sequence.startSequence(stand);
-
+		ultyTimerDuration=60;
 		
 		// TODO Auto-generated constructor stub
 	}
-	public void tick(){
-		super.tick();
-		if(chargeCounter>=60){
-			useAbility1();
-			//useUltimate();
-			chargeCounter=0;
-		}
-		chargeCounter++;
-	}
+
 	@Override
 	public void useUltimate() {
-		// TODO Auto-generated method stub
-		chargeAtPlayer(20,20);
+		String dir = ai.isValidStraightLine(controller.wallArray, game.getPlayer().xGridNearest, game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
+		if(dir!="stop"){
+			moveToDirection(dir);
+			setVelX(0);
+			setVelY(0);
+			sequence.startSequence(attack, stand);
+			controller.addEntity(new Scissors(xGridNearest,yGridNearest,game,this));
+			ultyTimer=0;
+		}
 	}
 	@Override
 	public void useAbility1() {
-		setVelX(0);
-		setVelY(0);
-		sequence.startSequence(attack, stand);
-		controller.addEntity(new Scissors(this.xGridNearest,this.yGridNearest,game,this));
+		
 		
 	}
 	@Override

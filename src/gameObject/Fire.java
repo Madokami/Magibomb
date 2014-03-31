@@ -48,6 +48,11 @@ private int counter;
 		if(bombHit!=-1){
 			applyDamage(strength,10,game.getBombList().get(bombHit));
 		}
+		LinkedList<Projectile> projTemp = Physics.projectileHit(this, controller.getProjectileList());
+		for(int i = 0;i<projTemp.size();i++){
+			applyDamage(strength,15,projTemp.get(i));
+		}
+		
 	}
 
 	

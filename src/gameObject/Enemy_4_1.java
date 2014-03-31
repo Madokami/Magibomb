@@ -11,6 +11,7 @@ public class Enemy_4_1 extends Enemy_4{
 		attack=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_4_1/attack",9);	
 		open=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_4_1/open",4);	
 		sequence.startSequence(stand);
+		canMove=false;
 	}
 
 	@Override

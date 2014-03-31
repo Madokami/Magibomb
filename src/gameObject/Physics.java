@@ -98,4 +98,14 @@ public class Physics {
 		}
 		return false;
 	}
+	
+	public static LinkedList<Projectile> projectileHit(GameObject x,LinkedList<Projectile> list){
+		LinkedList<Projectile> ret = new LinkedList<Projectile>();
+		for(int i=0;i<list.size();i++){
+			if(x.getBounds(x.collisionWidth-1,x.collisionHeight-1).intersects(list.get(i).getBounds(list.get(i).collisionWidth-1,list.get(i).collisionHeight-1))){
+				ret.add(list.get(i));
+			}
+		}
+		return ret;
+	}
 }

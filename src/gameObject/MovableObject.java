@@ -23,6 +23,8 @@ public abstract class MovableObject extends GameObject{
 	private double velX = 0;
 	private double velY = 0;
 	
+	protected boolean dontFlip=false;
+	
 	/////
 	public ImageSequence run,stand,damage,dead,ulty,dash;
 	
@@ -407,7 +409,7 @@ public abstract class MovableObject extends GameObject{
 		return false;
 	}
 	
-	private void checkIfAtEdge() {
+	public void checkIfAtEdge() {
 		if(x<=0){
 			x=1;
 			atEdge=true;
@@ -498,11 +500,11 @@ public abstract class MovableObject extends GameObject{
 	
 	public void setVelX(double value){
 		velX=value/2;
-		velY=0;
+		//velY=0;
 	}
 	public void setVelY(double value){
 		velY=value/2;
-		velX=0;
+		//velX=0;
 	}
 	public double getVelX(){
 		return this.velX;

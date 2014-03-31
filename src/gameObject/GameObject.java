@@ -65,7 +65,7 @@ public abstract class GameObject{
 		public int renderXShift=0;
 		public int renderYShift=0;
 		
-		private DamageRenderer damageRenderer;
+		protected DamageRenderer damageRenderer;
 		protected Controller controller;
 	
 		
