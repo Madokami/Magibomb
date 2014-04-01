@@ -8,6 +8,15 @@ import java.awt.image.BufferedImage;
 
 import system.GameSystem;
 
+/**
+ * @author      Group 6
+ * @version     1.0
+ * @since       2010-03-31          (the version of the package this class was first added to)
+ * 
+ * Different images are animated based on orientation and sequence
+ * 
+ * For each orientation, every frame image is displayed in consecutive sequences.
+ */
 public class Animate {
 	public static void animate(GameObject o){
 		if(o.direction.equals("up")){
