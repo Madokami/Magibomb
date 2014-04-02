@@ -192,8 +192,6 @@ public class Animate {
 		else if(o.animation==ANIMATION.JUMPDOWN) o.image=o.jumpDownGif;
 		else if(o.animation==ANIMATION.UPATTACK) o.image=o.upAttackGif;
 	}
-	
 	*/
 
-	
 }
