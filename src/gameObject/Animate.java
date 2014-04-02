@@ -15,7 +15,10 @@ import system.GameSystem;
  * 
  * Different images are animated based on orientation and sequence
  * 
- * For each orientation, every frame image is displayed in consecutive sequences.
+ * Different methods of animations include utilizing:
+ * different files for different frames corresponding to each image
+ * spritesheets that are divided into quadrangles
+ * .gif files that are displayed based on orientation
  */
 public class Animate {
 	
