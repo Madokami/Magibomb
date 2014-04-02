@@ -7,7 +7,7 @@ import system.GameSystem;
 
 /**
 * <b>Description:</b>
-* <br>
+* <br><br>
 * Responsible for calling and defining methods for different .gif files
 * <br><br>
 * Parameters are placed to control size of animated images
