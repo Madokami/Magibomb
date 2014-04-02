@@ -30,7 +30,13 @@ public class StageRenderer {
 	private BufferedImage tv1 = loader.loadImage("/image/stage/stage3/tv1.png");
 	private BufferedImage tv2 = loader.loadImage("/image/stage/stage3/tv2.png");
 	private BufferedImage tv3 = loader.loadImage("/image/stage/stage3/tv3.png");
-
+	private BufferedImage bill1 = loader.loadImage("/image/stage/stage4/bill1.png");
+	private BufferedImage bill2 = loader.loadImage("/image/stage/stage4/bill2.png");
+	private BufferedImage clane = loader.loadImage("/image/stage/stage4/clane.png");
+	private BufferedImage panel = loader.loadImage("/image/stage/stage4/panel.png");
+	private BufferedImage tank = loader.loadImage("/image/stage/stage4/tank.png");
+	private BufferedImage tesuri = loader.loadImage("/image/stage/stage4/tesuri.png");
+	
 	
 	
 	public void render1(Graphics g){
@@ -135,6 +141,22 @@ public class StageRenderer {
     	
 	}
     public void render10(Graphics g){
+    	g.drawImage(bill2, 0*size, 1*size,2*size,4*size, null);
+    	g.drawImage(tank, 4*size, 1*size,4*size,size, null);
+    	g.drawImage(bill1, 14*size, 4*size,size,2*size, null);
     	
-   	}
+    }
+    public void render11(Graphics g){
+    	g.drawImage(tank, 2*size, 15*size,4*size,size, null);
+    	g.drawImage(bill2, 10*size, 3*size,2*size,4*size, null);
+    	g.drawImage(panel, 2*size, 2*size,4*size,2*size, null);
+    	g.drawImage(tesuri, 0*size, 5*size,2*size,size, null);
+    	g.drawImage(clane, 5*size, 0*size,2*size,size, null);
+    }
+    public void render12(Graphics g){
+    	g.drawImage(panel, 2*size, 3*size,2*size,size, null);
+    	g.drawImage(tank, 9*size, 4*size,4*size,size, null);
+    	g.drawImage(clane, 4*size, 6*size,2*size,size, null);
+    	g.drawImage(panel, 9*size, 7*size,2*size,size, null);
+    }
 }
