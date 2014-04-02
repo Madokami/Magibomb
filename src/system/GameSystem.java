@@ -1,9 +1,8 @@
 package system;
 
-
 import game.Game;
+
 import game.Input;
-import game.MultiplayerStats;
 import gameObject.SpriteData;
 
 import java.awt.BorderLayout;
@@ -26,10 +25,42 @@ import javax.swing.JFrame;
 import story.Story;
 import menu.AttributeHandler;
 import menu.Menu;
+import menu.PauseMenu;
 
-public class GameSystem extends Canvas implements Runnable{
+public class GameSystem extends Canvas implements Runnable {
 	public static int CONFIRM,CANCEL,UP,DOWN,LEFT,RIGHT,ULT;
+
+	public static final int GRID_SIZE = 56;
+	public static final int WIDTH = 300;
+	public static final int HEIGHT = WIDTH * 9 / 12;
+	public static final int SCALE = 3;
+	public static final int ABSWIDTH = WIDTH * SCALE;
+	public static final int ABSHEIGHT = HEIGHT * SCALE;
+	public static final int GAME_WIDTH = ABSWIDTH;
+	public static final int GAME_HEIGHT = ABSHEIGHT - 96;
+	public static final int GRIDW = GAME_WIDTH / GRID_SIZE;
+	public static final int GRIDH = GAME_HEIGHT / GRID_SIZE;
+	public static final String TITLE = "Magibomb";
+	public static BufferedImageLoader loader = new BufferedImageLoader();
+
+	private JFrame frame;
+	private boolean running = false;
+	private Thread thread;
 	
+	private BufferedImage loadingImage = loader.loadImage("/image/menu/loading.png");
+	private BufferedImage image = new BufferedImage(WIDTH * SCALE, HEIGHT
+			* SCALE, BufferedImage.TYPE_INT_RGB);
+	public static Music musicPlayer;
+	public static SpriteData spriteData;
+
+	private Menu menu;
+	private Story story;
+	private Game game;
+	private PauseMenu pauseMenu;
+
+	public static boolean musicOn;
+	public static boolean mute = false;
+
 	public static String getCommand=null;
 	public static String sendCommand=null;
 	public static String sendCommandSelf=null;
@@ -39,72 +70,33 @@ public class GameSystem extends Canvas implements Runnable{
 	public static boolean otherPlayerIsReady=false;
 	
 	public static int serialNumber;
-	public static final int GRID_SIZE=56;
-	public static final int WIDTH=300;
-	public static final int HEIGHT=WIDTH*9/12;
-	public static final int SCALE=3;
-	public static final int ABSWIDTH=WIDTH*SCALE;
-	public static final int ABSHEIGHT=HEIGHT*SCALE;
-	public static final int GAME_WIDTH=ABSWIDTH;
-	public static final int GAME_HEIGHT=ABSHEIGHT-96;
-	public static final int GRIDW=GAME_WIDTH/GRID_SIZE;
-	public static final int GRIDH=GAME_HEIGHT/GRID_SIZE;
-	public static final String TITLE="Temp Name";
-	public static BufferedImageLoader loader = new BufferedImageLoader();
 	
-	private JFrame frame;
-	private boolean running= false;
-	
-	private Thread thread;
-	private Thread server;
-	
-	private BufferedImage image = new BufferedImage(WIDTH*SCALE,HEIGHT*SCALE,BufferedImage.TYPE_INT_RGB);
-	private BufferedImage loadingImage = loader.loadImage("/image/menu/loading.png");
-	
-	public static Music musicPlayer;
-	public static SpriteData spriteData;
-	
-	
-	private Menu menu;
-	private Story story;
-	private Game game;
-	
-	
-	public static boolean musicOn;
-	
-	//test locale change
-	public static enum STATE{
-		MENU,
-		GAME,
-		PAUSE,
-		LOAD,
-		STORY
+	public static enum STATE {
+		MENU, GAME, PAUSE, LOAD, STORY,
 	};
-	
+
 	public static STATE state;
-	public void init(){
-		
-		spriteData=new SpriteData();
+	
+
+	public void init() {
+		spriteData = new SpriteData();
 		game = new Game(this);
 		menu = new Menu(game);
 		story = new Story();
-		musicPlayer=new Music();
-		GameSystem.turnOnBgm("/sound/music/theme1.wav");	
-		//m = new Menu2(this);
+		pauseMenu = new PauseMenu(game);
+		// m = new Menu2(this);
 		this.requestFocus();
-		//bgmPlayer=new Music();
-		
-		//event listeners
-		//this.addKeyListener(new Input(this));
+		// bgmPlayer=new Music();
+		musicPlayer = new Music();
+		// event listeners
+		// this.addKeyListener(new Input(this));
 		this.addKeyListener(new Input(this));
-		loadGame();
-		
 		setDefaultKeyLayout();
+		loadGame();
+		GameSystem.turnOnBgm("/sound/music/theme1.wav");
 		state = STATE.MENU;
-		//StartServer.init(game);
-		server=new Thread(new Server(game));
-		server.start();
 	}
+	
 	public void setDefaultKeyLayout(){
 		CONFIRM=KeyEvent.VK_Z;
 		CANCEL=KeyEvent.VK_X;
@@ -114,125 +106,117 @@ public class GameSystem extends Canvas implements Runnable{
 		RIGHT=KeyEvent.VK_RIGHT;
 		ULT=KeyEvent.VK_C;
 	}
-	public static void main(String[] args){
+	
+	public static void main(String[] args) {
 		GameSystem sys = new GameSystem();
 		sys.start();
 		sys.init();
 		
-		
 	}
-	
-	
-	public GameSystem(){
-		setMinimumSize(new Dimension(ABSWIDTH,ABSHEIGHT));
-		setMaximumSize(new Dimension(ABSWIDTH,ABSHEIGHT));
-		setPreferredSize(new Dimension(ABSWIDTH,ABSHEIGHT));
-		//this.setSize(WIDTH*SCALE, HEIGHT*SCALE);
-		frame=new JFrame(TITLE);
+
+	public GameSystem() {
+		setMinimumSize(new Dimension(ABSWIDTH, ABSHEIGHT));
+		setMaximumSize(new Dimension(ABSWIDTH, ABSHEIGHT));
+		setPreferredSize(new Dimension(ABSWIDTH, ABSHEIGHT));
+		// this.setSize(WIDTH*SCALE, HEIGHT*SCALE);
+		frame = new JFrame(TITLE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.setLayout(new BorderLayout());
+		// frame.setLayout(new BorderLayout());
 		frame.setLayout(new BorderLayout());
-		//frame.setSize(WIDTH*SCALE, HEIGHT*SCALE);
-		//frame.add(this,BorderLayout.CENTER);
-		frame.add(this,BorderLayout.CENTER);
-		//frame.add(content,BorderLayout.CENTER);
+		// frame.setSize(WIDTH*SCALE, HEIGHT*SCALE);
+		// frame.add(this,BorderLayout.CENTER);
+		frame.add(this, BorderLayout.CENTER);
+		// frame.add(content,BorderLayout.CENTER);
 		frame.pack();
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		musicOn=false;
+		musicOn = false;
 	}
+
 	public void run() {
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 30.0;
-		double ns = 1000000000/amountOfTicks;
+		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		int updates = 0;
 		int frames = 0;
 		long timer = System.currentTimeMillis();
-		while(running){
+		while (running) {
 			long now = System.nanoTime();
-			delta = delta + (now - lastTime)/ns;
+			delta = delta + (now - lastTime) / ns;
 			lastTime = now;
-			if(delta>1){
-					
-					tick();
-				
+			if (delta > 1) {
+				tick();
 				updates++;
 				delta--;
 			}
-			
-				render();
-			
-			
+
+			render();
+
 			frames++;
-			if(System.currentTimeMillis()-timer > 1000){
+			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				//System.out.println(updates + "ticks, frame" + frames);
-				//System.out.println(p.curX+" "+p.curY);
-				updates=0;
-				frames=0;
+				// System.out.println(updates + "ticks, frame" + frames);
+				// System.out.println(p.curX+" "+p.curY);
+				updates = 0;
+				frames = 0;
 			}
 		}
 		stop();
-		
+
 	}
-	
-	private void tick(){
-		//System.out.println(GameSystem.twoPlayerMode);
-		//System.out.println(MultiplayerStats.CURSTAGE);
-		//System.out.println(Game.curLevel);
-		if(state==STATE.GAME){
+
+	private void tick() {
+		if (state == STATE.GAME) {
 			game.tick();
-		}
-		else if(state==STATE.MENU){
+		} else if (state == STATE.MENU) {
 			menu.tick();
-		}
-		else if(state==STATE.STORY){
+		} else if (state == STATE.STORY) {
 			story.tick();
 		}
+		else if(state==STATE.PAUSE){
+			pauseMenu.tick();
+		}
 	}
-	
-	public void render(){
+
+	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
-		if(bs==null){
+		if (bs == null) {
 			createBufferStrategy(3);
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		///////////////////////////
-		g.drawImage(image,0,0,getWidth(),getHeight(),this);
+		// /////////////////////////
+		g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 		g.drawImage(loadingImage, GameSystem.ABSWIDTH-loadingImage.getWidth(),GameSystem.ABSHEIGHT-loadingImage.getHeight(),null);
-		if(state==STATE.GAME||state==STATE.PAUSE){
+		if (state == STATE.GAME || state == STATE.PAUSE) {
+			//System.out.println(state);
 			game.render(g);
-			if(state==STATE.PAUSE){
-				g.setFont(new Font("Arial",Font.BOLD,32));
-				g.setColor(Color.RED);
-				g.drawString("Game Paused", 220, 220);
+			if (state == STATE.PAUSE) {
+				pauseMenu.render(g);
 			}
-		}
-		else if(state==STATE.MENU){
+		} else if (state == STATE.MENU) {
 			menu.render(g);
-		}
-		else if(state==STATE.STORY){
+		} else if (state == STATE.STORY) {
 			story.render(g);
 		}
-		///////////////////////////
+		
+		// /////////////////////////
 		g.dispose();
 		bs.show();
 	}
-	
-	
-	private synchronized void start(){
-		if(running)
+
+	private synchronized void start() {
+		if (running)
 			return;
 		running = true;
 		thread = new Thread(this);
 		thread.start();
 	}
-	
-	private synchronized void stop(){
-		if(!running)
+
+	private synchronized void stop() {
+		if (!running)
 			return;
 		running = false;
 		try {
@@ -242,6 +226,31 @@ public class GameSystem extends Canvas implements Runnable{
 			e.printStackTrace();
 		}
 		System.exit(1);
+	}
+
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		// int save = KeyEvent.getExtendedKeyCodeForChar('s');
+		if (key == KeyEvent.VK_S) {
+			game.saveGame();
+		}
+		if (state == STATE.MENU) {
+			menu.keyPressed(key);
+		}
+		// in story state
+		else if (state == STATE.STORY) {
+			story.keyPressed(e);
+		}
+		// in game state
+		else if (state == STATE.GAME) {
+			game.keyPressed(key);
+		} 
+		// in pause state
+		else if (state == STATE.PAUSE) {
+			pauseMenu.keyPressed(key);
+		}
+		return;
+
 	}
 	public static synchronized void sendCommand(String s){
 		if(!GameSystem.twoPlayerMode){
@@ -275,107 +284,76 @@ public class GameSystem extends Canvas implements Runnable{
 			GameSystem.sendCommand="!"+s+",-1;";
 		}
 	}
-	public void keyPressed(KeyEvent e){
-		int key = e.getKeyCode();
-		//int save = KeyEvent.getExtendedKeyCodeForChar('s');
-		if(key==KeyEvent.VK_S){
-			game.saveGame();
-		}
-		if(state==STATE.MENU){
-			menu.keyPressed(key);
-		}
-		//in story state
-		else if(state==STATE.STORY){
-			story.keyPressed(e);
-		}
-		//in game state
-		else if(state==STATE.GAME){
-			game.keyPressed(key);
-		}
-		else if(state==STATE.PAUSE){
-			if(key==KeyEvent.VK_P){
-				state=STATE.GAME;
-			}
-		}
-		return;
 	
-	}
-	
-	public void keyReleased(KeyEvent e){
+	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		if(state==STATE.GAME){
+		if (state == STATE.GAME) {
 			game.keyReleased(key);
 		}
 	}
-	
-	public static void turnOnBgm(){
-		
+
+	public static void turnOnBgm() {
+
 		musicPlayer.playMusic("/sound/sisPuellaMagica.wav");
-		musicOn=true;
+		musicOn = true;
 	}
-	//this will play the .wav file idicated given the url
-	public static void turnOnBgm(String url){
-		
+
+	// this will play the .wav file idicated given the url
+	public static void turnOnBgm(String url) {
+
 		System.out.println("turnOnBgm Called");
 		musicPlayer.playMusic(url);
 	}
-	public static void turnOffBgm(){
+
+	public static void turnOffBgm() {
 		musicPlayer.stopMusic();
 	}
-	public static void playVoice(String path){
+
+	public static void playVoice(String path) {
 		musicPlayer.playVoice(path);
 	}
-	public static void playSound(String path){
+
+	public static void playSound(String path) {
 		musicPlayer.playSound(path);
 	}
-	public static void playSwitch(){
+
+	public static void playSwitch() {
 		musicPlayer.playSound("/sound/switch1.wav");
 	}
-	public static void playConfirm(){
+
+	public static void playConfirm() {
 		musicPlayer.playSound("/sound/choice2.wav");
 	}
-	public static void playCancel(){
+
+	public static void playCancel() {
 		musicPlayer.playSound("/sound/cancel2.wav");
 	}
-	public static void playError(){
+
+	public static void playError() {
 		musicPlayer.playSound("/sound/failure1.wav");
 	}
-	public static void closeMusic(){
-		if(musicPlayer.music!=null){
-			musicPlayer.music.close();
-		}
-		if(musicPlayer.sound!=null){
-			musicPlayer.sound.close();
-		}
-		if(musicPlayer.voice!=null){
-			musicPlayer.voice.close();
+	public static void setMusicVolume(int value){
+		musicPlayer.setMusicVolume(value);
+	}
+	public void loadGame() {
+		try {
+			GameData loadData;
+			FileInputStream fileIn = new FileInputStream("system/save/game.ser");
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			loadData = (GameData) in.readObject();
+			loadData.loadGame(game);
+			menu.mChar.handler = new AttributeHandler(game);
+			System.out.println("Game loaded");
+			in.close();
+			fileIn.close();
+		} catch (IOException i) {
+			i.printStackTrace();
+			return;
+		} catch (ClassNotFoundException c) {
+			System.out.println("GameData class not found");
+			c.printStackTrace();
+			return;
 		}
 	}
-	
-	public void loadGame(){
-		 try
-	      {
-	    	  GameData loadData;
-	          FileInputStream fileIn = new FileInputStream("system/save/game.ser");
-	          ObjectInputStream in = new ObjectInputStream(fileIn);
-	          loadData =  (GameData) in.readObject();
-	          loadData.loadGame(game);
-	          menu.mChar.handler=new AttributeHandler(game);
-	          System.out.println("Game loaded");
-	          in.close();
-	          fileIn.close();
-	      }catch(IOException i)
-	      {
-	         i.printStackTrace();
-	         return;
-	      }catch(ClassNotFoundException c)
-	      {
-	         System.out.println("GameData class not found");
-	         c.printStackTrace();
-	         return;
-	      }
-	}
-	
-	
-}
 
+}

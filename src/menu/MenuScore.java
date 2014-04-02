@@ -1,5 +1,7 @@
 package menu;
 
+import gameObject.Player;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -25,6 +27,7 @@ public class MenuScore {
 		g.setFont(new Font("arial", Font.BOLD,30));
 		g.drawString("press 'space' go to next level", 200, 100);
 		g.drawString("please make this page look nicer", 180,200);
+		g.drawString("Current score: "+Player.score, 180,300);
 	}
 
 	public void keyPressed(int key) {

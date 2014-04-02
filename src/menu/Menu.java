@@ -43,6 +43,8 @@ public class Menu {
 	BufferedImage start;
 	BufferedImage menu;
 	BufferedImage help;
+	public static BufferedImage pointer;
+	
 	public Game game;
 	Image gif;
 	
@@ -78,13 +80,13 @@ public class Menu {
 		mDeath = new MenuDeath();
 		mScore = new MenuScore();
 		mMult = new MenuMultiplayer();
-		GameSystem.loader = new BufferedImageLoader();
 		//sample usage
 		//NOTE: use loader.loadGif(path) to load .gif, or else doesn't work.
 		start = GameSystem.loader.loadImage("/homu.png");
 		//menu = loader.loadImage("/menu.png");
-		menu=GameSystem.loader.loadImage("/box.png");
+		menu=GameSystem.loader.loadImage("/image/menu/mainVisual.png");
 		help = GameSystem.loader.loadImage("/help.png");
+		pointer=GameSystem.loader.loadImage("/image/menu/griefSeed2.png");
 		//example .gif loading
 		gif = GameSystem.loader.loadGif("/homura.gif");
 	}
@@ -93,6 +95,9 @@ public class Menu {
 	//use this method to update variables continuously
 	//this method will be called exactly 30 times per second.
 	public void tick(){
+		X_START=70;
+		Y_START=GameSystem.ABSHEIGHT-30;
+		SPACING=300;
 		if(mState==MENUSTATE.CHOOSECHAR){
 			mChar.tick();
 		}
@@ -114,14 +119,15 @@ public class Menu {
 		Font f1 = new Font("arial",Font.BOLD,50);
 		g.setFont(f1);
 		g.setColor(Color.BLACK);
-		g.drawImage(menu, 0, 0,GameSystem.ABSWIDTH,GameSystem.ABSHEIGHT, null);
+		g.drawImage(menu, 0, 0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10, null);
 		//could omit the width and height in drawString or drawImage
+		g.drawString(GameSystem.TITLE, GameSystem.ABSWIDTH/3, 100);
 		if(mState==MENUSTATE.MAIN){
-			g.drawString(GameSystem.TITLE, GameSystem.WIDTH/3, 100);
-			g.drawString("Story", X_START-5, Y_START+SPACING);
-			g.drawString("Arcade", X_START-2, Y_START+2*SPACING);
-			g.drawString("Multiplayer", X_START-2, Y_START+3*SPACING);
-			g.drawString("Quit", X_START-2, Y_START+4*SPACING);
+			
+			g.drawString("Story", X_START-5, Y_START);
+			g.drawString("Arcade", X_START-2+SPACING, Y_START);
+			g.drawString("Network", X_START-2+2*SPACING, Y_START);
+			//g.drawString("Quit", X_START-2+3*SPACING, Y_START);
 		}
 		//make sure renderSelected is under renderCurrentState or else you won't see the changes
 		renderCurrentState(g);
@@ -132,16 +138,19 @@ public class Menu {
 	public void renderSelected(Graphics g){
 		if(mState==MENUSTATE.MAIN){
 			if(selected==SELECTED.STORY){
-				g.setColor(Color.RED);
-				g.drawString("Story", X_START-5, Y_START+SPACING);
+				//g.setColor(Color.LIGHT_GRAY);
+				g.drawString("Story", X_START-5, Y_START);
+				g.drawImage(pointer, X_START-5-pointer.getWidth(), Y_START-pointer.getHeight(), null);
 			}
 			else if(selected==SELECTED.ARCADE){
-				g.setColor(Color.RED);
-				g.drawString("Arcade", X_START-2, Y_START+2*SPACING);
+				//g.setColor(Color.LIGHT_GRAY);
+				g.drawString("Arcade", X_START-2+SPACING, Y_START);
+				g.drawImage(pointer, X_START-5-pointer.getWidth()+SPACING, Y_START-pointer.getHeight(), null);
 			}
 			else if(selected==SELECTED.TWOPLAYER){
-				g.setColor(Color.RED);
-				g.drawString("Multiplayer", X_START-2, Y_START+3*SPACING);
+				//g.setColor(Color.LIGHT_GRAY);
+				g.drawString("Network", X_START-2+2*SPACING, Y_START);
+				g.drawImage(pointer, X_START-5-pointer.getWidth()+2*SPACING, Y_START-pointer.getHeight(), null);
 			}
 		}
 		else if(mState==MENUSTATE.CHOOSECHAR){
@@ -183,7 +192,7 @@ public class Menu {
 			mMult.keyPressed(key);
 		}
 		//when "down" is pressed
-		else if(key==KeyEvent.VK_DOWN){
+		else if(key==GameSystem.RIGHT){
 			//if the current selected mode is story
 			if(mState==MENUSTATE.MAIN){
 				if(Menu.selected==Menu.SELECTED.STORY){
@@ -199,7 +208,7 @@ public class Menu {
 				}
 			}
 		}
-		else if(key==KeyEvent.VK_UP){
+		else if(key==GameSystem.LEFT){
 			if(mState==MENUSTATE.MAIN){
 				if(Menu.selected==Menu.SELECTED.ARCADE){
 					Menu.selected=Menu.SELECTED.STORY;

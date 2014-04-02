@@ -30,12 +30,14 @@ public class Music{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//loader.loadAudio("/sound/expl1.wav", sound);
+		
 		
 	}
 	public void playBgm(){
-		music=loader.newClip("/sound/bgm1.wav");
-		music.loop(music.LOOP_CONTINUOUSLY);
+		if (GameSystem.mute == false){
+			music=loader.newClip("/sound/bgm1.wav");
+			music.loop(music.LOOP_CONTINUOUSLY);
+		}
 	}
 	public void playExplosion(){
 		explosion.start();
@@ -65,24 +67,19 @@ public class Music{
 		sound.start();
 	}
 	public synchronized void playMusic(String url){
-		music.stop();
-		music.close();
-		music = loader.newClip(url);
-		setMusicVolume(musicVolume);
-		music.loop(music.LOOP_CONTINUOUSLY);
+		if (GameSystem.mute == false){
+			music.stop();
+			music = loader.newClip(url);
+			setMusicVolume(musicVolume);
+			music.loop(music.LOOP_CONTINUOUSLY);
+		}
 	}
 	public void playVoice(String url){
-		if(voice!=null) {
-			voice.stop();
-		}
-		
+		if(voice!=null) voice.stop();
 		voice = loader.newClip(url);
 		voice.start();
 	}
 	public void playSound(String url){
-		if(sound!=null){
-			sound.stop();
-		}
 		sound=loader.newClip(url);
 		sound.start();
 	}

@@ -57,7 +57,7 @@ public abstract class Player extends MovableObject{
 	
 	public double expCurrent;
 	public int BP;
-	public int score;
+	public static int score;
 	
 	public LevelUp levelUpdater;
 	

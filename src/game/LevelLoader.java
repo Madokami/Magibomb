@@ -138,7 +138,7 @@ public class LevelLoader {
 	}
 	
 	public void stage4(){
-		GameSystem.turnOnBgm("/sound/music/theme2.wav");
+		//GameSystem.turnOnBgm("/sound/music/theme2.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
 				{3,0,0,2,2,0,0,0,0,2,2,0,0,3,2,2},
