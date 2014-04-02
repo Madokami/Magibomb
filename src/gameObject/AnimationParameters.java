@@ -4,7 +4,6 @@ import java.awt.Image;
 
 import system.GameSystem;
 
-
 /**
 * <b>Description:</b>
 * <br><br>
