@@ -134,4 +134,7 @@ public class StageRenderer {
     public void render9(Graphics g){
     	
 	}
+    public void render10(Graphics g){
+    	
+   	}
 }

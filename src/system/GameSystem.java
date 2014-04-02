@@ -93,7 +93,7 @@ public class GameSystem extends Canvas implements Runnable {
 		this.addKeyListener(new Input(this));
 		setDefaultKeyLayout();
 		loadGame();
-		GameSystem.turnOnBgm("/sound/music/theme1.wav");
+		GameSystem.turnOnBgm("/sound/music/title.wav");
 		state = STATE.MENU;
 	}
 	

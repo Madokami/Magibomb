@@ -60,6 +60,8 @@ public class LevelLoader {
 			}
 		}
 		
+		
+		
 		reset();
 		if(stage==1){
 			stage1();
@@ -88,9 +90,16 @@ public class LevelLoader {
 		else if(stage==9){
 			stage9();
 		}
+		else if(stage==10){
+			stage10();
+		}
+		else if(stage==11){
+			//stage11();
+		}
 		updateList();
 	}
 	public void stage1(){
+		GameSystem.turnOnBgm("/sound/music/stage1.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		//created the player depending on the player chosen state
 		int[][] data = new int[][]{
@@ -110,6 +119,7 @@ public class LevelLoader {
 	
 	
 	public void stage2(){
+		GameSystem.turnOnBgm("/sound/music/stage1.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		/*
 		createPlayer(1,2);
@@ -135,6 +145,7 @@ public class LevelLoader {
 		this.loadFromArray(data);
 	}
 	public void stage3(){
+		GameSystem.turnOnBgm("/sound/music/boss1.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
 				{3,2,0,2,0,11,0,0,0,0,0,0,2,0,2,3},
@@ -152,14 +163,14 @@ public class LevelLoader {
 		this.loadFromArray(data);
 	}
 	
-<<<<<<< HEAD
-	public void stage4(){
+
+	
 		//GameSystem.turnOnBgm("/sound/music/theme2.wav");
-=======
+
 	
 		public void stage4(){
-		GameSystem.turnOnBgm("/sound/music/theme2.wav");
->>>>>>> b1e4b82e2baf563b00e3c8c32e339bcd11ba22f8
+		GameSystem.turnOnBgm("/sound/music/stage2.wav");
+
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
 				{3,0,0,2,2,0,0,0,21,2,2,0,0,3,2,2},
@@ -178,6 +189,7 @@ public class LevelLoader {
 	}
 
 	public void stage5(){
+		GameSystem.turnOnBgm("/sound/music/stage2.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
 				{3,0,0,2,2,0,0,3,3,0,0,2,2,0,21,0},
@@ -196,6 +208,7 @@ public class LevelLoader {
 	}
 	
 	public void stage6(){
+		GameSystem.turnOnBgm("/sound/music/boss1.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
 				{0,1,0,2,2,0,0,2,2,0,0,2,2,0,0,0},
@@ -216,6 +229,7 @@ public class LevelLoader {
 	
 	
 	public void stage7(){
+		GameSystem.turnOnBgm("/sound/music/stage3.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
 				{1,0,0,0,2,2,2,2,2,0,0,2,2,2,2,2},
@@ -236,6 +250,7 @@ public class LevelLoader {
 	}
 	
 	public void stage8(){
+		GameSystem.turnOnBgm("/sound/music/stage3.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
 				{2,2,2,2,2,2,2,2,2,2,2,3,3,3,2,2},
@@ -254,6 +269,24 @@ public class LevelLoader {
 	}
 	
 	public void stage9(){
+		GameSystem.turnOnBgm("/sound/music/boss1.wav");
+		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
+		int[][] data = new int[][]{
+				{1,0,0,2,0,2,2,2,2,2,2,0,2,0,0,31},
+				{0,0,0,2,0,2,2,2,2,2,2,0,2,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{2,2,0,0,0,0,0,0,0,0,0,0,0,0,2,2},
+				{0,0,0,2,0,0,0,30,0,0,0,0,2,0,0,0},
+				{0,0,0,2,0,0,0,0,0,0,0,0,2,0,0,0},
+				{2,2,0,0,0,0,0,0,0,0,0,0,0,0,2,2},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,2,0,2,2,2,2,2,2,0,2,0,0,0},
+				{32,0,0,2,0,2,2,2,2,2,2,0,2,0,0,31},
+		};
+		this.loadFromArray(data);
+	}
+	public void stage10(){
+		GameSystem.turnOnBgm("/sound/music/stage5.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
 				{1,0,0,2,0,2,2,2,2,2,2,0,2,0,0,31},

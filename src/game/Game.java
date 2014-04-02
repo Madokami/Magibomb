@@ -65,7 +65,7 @@ public class Game {
 	public BufferedImageLoader loader;
 	
 	
-	private int lastStage=4;
+	private int lastStage=10;
 	
 	
 	private int enemyCount;
@@ -178,7 +178,7 @@ public class Game {
 				player.updatePlayerData();
 				gameData.updateGameData(this);
 				goToScore();
-				saveGame();
+				//saveGame();
 				return;
 			}
 			
@@ -385,13 +385,13 @@ public class Game {
 	
 	public void goToMenu(){
 		GameSystem.turnOffBgm();
-		GameSystem.turnOnBgm("/sound/music/theme1.wav");	
+		GameSystem.turnOnBgm("/sound/music/title.wav");	
 		Menu.mState=Menu.MENUSTATE.MAIN;
 		GameSystem.state=GameSystem.STATE.MENU;
 	}
 	public void goToDeath(){
 		GameSystem.turnOffBgm();
-		GameSystem.turnOnBgm("/sound/music/theme2.wav");
+		GameSystem.turnOnBgm("/sound/music/death.wav");
 		Menu.mState=Menu.MENUSTATE.DEATH;
 		GameSystem.state=GameSystem.STATE.MENU;
 	}

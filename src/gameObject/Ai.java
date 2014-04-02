@@ -103,7 +103,7 @@ public class Ai
 		
 		
 	}
-	public String makeStep(boolean[][] m,int playerx,int playery,int aix,int aiy)
+	public String makeStep (boolean[][] m,int playerx,int playery,int aix,int aiy)
 	{
 		this.playerx=playerx;
 		this.playery=playery;

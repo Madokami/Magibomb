@@ -288,7 +288,6 @@ public class Menu {
 	
 	public static void toGameMode() {
 		GameSystem.turnOffBgm();
-		GameSystem.turnOnBgm("/sound/delusio_summa.wav");
 		Game.gState=GameState.WAIT;
 		GameSystem.state=STATE.GAME;
 	}
@@ -298,7 +297,7 @@ public class Menu {
 		GameSystem.turnOffBgm();
 		System.gc();
 		GameSystem.twoPlayerMode=false;
-		GameSystem.turnOnBgm("/sound/music/theme1.wav");
+		GameSystem.turnOnBgm("/sound/music/title.wav");
 		Menu.mState=MENUSTATE.MAIN;
 	}
 }
