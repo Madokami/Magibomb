@@ -9,18 +9,18 @@ import java.awt.image.BufferedImage;
 import system.GameSystem;
 
 /**
- * Description:
- * 
+ * <b>Description:</b>
+ * <br><br>
  * Different images are animated based on orientation and sequence
- * 
+ * <br><br>
  * Different methods of animations include utilizing:
- * different files for different frames corresponding to each image
- * spritesheets that are divided into quadrangles
- * .gif files that are displayed based on orientation
- *
+ * <li>different files for different frames corresponding to each image
+ * <li>spritesheets that are divided into quadrangles
+ * <li>.gif files that are displayed based on orientation
+ * <br><br>
  * @author      Team 6
  * @version     1.0
- * @since       2014-03-31          (the version of the package this class was first added to)
+ * @since       2014-03-31
  */
 public class Animate {
 	
