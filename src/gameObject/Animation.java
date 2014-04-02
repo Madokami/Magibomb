@@ -3,6 +3,14 @@ package gameObject;
 import gameObject.MovableObject.ANIMATION;
 import gameObject.MovableObject.FACING;
 
+/**
+* <b>Description:</b>
+* <br>
+* Different images are animated based on orientation and sequence
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Animation {
 	private double counter;
 	private int frames;
@@ -10,9 +18,16 @@ public class Animation {
 	private MovableObject owner;
 	private boolean goToNext,oneTimeSequence,sequencePlaying;
 	
+	/**
+	* Defines MoveableObject
+	*/
 	public Animation(MovableObject o){
 		this.owner=o;
 	}
+	
+	/**
+	* Animation is displayed using specific coordinates of original image
+	*/
 	public void animate(){
 		if(owner.dontFlip){
 			owner.image=currentSequence.getImage((int)counter);
@@ -37,6 +52,12 @@ public class Animation {
 			owner.renderYShift=currentSequence.getY();
 		}
 	}
+	
+	/**
+	* Method is called repeatedly to check current status quo
+	* <br>
+	* Animation is then executed based on the existing conditions
+	*/
 	public void tick(){
 		
 		if(currentSequence!=null){
@@ -56,6 +77,10 @@ public class Animation {
 			}
 		}
 	}
+	
+	/**
+	* Displays animated image at beginning of cycle
+	*/
 	public void startSequence(ImageSequence sequence){
 		if(sequencePlaying) return;
 		goToNext=false;
@@ -66,6 +91,10 @@ public class Animation {
 			frames=currentSequence.getFrames();
 		}
 	}
+	
+	/**
+	* Displays animated image at the beginning of cycle
+	*/
 	public void startSequence(ImageSequence sequence, ImageSequence nextSequence ){
 		sequencePlaying=true;
 		goToNext=true;
@@ -77,6 +106,10 @@ public class Animation {
 			frames=currentSequence.getFrames();
 		}
 	}
+	
+	/**
+	* Displays animated image at the beginning of cycle
+	*/
 	public void startOneTimeSequence(ImageSequence sequence){
 		oneTimeSequence=true;
 		goToNext=false;
@@ -86,5 +119,4 @@ public class Animation {
 			frames=currentSequence.getFrames();
 		}
 	}
-	
 }
