@@ -26,6 +26,7 @@ public class Animate {
 	
 	/**
 	Displays different images based on their orientations
+	<br>
 	Each frame of corresponding image is displayed consecutively
 	*/
 	public static void animate(GameObject o){
@@ -58,6 +59,7 @@ public class Animate {
 	
 	/**
 	Retrieves different frames of image from spritesheet
+	<br>
 	Divides spritesheet into equal quadrangles corresponding to individual frames
 	*/
 	public static void animateGem(Player p) {
