@@ -5,7 +5,16 @@ import java.awt.Image;
 import system.GameSystem;
 
 
-
+/**
+* <b>Description:</b>
+* <br>
+* Responsible for calling and defining methods for different .gif files
+* <br><br>
+* Parameters are placed to control size of animated images
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class AnimationParameters {
 	private int size = GameSystem.GRID_SIZE;
 	private final double scale = GameSystem.GRID_SIZE*1.5;
