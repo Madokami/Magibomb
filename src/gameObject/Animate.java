@@ -9,10 +9,6 @@ import java.awt.image.BufferedImage;
 import system.GameSystem;
 
 /**
- * @author      Team 6
- * @version     1.0
- * @since       2014-03-31          (the version of the package this class was first added to)
- * 
  * Description:
  * 
  * Different images are animated based on orientation and sequence
@@ -21,6 +17,10 @@ import system.GameSystem;
  * different files for different frames corresponding to each image
  * spritesheets that are divided into quadrangles
  * .gif files that are displayed based on orientation
+ *
+ * @author      Team 6
+ * @version     1.0
+ * @since       2014-03-31          (the version of the package this class was first added to)
  */
 public class Animate {
 	
@@ -54,7 +54,6 @@ public class Animate {
 			//o.image=o.ssStand.grabImage((int)count+1,1,48,66);
 			//o.i+=o.MS;
 		}
-		
 	}
 	
 	/**
@@ -166,7 +165,6 @@ public class Animate {
 				o.renderYShift=o.animationParameters.getDeathGif().getY();
 			}
 		}
-
 	}
 
 	/*
