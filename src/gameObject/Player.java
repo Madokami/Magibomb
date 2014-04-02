@@ -141,11 +141,14 @@ public abstract class Player extends MovableObject{
 			setVelY(0);
 		}
 		
-			if(hp<=0){
-				hp=0;
-				startDying(160);
-				
-			}
+		if(hp<=0){
+			hp=0;
+			startDying(160);
+		}
+		else if(hp>this.maxHp){
+			hp=maxHp;
+		}
+		
 		if(animation!=ANIMATION.DYING){
 			if(soul>0){
 				if(hp<maxHp){
@@ -359,9 +362,9 @@ public abstract class Player extends MovableObject{
 		if(Physics.onTopOfBomb(this, game.getBombList())!=-1||animation==ANIMATION.DYING||animation==ANIMATION.DAMAGED){
 			return;
 		}
-		if(this.bombCount>=0){
+		if(mp>25){
 			controller.addEntity(new Bomb(this.xGridNearest,this.yGridNearest,game,bombStrength,bombLength,duration));
-			this.bombCount--;
+			mp-=25;
 		}
 		else{
 			GameSystem.playError();

@@ -24,8 +24,17 @@ public abstract class Brick extends GameObject{
 	public void tick(){
 		super.tick();
 		if(hp<=0){
+			int type = rand.nextInt(6);
 			game.getController().removeEntity(this);
-			game.getController().addEntity(new SpeedUp(this.xGridNearest,yGridNearest,game));
+			if(type==3){
+				game.getController().addEntity(new PowerUps_SpeedUp(this.xGridNearest,yGridNearest,game));
+			}
+			else if(type==4){
+				game.getController().addEntity(new PowerUps_DamageUp(this.xGridNearest,yGridNearest,game));
+			}
+			else if(type==5){
+				game.getController().addEntity(new PowerUps_HpUp(this.xGridNearest,yGridNearest,game));
+			}
 		}
 	}
 	public void remove(){

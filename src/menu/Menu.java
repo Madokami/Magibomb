@@ -27,6 +27,8 @@ public class Menu {
 	public MenuChar mChar;
 	public MenuScore mScore;
 	public MenuMultiplayer mMult;
+	public static BufferedImage logo;
+	
 	public static int X_START = GameSystem.WIDTH/2+120;
 	public static int Y_START = 150;
 	public static int SPACING = 47;
@@ -87,6 +89,7 @@ public class Menu {
 		menu=GameSystem.loader.loadImage("/image/menu/mainVisual.png");
 		help = GameSystem.loader.loadImage("/help.png");
 		pointer=GameSystem.loader.loadImage("/image/menu/griefSeed2.png");
+		logo=GameSystem.loader.loadImage("/image/menu/logo.png");
 		//example .gif loading
 		gif = GameSystem.loader.loadGif("/homura.gif");
 	}
@@ -121,7 +124,8 @@ public class Menu {
 		g.setColor(Color.BLACK);
 		g.drawImage(menu, 0, 0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10, null);
 		//could omit the width and height in drawString or drawImage
-		g.drawString(GameSystem.TITLE, GameSystem.ABSWIDTH/3, 100);
+		//g.drawString(GameSystem.TITLE, GameSystem.ABSWIDTH/3, 100);
+		g.drawImage(logo, GameSystem.ABSWIDTH/4, 0, null);
 		if(mState==MENUSTATE.MAIN){
 			
 			g.drawString("Story", X_START-5, Y_START);

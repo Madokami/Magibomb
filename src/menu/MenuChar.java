@@ -4,6 +4,7 @@ import game.Game;
 import game.Game.CHARACTER;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -20,6 +21,7 @@ public class MenuChar implements GeneralMenu{
 		
 		private BufferedImage mdStats,hoStats,saStats,maStats,kyStats;
 		private BufferedImage statsSelectionCombinedOff, statsSelectionHpOn,statsSelectionMpOn,statsSelectionSpdOn,statsSelectionSoulOn,statsSelectionDamageOn,statsSelectionRangeOn;
+		private BufferedImage selectorOff,selectorOn;
 		
 		private BufferedImage mdPortrait,saPortrait,maPortrait,hoPortrait,kyPortrait;
 		private BufferedImage cursorLeft,cursorRight;
@@ -81,6 +83,7 @@ public class MenuChar implements GeneralMenu{
 			SPEED,
 			DAMAGE,
 			RANGE,
+			START,
 		}
 		
 		public static CHARACTER cSelected = CHARACTER.MADOKA;
@@ -136,6 +139,9 @@ public class MenuChar implements GeneralMenu{
 			statsSelectionSpdOn=loader.loadImage("/image/portraits/statsSelectionSpeedOn.png");
 			statsSelectionDamageOn=loader.loadImage("/image/portraits/statsSelectionDamageOn.png");
 			statsSelectionRangeOn=loader.loadImage("/image/portraits/statsSelectionRangeOn.png");
+			
+			selectorOff=loader.loadImage("/image/portraits/selectorOff.png");
+			selectorOn=loader.loadImage("/image/portraits/selectorOn.png");
 			
 			this.statsX=GameSystem.ABSWIDTH/2+this.statsSelectionCombinedOff.getHeight()/5;
 			this.statsY=GameSystem.ABSHEIGHT/2-this.statsSelectionCombinedOff.getHeight()/2;
@@ -205,6 +211,10 @@ public class MenuChar implements GeneralMenu{
 					g.drawImage(kyStats, 0,0,null);
 				}
 				g.drawImage(statsSelectionCombinedOff,statsX,statsY,null);
+				
+				g.drawImage(selectorOff,statsX-12,statsY+27+statsShift*7,null);
+				
+				
 			}
 			renderSelected(g);
 		}
@@ -339,8 +349,14 @@ public class MenuChar implements GeneralMenu{
 				else if(cAttribute == SELECTED_ATTRIBUTE.RANGE){
 					g.drawImage(statsSelectionRangeOn, statsX-12, statsY+27+statsShift*5, null);
 				}
+				else if(cAttribute==SELECTED_ATTRIBUTE.START){
+					g.drawImage(selectorOn,statsX-12,statsY+27+statsShift*7,null);
+				}
 				//handler will render the attribute values in form of images
 				handler.render(g);
+				g.setColor(Color.LIGHT_GRAY);
+				g.setFont(new Font("serif",Font.BOLD,18));
+				g.drawString("Start", statsX-12+120,statsY+27+statsShift*7+20);
 			}
 			effect.render(g);
 		}
@@ -385,30 +401,32 @@ public class MenuChar implements GeneralMenu{
 			
 			else if(this.isDisplayStatus()){
 				 if(key==KeyEvent.VK_Z){
-					if(cSelected == CHARACTER.MADOKA){
-						Game.cChosen=Game.CHARACTER.MADOKA;
+					if(cAttribute == SELECTED_ATTRIBUTE.START){
+						if(cSelected == CHARACTER.MADOKA){
+							Game.cChosen=Game.CHARACTER.MADOKA;
+						}
+						else if(cSelected == CHARACTER.HOMURA){
+							Game.cChosen=Game.CHARACTER.HOMURA;
+						}
+						else if(cSelected == CHARACTER.SAYAKA){
+							Game.cChosen=Game.CHARACTER.SAYAKA;
+						}
+						else if(cSelected == CHARACTER.MAMI){
+							Game.cChosen=Game.CHARACTER.MAMI;
+						}
+						else if(cSelected == CHARACTER.KYOUKO){
+							Game.cChosen=Game.CHARACTER.KYOUKO;
+						}
+						if(GameSystem.twoPlayerMode){
+							transferPlayerData();
+							setSecondPlayer();
+							
+						}
+						handler.setNewValues();
+						GameSystem.playConfirm();
+						playSelectionSound();
+						Menu.toGameMode();
 					}
-					else if(cSelected == CHARACTER.HOMURA){
-						Game.cChosen=Game.CHARACTER.HOMURA;
-					}
-					else if(cSelected == CHARACTER.SAYAKA){
-						Game.cChosen=Game.CHARACTER.SAYAKA;
-					}
-					else if(cSelected == CHARACTER.MAMI){
-						Game.cChosen=Game.CHARACTER.MAMI;
-					}
-					else if(cSelected == CHARACTER.KYOUKO){
-						Game.cChosen=Game.CHARACTER.KYOUKO;
-					}
-					if(GameSystem.twoPlayerMode){
-						transferPlayerData();
-						setSecondPlayer();
-						
-					}
-					handler.setNewValues();
-					GameSystem.playConfirm();
-					playSelectionSound();
-					Menu.toGameMode();
 				}
 				else if(key==KeyEvent.VK_X){
 					yShift=1;
@@ -433,15 +451,13 @@ public class MenuChar implements GeneralMenu{
 						cAttribute = SELECTED_ATTRIBUTE.RANGE;
 					}
 					else if(cAttribute == SELECTED_ATTRIBUTE.RANGE){
-						cAttribute = SELECTED_ATTRIBUTE.HP;
+						cAttribute = SELECTED_ATTRIBUTE.START;
 					}
 					GameSystem.playSwitch();
 				}
 				else if(key==KeyEvent.VK_UP){
-					if(cAttribute == SELECTED_ATTRIBUTE.HP){
-						cAttribute = SELECTED_ATTRIBUTE.RANGE;
-					}
-					else if(cAttribute == SELECTED_ATTRIBUTE.MP){
+					
+					if(cAttribute == SELECTED_ATTRIBUTE.MP){
 						cAttribute = SELECTED_ATTRIBUTE.HP;
 					}
 					else if(cAttribute == SELECTED_ATTRIBUTE.SOUL){
@@ -455,6 +471,9 @@ public class MenuChar implements GeneralMenu{
 					}
 					else if(cAttribute == SELECTED_ATTRIBUTE.RANGE){
 						cAttribute = SELECTED_ATTRIBUTE.DAMAGE;
+					}
+					else if(cAttribute == SELECTED_ATTRIBUTE.START){
+						cAttribute = SELECTED_ATTRIBUTE.RANGE;
 					}
 					GameSystem.playSwitch();
 				}

@@ -69,9 +69,9 @@ public abstract class Enemy extends MovableObject{
 				actionOffSet=rand.nextInt(20);
 				if(rand.nextInt(10)<8){
 					if(GameSystem.isPlayerOne){
-						//moveRandomly();
+						moveRandomly();
 						try{
-						chasePlayer();
+						//chasePlayer();
 						}catch(Exception e){
 							moveRandomly();
 						}

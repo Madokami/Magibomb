@@ -32,15 +32,7 @@ public class SpriteData {
 	public static SpriteSheet gem_sayaka;
 	public static SpriteSheet gem_kyouko;
 	
-	//Enemies start here
-	public static SpriteSheet mrPringles;
-	public static SpriteSheet mrPringles2;
-	public static SpriteSheet adelbertMini;
-	public static SpriteSheet gertrud;
 	
-	
-	public static SpriteSheet mdRunning;
-	public static SpriteSheet hoStand;
 	
 	
 	public SpriteData(){
@@ -73,14 +65,6 @@ public class SpriteData {
 		gem_sayaka =  new SpriteSheet(loader.loadImage("/image/soulGem/gem_sayaka.png"));
 		gem_kyouko =  new SpriteSheet(loader.loadImage("/image/soulGem/gem_kyouko.png"));
 		
-		//Enemies start here
-		mrPringles = new SpriteSheet(loader.loadImage("/image/spriteSheet/mr_pringles.png"));
-		mrPringles2 = new SpriteSheet(loader.loadImage("/image/spriteSheet/mr_pringlesRetarded.png"));
-		adelbertMini = new SpriteSheet(loader.loadImage("/image/spriteSheet/adelbertMini.png"));
-		gertrud = new SpriteSheet(loader.loadImage("/image/spriteSheet/gertrud.png"));
-		
-		
-		mdRunning = new SpriteSheet(loader.loadImage("/image/spriteSheet/actors/player/madoka/mdRunning.png"));
 
 		
 		
