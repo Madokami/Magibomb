@@ -9,15 +9,25 @@ import java.awt.image.BufferedImage;
 import system.GameSystem;
 
 /**
- * @author      Group 6
+ * @author      Team 6
  * @version     1.0
- * @since       2010-03-31          (the version of the package this class was first added to)
+ * @since       2014-03-31          (the version of the package this class was first added to)
+ * 
+ * Description:
  * 
  * Different images are animated based on orientation and sequence
  * 
- * For each orientation, every frame image is displayed in consecutive sequences.
+ * Different methods of animations include utilizing:
+ * different files for different frames corresponding to each image
+ * spritesheets that are divided into quadrangles
+ * .gif files that are displayed based on orientation
  */
 public class Animate {
+	
+	/**
+	Displays different images based on their orientations
+	Each frame of corresponding image is displayed consecutively
+	*/
 	public static void animate(GameObject o){
 		if(o.direction.equals("up")){
 			double count = o.i%o.frames;
@@ -46,7 +56,11 @@ public class Animate {
 		}
 		
 	}
-
+	
+	/**
+	Retrieves different frames of image from spritesheet
+	Divides spritesheet into equal quadrangles corresponding to individual frames
+	*/
 	public static void animateGem(Player p) {
 		// TODO Auto-generated method stub
 		p.soulGemImage=p.soulGemSprite.grabImage(1, 1, Player.soulGemWidth, Player.soulGemHeight);
@@ -68,8 +82,11 @@ public class Animate {
 		else if(1-p.soul/p.maxSoul==1){
 			p.soulGemImage=p.soulGemSprite.grabImage(2, 1, Player.soulGemWidth, Player.soulGemHeight);
 		}
-		
 	}
+	
+	/**
+	Displays .gif animaions based on their corresponding orientations
+	*/
 	public static void animateWithGif(MovableObject o){
 		if(o.animation==ANIMATION.MOVELEFT) {
 			o.image=o.animationParameters.getWalkGif().getImage();
@@ -175,8 +192,6 @@ public class Animate {
 		else if(o.animation==ANIMATION.JUMPDOWN) o.image=o.jumpDownGif;
 		else if(o.animation==ANIMATION.UPATTACK) o.image=o.upAttackGif;
 	}
-	
 	*/
 
-	
 }
