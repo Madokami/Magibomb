@@ -11,7 +11,9 @@ import system.GameSystem;
 /**
  * @author      Team 6
  * @version     1.0
- * @since       2010-03-31          (the version of the package this class was first added to)
+ * @since       2014-03-31          (the version of the package this class was first added to)
+ * 
+ * Description:
  * 
  * Different images are animated based on orientation and sequence
  * 
@@ -24,6 +26,7 @@ public class Animate {
 	
 	/**
 	Displays different images based on their orientations
+	Each frame of corresponding image is displayed consecutively
 	*/
 	public static void animate(GameObject o){
 		if(o.direction.equals("up")){
