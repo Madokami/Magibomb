@@ -119,4 +119,5 @@ public class Animation {
 			frames=currentSequence.getFrames();
 		}
 	}
+
 }
