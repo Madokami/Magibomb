@@ -3,8 +3,24 @@ package gameObject;
 import system.GameSystem;
 import game.Game;
 
+/**
+* <b>Description:</b>
+* <br><br>
+* Displays brick image as an obstacle in game map
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public abstract class Brick extends GameObject{
 
+	/**
+	 * Displays brick image at specific coordinates in game map
+	 * <br>Acquires brick image and fits the image at specific size based on grid map conditions
+	 * 
+	 * <b>Inputs:</b>
+	 * <b>x</b>,<b>y</b> - coordinates of brick image
+	 * <b>game</b> - Game object
+	 */
 	public Brick(int x, int y, Game game) {
 		super(x, y, game);
 		hp=30;
@@ -21,6 +37,10 @@ public abstract class Brick extends GameObject{
 		super.image=ss.grabImage(1,1,32,32);
 		*/
 	}
+	
+	/**
+	 * Checks current conditions and defines next process
+	 */
 	public void tick(){
 		super.tick();
 		if(hp<=0){
@@ -37,6 +57,11 @@ public abstract class Brick extends GameObject{
 			}
 		}
 	}
+	
+	/**
+	 * Removes brick image
+	 * <br>ex. fire from the bomb reaches and destroys brick
+	 */
 	public void remove(){
 		game.getController().removeEntity(this);
 	}
