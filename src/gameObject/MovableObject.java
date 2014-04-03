@@ -7,6 +7,16 @@ import java.awt.Image;
 import system.BufferedImageLoader;
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Overall MoveableObject that extends GameObject
+* <br>Utilizes methods that determines whether an object is capable of moving across a certain region
+* <br>Denotes the length and direction of an object's movement
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public abstract class MovableObject extends GameObject{
 	public int spd=4;
 	public boolean[][] map = game.getWallArray();
@@ -73,6 +83,13 @@ public abstract class MovableObject extends GameObject{
 	protected ANIMATION animation = ANIMATION.STAND;
 	protected FACING facing = FACING.RIGHT;
 	
+	/**
+	 * Defines MoveableObject
+	 * <br><br>
+	 * <b>Inputs:</b>
+	 * <br><b>x</b>,<b>y</b> - coordinates
+	 * <br><b>game</b> - Game object
+	 */
 	public MovableObject(int x, int y, Game game) {
 		super(x, y, game);
 		hp=100;
@@ -85,6 +102,9 @@ public abstract class MovableObject extends GameObject{
 		nextLocationSet=false;
 		sequence=new Animation(this);
 	}
+	/**
+	 * checks current conditions to determine following procedure
+	 */
 	public void tick(){
 		//first check if blocked
 		super.tick();
@@ -185,6 +205,7 @@ public abstract class MovableObject extends GameObject{
 		velY=-1*spd/2;
 		velX=0;
 	}
+	//moveDown shall move 1 grid down only
 	public void moveDown(){
 		if(animation==ANIMATION.DAMAGED||game.getPlayer().dying||channelling||charging) return;
 		moving=true;
@@ -200,6 +221,7 @@ public abstract class MovableObject extends GameObject{
 		velY=spd/2;
 		velX=0;
 	}
+	//moveRight shall move 1 grid right only
 	public void moveRight(){
 		if(animation==ANIMATION.DAMAGED||game.getPlayer().dying||channelling||charging) return;
 		moving=true;
@@ -216,6 +238,7 @@ public abstract class MovableObject extends GameObject{
 		velX=spd/2;
 		velY=0;
 	}
+	//moveLeft shall move 1 grid left only
 	public void moveLeft(){
 		if(animation==ANIMATION.DAMAGED||game.getPlayer().dying||channelling||charging) return;
 		moving=true;
@@ -244,6 +267,7 @@ public abstract class MovableObject extends GameObject{
 		targetY=nextY;
 	}
 	
+	// determines whether or not object has reached specific position
 	public boolean targetPositionReached(){
 		
 		if(orientation==ORIENTATION.UP&&targetY>=lastY){
