@@ -6,6 +6,15 @@ import java.awt.image.BufferedImage;
 import system.BufferedImageLoader;
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Renders stage graphics based on current stage level
+* <br>Images are displayed at designated positions on grid map
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class StageRenderer {
 	private int size = GameSystem.GRID_SIZE;
 	private BufferedImageLoader loader = new BufferedImageLoader();
