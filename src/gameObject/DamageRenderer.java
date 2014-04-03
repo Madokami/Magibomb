@@ -6,6 +6,14 @@ import java.util.Random;
 
 import system.IntToImage;
 
+
+/**
+* <b>Description:</b>
+* <br>Renders damage value and graphics based on input GameObject
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class DamageRenderer {
 	private BufferedImage[][] damageArray;
 	private int[] counter;
