@@ -4,7 +4,15 @@ import java.util.Random;
 
 import system.GameSystem;
 
-
+/**
+* <b>Description:</b>
+* <br>
+* Responsible for playing different sounds
+* <br>ex. LevelUpSound, DeathSound
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class SaVoice implements PlayerVoice{
 	private Random rand;
 	public SaVoice(){
