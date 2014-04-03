@@ -33,6 +33,16 @@ import java.awt.Image;
 import system.BufferedImageLoader;
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Loads graphics corresponding to each stage
+* <br>Each level has its own designated map layout of obstacles
+* <br>Enemies and characters are also loaded onto map display based on stage level
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class LevelLoader {
 	Game game;
 	BufferedImageLoader loader;
@@ -350,6 +360,11 @@ public class LevelLoader {
 		game.setPlayerIsAlive(true);
 		game.setEnemyCount(0);
 	}
+	
+	/**
+	 * List of different game objects are updated
+	 * <br>ex. projectiles, bricks, etc.
+	 */
 	public void updateList(){
 		game.setBombList(game.getController().getBList());
 		game.setEnemyList(game.getController().getEList());
@@ -382,6 +397,10 @@ public class LevelLoader {
 			}
 		}
 	}
+	
+	/**
+	 * Creates player from one of the five character classes
+	 */
 	private void createPlayer(int i, int j) {
 		if(game.cChosen==Game.CHARACTER.MADOKA){
 			game.getController().createPlayer(new Player_Madoka(i,j,game));
@@ -400,6 +419,9 @@ public class LevelLoader {
 		}
 	}
 	
+	/**
+	 * Creates player from one of the five character classes
+	 */
 	private void createPlayer2(int i, int j) {
 		if(game.cChosenP2==Game.CHARACTER.MADOKA){
 			game.getController().createPlayer(new Player_Madoka(i,j,game));
@@ -422,6 +444,9 @@ public class LevelLoader {
 		game.setPlayer(game.getController().getPlayer());
 	}
 	
+	/**
+	 * Loads map graphics data
+	 */
 	private void loadFromArray(int[][] mapData){
 		for(int i=0;i<mapData.length;i++){
 			for(int j=0;j<mapData[i].length;j++){
