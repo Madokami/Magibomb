@@ -4,6 +4,14 @@ import java.util.Random;
 
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Plays random voice file in from designated categories
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class KyVoice implements PlayerVoice{
 	Random rand;
 	public KyVoice(){
