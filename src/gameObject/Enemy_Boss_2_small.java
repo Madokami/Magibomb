@@ -4,6 +4,16 @@ import java.util.LinkedList;
 
 import game.Game;
 
+/**
+* <b>Description:</b>
+* <br>
+* New type of enemy boss is defined with corresponding attributes such as speed and abilites
+* <br>Booss spawns at specific coordinates on grid map
+* <br>Boss is unique and displayed with images corresponding to its animation
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Enemy_Boss_2_small extends Enemy{
 
 	private boolean teleported=true;
