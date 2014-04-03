@@ -1,5 +1,13 @@
 package gameObject;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines point on grid map
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Point {
 	private int x;
 	private int y;
