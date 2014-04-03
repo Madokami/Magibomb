@@ -5,6 +5,14 @@ import java.awt.event.KeyEvent;
 
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines Input class that extends KeyAdapter
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Input extends KeyAdapter{
 	GameSystem sys;
 	
