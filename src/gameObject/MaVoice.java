@@ -46,4 +46,7 @@ public class MaVoice implements PlayerVoice{
 	public void playSoulGemDarkSound(){
 		GameSystem.musicPlayer.playVoice("/sound/maSoul1.wav");
 	}
+	public void playCdSound() {
+		GameSystem.playVoice("/sound/maCd.wav");
+	}
 }

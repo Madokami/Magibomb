@@ -48,28 +48,28 @@ public class PlayerData implements Serializable {
 		//saMaxHp=100;
 		saMp=200;
 		//saMaxMp=200;
-		saSpd=6;
+		saSpd=12;
 		saSoul=500;
 		//saMaxSoul=500;
 		saBombStrength = 40;
-		saBombLength = 5;
+		saBombLength = 3;
 		saExpCurrent = 0;
 		saLevel = 1;
-		saBP=0;
+		saBP=10;
 		
 		
 		hoHp=100;
 		//hoMaxHp=100;
 		hoMp=200;
 		//hoMaxMp=200;
-		hoSpd=6;
+		hoSpd=12;
 		hoSoul=500;
 		//hoMaxSoul=500;
 		hoBombStrength = 40;
-		hoBombLength = 5;
+		hoBombLength = 3;
 		hoExpCurrent = 0;
 		hoLevel=1;
-		hoBP=0;
+		hoBP=10;
 		
 		mdHp=100;
 		//mdMaxHp=100;
@@ -79,36 +79,36 @@ public class PlayerData implements Serializable {
 		mdSoul=500;
 		//mdMaxSoul=500;
 		mdBombStrength = 40;
-		mdBombLength = 5;
+		mdBombLength = 3;
 		mdExpCurrent=0;
 		mdLevel = 1;
-		mdBP=0;
+		mdBP=10;
 		
 		maHp=100;
 		//maMaxHp=100;
 		maMp=200;
 		//maMaxMp=200;
-		maSpd=6;
+		maSpd=12;
 		maSoul=500;
 		//maMaxSoul=500;
 		maBombStrength = 40;
-		maBombLength = 5;
+		maBombLength = 3;
 		maExpCurrent=0;
 		maLevel=1;
-		maBP=0;
+		maBP=10;
 		
 		kyHp=100;
 		//kyMaxHp=100;
 		kyMp=200;
 		//kyMaxMp=200;
-		kySpd=6;
+		kySpd=12;
 		kySoul=500;
 		//kyMaxSoul=500;
 		kyBombStrength = 40;
-		kyBombLength = 5;
+		kyBombLength = 3;
 		kyExpCurrent=0;
 		kyLevel = 1;
-		kyBP=0;
+		kyBP=10;
 	}
 	
 	public void loadPlayerStatus(Player_Sayaka sa){

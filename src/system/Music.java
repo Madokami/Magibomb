@@ -30,6 +30,7 @@ public class Music{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		musicVolume=-10;
 		
 		
 	}

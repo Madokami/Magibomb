@@ -45,7 +45,7 @@ public abstract class Player extends MovableObject{
 	protected BufferedImage skill3;
 	protected BufferedImage skillUlt;
 	
-	protected String tempName = "tempName";
+	protected String tempName = "comming soon";
 	protected String skill1Name,skill2Name,skill3Name,skillUltName;
 	
 	public BufferedImageLoader loader;
@@ -64,6 +64,7 @@ public abstract class Player extends MovableObject{
 	public int level;
 	public BufferedImage[] levelImage;
 	public BufferedImage[] soulGemValueImage;
+	protected BufferedImage playerBackground;
 	
 	public double expCurrent;
 	public int BP;
@@ -172,17 +173,14 @@ public abstract class Player extends MovableObject{
 			if(soul>0){
 				if(hp<maxHp){
 					soul--;
-					hp=hp+0.2;
+					hp=hp+maxHp*0.0015;
 					soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
 				}
 			}
-			if(soul>0){
-				if(mp<maxMp){
-					soul--;
-					mp=mp+0.2;
-					soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
-				}
+			if(mp<maxMp){
+				mp=mp+maxMp*0.002;
 			}
+			
 		}
 		
 		
@@ -200,6 +198,8 @@ public abstract class Player extends MovableObject{
 	}
 
 	public abstract void useUltimate();
+		
+	
 	public void setStatusImages() {
 		okStatus = status.grabImage(1, 1, W_STATUS, H_STATUS);
 		midDamageStatus = status.grabImage(2, 1, W_STATUS, H_STATUS);
@@ -385,13 +385,17 @@ public abstract class Player extends MovableObject{
 		if(Physics.onTopOfBomb(this, game.getBombList())!=-1||animation==ANIMATION.DYING||animation==ANIMATION.DAMAGED){
 			return;
 		}
-		if(mp>25){
+		if(mp>0){
 			controller.addEntity(new Bomb(this.xGridNearest,this.yGridNearest,game,bombStrength,bombLength,duration));
-			mp-=25;
+			mp-=0;
 		}
 		else{
 			GameSystem.playError();
 		}
+	}
+	
+	public BufferedImage getPlayerBackground(){
+		return this.playerBackground;
 	}
 	
 	public abstract void useAbility1();

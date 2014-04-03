@@ -1,5 +1,6 @@
 package menu;
 
+import game.Game;
 import gameObject.Player;
 
 import java.awt.Color;
@@ -21,8 +22,9 @@ public class MenuScore {
 	
 	public void render(Graphics g){
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, GameSystem.ABSWIDTH+10, GameSystem.ABSHEIGHT+10);
 		
+		g.fillRect(0, 0, GameSystem.ABSWIDTH+10, GameSystem.ABSHEIGHT+10);
+		g.drawImage(Game.getPlayer().getPlayerBackground(), 0, 0, GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10,null);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("arial", Font.BOLD,30));
 		g.drawString("press 'space' go to next level", 200, 100);

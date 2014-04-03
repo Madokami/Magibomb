@@ -1,5 +1,7 @@
 package gameObject;
 
+import menu.MenuChar;
+import system.GameSystem;
 import system.IntToImage;
 import game.Game;
 import game.Game.CHARACTER;
@@ -19,6 +21,8 @@ public class Player_Mami extends Player{
 
 	public Player_Mami(int x, int y, Game game) {
 		super(x, y, game);
+		playerBackground = MenuChar.maBg;
+		
 		pVoice=new MaVoice();
 		
 		name="  Mami";
@@ -57,6 +61,13 @@ public class Player_Mami extends Player{
 			mp-=0;
 			return;
 		}
+		
+		if(ultyTimer<ultyCd){
+			GameSystem.playError();
+			this.pVoice.playCdSound();
+			return;
+		}
+		
 		if(mp<50){
 			return;
 		}

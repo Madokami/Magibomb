@@ -196,6 +196,13 @@ public abstract class GameObject{
 				target.takeDamage(value);
 			}
 		}
+		public void applyDamage(int value,int randomValue, int invincibleDuration, GameObject target){
+			if(target.invincible) return;
+			else{
+				target.setInvincible(invincibleDuration);
+				target.takeDamage(value+rand.nextInt(randomValue));
+			}
+		}
 		
 		
 		

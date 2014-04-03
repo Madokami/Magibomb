@@ -1,5 +1,7 @@
 package gameObject;
 
+import menu.MenuChar;
+import system.GameSystem;
 import system.IntToImage;
 import game.Game;
 import game.Game.CHARACTER;
@@ -19,9 +21,11 @@ public class Player_Madoka extends Player{
 
 	public Player_Madoka(int x, int y, Game game) {
 		super(x, y, game);
+		playerBackground = MenuChar.mdBg;
+		
 		pVoice=new MdVoice();
 		name="Madoka";
-		skill1=loader.loadImage("/image/skills/mdSkill1.png");
+		skillUlt=loader.loadImage("/image/skills/mdSkill1.png");
 		
 		
 		//standGif=loader.loadGif("/image/spriteSheet/mdStand3.gif");
@@ -64,9 +68,17 @@ public class Player_Madoka extends Player{
 		dead=new ImageSequence("/image/spriteSheet/actors/player/madoka/dead",11);
 		sequence.startSequence(stand);
 		
+		ultyCd = 60;
+		ultyTimer=60;
+		
 	}
 	
 	public void useUltimate(){
+		if(ultyTimer<ultyCd){
+			GameSystem.playError();
+			this.pVoice.playCdSound();
+			return;
+		}
 		if(this.mp>50){
 			game.getController().addEntity(new Projectile_PinkArrow(xGridNearest,yGridNearest,game,this));
 			mp-=50;

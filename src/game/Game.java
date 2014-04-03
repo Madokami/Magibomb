@@ -48,7 +48,7 @@ public class Game {
 	//test make change
 	//test change number 2
 	private GameData gameData;
-	private Player player;
+	private static Player player;
 	private BufferedImage background;
 	private boolean playing;
 	private boolean musicOn;
@@ -73,7 +73,7 @@ public class Game {
 	public BufferedImageLoader loader;
 	
 	
-	private int lastStage=10;
+	private int lastStage=12;
 	
 	
 	private int enemyCount;
@@ -495,6 +495,18 @@ public class Game {
 		else if(curLevel==8){
 			stageRenderer.render8(g);
 		}
+		else if(curLevel==9){
+			stageRenderer.render9(g);
+		}
+		else if(curLevel==10){
+			stageRenderer.render10(g);
+		}
+		else if(curLevel==11){
+			stageRenderer.render11(g);
+		}
+		else if(curLevel==12){
+			stageRenderer.render12(g);
+		}
 		
 	}
 
@@ -508,7 +520,7 @@ public class Game {
 		this.gameData = gData;
 	}
 
-	public Player getPlayer() {
+	public static Player getPlayer() {
 		return player;
 	}
 

@@ -45,5 +45,8 @@ public class MdVoice implements PlayerVoice{
 	public void playSoulGemDarkSound(){
 		GameSystem.musicPlayer.playVoice("/sound/mdSoul1.wav");
 	}
+	public void playCdSound() {
+		GameSystem.playVoice("/sound/mdCd.wav");
+	}
 	
 }

@@ -6,6 +6,7 @@ import game.Game.CHARACTER;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import menu.MenuChar;
 import system.GameSystem;
 import system.IntToImage;
 
@@ -25,6 +26,7 @@ public class Player_Homura extends Player{
 	public Player_Homura(int x, int y, Game game) {
 		
 		super(x, y, game);
+		playerBackground = MenuChar.hoBg;
 		
 		name="Homura";
 		skillUltName="Time Stop";
@@ -67,6 +69,7 @@ public class Player_Homura extends Player{
 	public void useUltimate(){
 		if(ultyTimer<ultyCd){
 			GameSystem.playError();
+			this.pVoice.playCdSound();
 			return;
 		}
 		if(mp-50<0){

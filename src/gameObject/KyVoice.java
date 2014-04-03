@@ -46,4 +46,7 @@ public class KyVoice implements PlayerVoice{
 	public void playSoulGemDarkSound(){
 		GameSystem.musicPlayer.playVoice("/sound/kySoul1.wav");
 	}
+	public void playCdSound() {
+		GameSystem.playVoice("/sound/kyCd.wav");
+	}
 }

@@ -1,5 +1,6 @@
 package gameObject;
 
+import menu.MenuChar;
 import system.GameSystem;
 import system.IntToImage;
 import game.Game;
@@ -21,6 +22,8 @@ public class Player_Sayaka extends Player{
 	
 	public Player_Sayaka(int x, int y, Game game) {
 		super(x, y, game);
+		playerBackground = MenuChar.saBg;
+		
 		pVoice=new SaVoice();
 		status = SpriteData.saStatus;
 		setStatusImages();
@@ -47,6 +50,9 @@ public class Player_Sayaka extends Player{
 		maxHp=hp;
 		maxMp=mp;
 		maxSoul=soul;
+		
+		ultyCd=180;
+		ultyTimer=180;
 	}
 	public void useUltimate(){
 		/*
@@ -55,7 +61,11 @@ public class Player_Sayaka extends Player{
 		playUltimateSound();
 		GameSystem.musicPlayer.playSwoosh();
 		*/
-		
+		if(ultyTimer<ultyCd){
+			GameSystem.playError();
+			this.pVoice.playCdSound();
+			return;
+		}
 		int time = 30;
 		int chargeSpd = 40;
 		GameSystem.musicPlayer.playSwoosh();
@@ -63,6 +73,7 @@ public class Player_Sayaka extends Player{
 		controller.addEntity(new SaDash(xGridNearest,yGridNearest,game,this,time));
 		
 		startCharge(chargeSpd,time);
+		ultyTimer=0;
 	}
 	
 	public void updatePlayerData(){

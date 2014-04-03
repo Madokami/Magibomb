@@ -156,7 +156,7 @@ public class StageRenderer {
     	
     }
     public void render11(Graphics g){
-    	g.drawImage(tank, 2*size, 15*size,4*size,size, null);
+    	g.drawImage(tank, 2*size, 9*size,4*size,size, null);
     	g.drawImage(bill2, 10*size, 3*size,2*size,4*size, null);
     	g.drawImage(panel, 2*size, 2*size,4*size,2*size, null);
     	g.drawImage(tesuri, 0*size, 5*size,2*size,size, null);

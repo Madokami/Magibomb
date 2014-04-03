@@ -1,5 +1,7 @@
 package gameObject;
 
+import menu.MenuChar;
+import system.GameSystem;
 import system.IntToImage;
 import game.Game;
 import game.Game.CHARACTER;
@@ -20,7 +22,8 @@ public class Player_Kyouko extends Player{
 	private boolean upAttacking;
 	public Player_Kyouko(int x, int y, Game game) {
 		super(x, y, game);
-
+		playerBackground = MenuChar.kyBg;
+		
 		name="Kyouko";
 		
 		run=new ImageSequence("/image/spriteSheet/actors/player/kyouko/run",8);
@@ -61,7 +64,12 @@ public class Player_Kyouko extends Player{
 	}
 	
 	public void useUltimate(){
-		upAttackCounter=0;
+		if(ultyTimer<ultyCd){
+			GameSystem.playError();
+			this.pVoice.playCdSound();
+			return;
+		}
+		
 	}
 	public void updatePlayerData(){
 		pData.upDatePlayerData(this);

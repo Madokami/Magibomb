@@ -31,7 +31,7 @@ public class LevelUp {
 		if(expCurrent>=expRequired){
 			p.level++;
 			p.expCurrent=p.expCurrent-expRequired;
-			p.BP=p.BP+10;
+			p.BP=p.BP+5;
 			p.hp=p.maxHp;
 			p.levelImage=IntToImage.toImageSmall(p.level);
 			p.pVoice.playLevelUpSound();

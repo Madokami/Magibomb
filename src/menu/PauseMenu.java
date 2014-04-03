@@ -173,7 +173,7 @@ public class PauseMenu implements GeneralMenu{
 					if (GameSystem.mute){
 						GameSystem.mute = false;
 						//GameSystem.turnOnBgm("/sound/delusio_summa.wav");
-						GameSystem.setMusicVolume(0);
+						GameSystem.setMusicVolume(-10);
 					} else {
 						GameSystem.mute = true;
 						//GameSystem.turnOffBgm();

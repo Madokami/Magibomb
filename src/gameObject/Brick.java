@@ -26,8 +26,8 @@ public abstract class Brick extends GameObject{
 		hp=30;
 		image = GameSystem.loader.loadImage("/image/stage/stage1/brick1.png");
 		imageWidth=GameSystem.GRID_SIZE;
-		imageHeight=GameSystem.GRID_SIZE*5/4;
-		this.renderYShift=-GameSystem.GRID_SIZE*1/4;
+		imageHeight=GameSystem.GRID_SIZE;
+		//this.renderYShift=-GameSystem.GRID_SIZE*1/4;
 		/*
 		ss=SpriteData.bricks;
 		ssWidth=GameSystem.GRID_SIZE;

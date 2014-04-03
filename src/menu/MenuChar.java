@@ -16,7 +16,7 @@ import system.SpecialEffects;
 
 public class MenuChar implements GeneralMenu{
 		private BufferedImage mdSelectOn,mdSelectOff,hoSelectOn,hoSelectOff,saSelectOn,saSelectOff,kySelectOn,kySelectOff,maSelectOn,maSelectOff;
-		private BufferedImage mdBg,kyBg,saBg,maBg,hoBg,charSelectBg;
+		public static BufferedImage mdBg,kyBg,saBg,maBg,hoBg,charSelectBg;
 		private BufferedImage mdName,kyName,saName,maName,hoName;
 		
 		private BufferedImage mdStats,hoStats,saStats,maStats,kyStats;
@@ -190,7 +190,7 @@ public class MenuChar implements GeneralMenu{
 				else if(selectStyle==2){
 					g.setColor(Color.WHITE);
 					g.fillRect(0, 0, GameSystem.ABSWIDTH+10, GameSystem.ABSHEIGHT+10);
-					g.drawImage(bg2,0,0,null);
+					//g.drawImage(bg2,0,0,null);
 				}
 				
 			}
@@ -238,7 +238,7 @@ public class MenuChar implements GeneralMenu{
 						g.drawImage(mdName,cSelectIndex+8,(GameSystem.ABSHEIGHT-cSelectHeight)-(int)yShift-16,null);
 					}
 					else if(selectStyle==2){
-						g.drawImage(mdBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.GAME_HEIGHT-30,null);
+						g.drawImage(mdBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10,null);
 						
 						g.drawImage(maPortrait, (int)(backLeftPosX+backLeftShiftX), (int)(backLeftPosY+backLeftShiftY),(int)(maPortrait.getWidth()/3*backLeftScale),(int)(maPortrait.getHeight()/3*backLeftScale), null);
 						g.drawImage(saPortrait, (int)(backRightPosX+backRightShiftX), (int)(backRightPosY+backRightShiftY),(int)(saPortrait.getWidth()/3*backRightScale),(int)(saPortrait.getHeight()/3*backRightScale), null);
@@ -258,7 +258,7 @@ public class MenuChar implements GeneralMenu{
 						g.drawImage(hoName,2*cSelectIndex+cSelectWidth+8,(int)yShift-16,null);
 					}
 					else if(selectStyle==2){
-						g.drawImage(hoBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.GAME_HEIGHT-30,null);
+						g.drawImage(hoBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10,null);
 						
 						g.drawImage(kyPortrait, (int)(backLeftPosX+backLeftShiftX), (int)(backLeftPosY+backLeftShiftY),(int)(kyPortrait.getWidth()/3*backLeftScale),(int)(kyPortrait.getHeight()/3*backLeftScale), null);
 						g.drawImage(maPortrait, (int)(backRightPosX+backRightShiftX), (int)(backRightPosY+backRightShiftY),(int)(maPortrait.getWidth()/3*backRightScale),(int)(maPortrait.getHeight()/3*backRightScale), null);
@@ -277,7 +277,7 @@ public class MenuChar implements GeneralMenu{
 						g.drawImage(saName,3*cSelectIndex+2*cSelectWidth+8,(GameSystem.ABSHEIGHT-cSelectHeight)-(int)yShift-16,null);
 					}
 					else if(selectStyle==2){
-						g.drawImage(saBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.GAME_HEIGHT-30,null);
+						g.drawImage(saBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10,null);
 						
 						g.drawImage(mdPortrait, (int)(backLeftPosX+backLeftShiftX), (int)(backLeftPosY+backLeftShiftY),(int)(mdPortrait.getWidth()/3*backLeftScale),(int)(mdPortrait.getHeight()/3*backLeftScale), null);
 						g.drawImage(kyPortrait, (int)(backRightPosX+backRightShiftX), (int)(backRightPosY+backRightShiftY),(int)(kyPortrait.getWidth()/3*backRightScale),(int)(kyPortrait.getHeight()/3*backRightScale), null);
@@ -297,7 +297,7 @@ public class MenuChar implements GeneralMenu{
 						g.drawImage(maName,4*cSelectIndex+3*cSelectWidth+8,(int)yShift-16,null);
 					}
 					else if(selectStyle==2){
-						g.drawImage(maBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.GAME_HEIGHT-30,null);
+						g.drawImage(maBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10,null);
 						
 						g.drawImage(hoPortrait, (int)(backLeftPosX+backLeftShiftX), (int)(backLeftPosY+backLeftShiftY),(int)(hoPortrait.getWidth()/3*backLeftScale),(int)(hoPortrait.getHeight()/3*backLeftScale), null);
 						g.drawImage(mdPortrait, (int)(backRightPosX+backRightShiftX), (int)(backRightPosY+backRightShiftY),(int)(mdPortrait.getWidth()/3*backRightScale),(int)(mdPortrait.getHeight()/3*backRightScale), null);
@@ -316,7 +316,7 @@ public class MenuChar implements GeneralMenu{
 						g.drawImage(kyName,5*cSelectIndex+4*cSelectWidth+8,(GameSystem.ABSHEIGHT-cSelectHeight)-(int)yShift-16,null);
 					}
 					else if(selectStyle==2){
-						g.drawImage(kyBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.GAME_HEIGHT-30,null);
+						g.drawImage(kyBg,0,0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10,null);
 						
 						g.drawImage(saPortrait, (int)(backLeftPosX+backLeftShiftX), (int)(backLeftPosY+backLeftShiftY),(int)(saPortrait.getWidth()/3*backLeftScale),(int)(saPortrait.getHeight()/3*backLeftScale), null);
 						g.drawImage(hoPortrait, (int)(backRightPosX+backRightShiftX), (int)(backRightPosY+backRightShiftY),(int)(hoPortrait.getWidth()/3*backRightScale),(int)(hoPortrait.getHeight()/3*backRightScale), null);

@@ -16,4 +16,5 @@ public interface PlayerVoice {
 	public void playDamagedHeavySound();	
 	public void playSoulGemDarkSound();
 	public void playUltimateSound();
+	public void playCdSound();
 }

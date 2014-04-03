@@ -79,7 +79,7 @@ public abstract class Enemy extends MovableObject{
 		LinkedList<Player> playerHit = Physics.hitPlayer(this, game.getController().getPlayerList());
 		if(playerHit!=null){
 			for(int i=0;i<playerHit.size();i++){
-				applyDamage(collisionDamage,30,playerHit.get(i));
+				applyDamage(collisionDamage,collisionDamage/4,30,playerHit.get(i));
 			}
 		}
 		counter++;

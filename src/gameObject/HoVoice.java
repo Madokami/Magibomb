@@ -48,4 +48,8 @@ public class HoVoice implements PlayerVoice{
 	public void playSoulGemDarkSound(){
 		GameSystem.musicPlayer.playVoice("/sound/hoSoul1.wav");
 	}
+	@Override
+	public void playCdSound() {
+		GameSystem.playVoice("/sound/hoCd.wav");
+	}
 }

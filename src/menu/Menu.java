@@ -249,7 +249,7 @@ public class Menu {
 					String homeIp="192.168.0.101";
 					String mcgillIp="142.157.59.166";
 					if(client==null){
-						client = new Thread(new Client("142.157.10.13"));
+						client = new Thread(new Client("142.157.164.180"));
 						client.start();
 					}
 					/*

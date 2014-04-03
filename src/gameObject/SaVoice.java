@@ -45,6 +45,9 @@ public class SaVoice implements PlayerVoice{
 	public void playSoulGemDarkSound(){
 		GameSystem.musicPlayer.playVoice("/sound/saSoul1.wav");
 	}
+	public void playCdSound() {
+		GameSystem.playVoice("/sound/saCd.wav");
+	}
 	
 
 }
