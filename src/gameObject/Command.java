@@ -1,5 +1,12 @@
 package gameObject;
 
+/**
+* <b>Description:</b>
+* <br>Command is executed based on input key
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Command {
 	private String command;
 	private int key;
