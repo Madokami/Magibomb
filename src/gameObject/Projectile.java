@@ -7,6 +7,16 @@ import java.util.LinkedList;
 
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines Projectile that travels across the screen
+* <br>Depends on coordinates on grid map and travels with a certain speed
+* <br>The projectile is capable of damaging characters
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public abstract class Projectile extends MovableObject {
 	protected ImageSequence flyRight;
 	protected ImageSequence flyDown;
@@ -86,6 +96,11 @@ public abstract class Projectile extends MovableObject {
 			pAnimate.startSequence(flyDown);
 		}
 	}
+	
+	/**
+	 * Defines speed of the projectile
+	 * <br>distance/time
+	 */
 	public void setStartingVelocity(int flySpeed){
 		if(orientation==ORIENTATION.RIGHT){
 			setVelX(flySpeed);
@@ -107,6 +122,10 @@ public abstract class Projectile extends MovableObject {
 	public void remove(){
 		game.getController().removeEntity(this);
 	}
+	
+	/**
+	 * A specific region of the grid map corresponds to possible inflicted damage
+	 */
 	public void setCollisionToImageSize(){
 		if(orientation==ORIENTATION.RIGHT||orientation==ORIENTATION.DOWN){
 			collisionWidth=imageWidth;
