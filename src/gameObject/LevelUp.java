@@ -3,11 +3,23 @@ package gameObject;
 import gameObject.MovableObject.ANIMATION;
 import system.IntToImage;
 
+/**
+* <b>Description:</b>
+* <br>
+* Increases the level of a character based on amount of experience acquired
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class LevelUp {
 	public int level;
 	public double expCurrent;
 	public double expRequired;
 	
+	/**
+	 * Checks for conditions of leveling up
+	 * <br>ex. the character does not level up if it dies
+	 */
 	public void checkIfLevelUp(Player p){
 		if(p.animation==ANIMATION.DYING){
 			return;
