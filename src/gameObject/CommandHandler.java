@@ -4,6 +4,14 @@ import java.util.LinkedList;
 
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>Inputted command is executed based on existing conditions
+* <br>Commands are inputted as strings and then are executed accordingly
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class CommandHandler {
 	private Controller controller;
 	private LinkedList<Command> commands = new LinkedList<Command>();
