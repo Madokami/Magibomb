@@ -4,6 +4,15 @@ import java.util.LinkedList;
 
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines physics of game objects
+* <br>ex. collision between a character and an obstacle
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Physics {
 	public static int collision(Player p,LinkedList<PowerUps> powerUpList){
 		for(int i=0;i<powerUpList.size();i++){
