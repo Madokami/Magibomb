@@ -4,6 +4,14 @@ import java.awt.image.BufferedImage;
 
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Displays images in sequences at specified dimensions and order
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class ImageSequence {
 	private int size = GameSystem.GRID_SIZE;
 	private final double scale = GameSystem.GRID_SIZE*1.5;
@@ -25,6 +33,9 @@ public class ImageSequence {
 		return images[index];
 	}
 	
+	/**
+	 * Sets default dimensions of image as well as the speed in which the frames of the image are animated
+	 */
 	public void setDefaultValues(){
 		height=(int)scale;
 		width=images[0].getWidth()*height/images[0].getHeight();
