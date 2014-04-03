@@ -4,6 +4,15 @@ import java.awt.Image;
 
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Details attributes to .gif files
+* <br>Includes details about dimensions and position
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class GifAttribute {
 	private int size = GameSystem.GRID_SIZE;
 	private final double scale = GameSystem.GRID_SIZE*1.5;
