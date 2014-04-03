@@ -4,6 +4,15 @@ import system.BufferedImageLoader;
 import system.GameSystem;
 import game.Game;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines individual projectile
+* <br>Requires input of coordinates, and outputs direction and speed of projectile
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Projectile_PinkArrow extends Projectile{
 
 	public Projectile_PinkArrow(int x, int y, Game game,GameObject o) {
