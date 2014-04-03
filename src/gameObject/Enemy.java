@@ -21,6 +21,13 @@ public abstract class Enemy extends MovableObject{
 	
 	protected int ultyTimer,ultyTimerDuration,abi1Timer,abi1TimerDuration,abi2Timer,abi2TimerDuration;
 	
+	/**
+	 * Defines new enemy with attributes such as exp and collisionDamage
+	 * <br><br>
+	 * <b>Inputs:</b>
+	 * <br><b>x</b>,<b>y</b> - coordinates of enemy
+	 * <br><b>game</b> - Game object
+	 */
 	public Enemy(int x,int y, Game game){
 		super(x,y,game);
 		//image = ss.grabImage(10, 1, 32, 32);
@@ -40,6 +47,11 @@ public abstract class Enemy extends MovableObject{
 		
 		controller.addEntity(new Projectile_SpawnEffect(xGridNearest,yGridNearest,game,this));
 	}
+	
+	/**
+	 * Enemies attributes are changed based on existing conditions
+	 * <br>ex. twoPlayerMode
+	 */
 	public void tick(){
 		super.tick();
 		/*
@@ -133,6 +145,10 @@ public abstract class Enemy extends MovableObject{
 		p.expCurrent+=exp;
 		p.score+=score;
 	}
+	
+	/**
+	 * Defines random enemy movement in any of the four directions: up, down, left, right
+	 */
 	public void moveRandomly(){
 		int temp = rand.nextInt(4);
 		if(temp==0){
@@ -152,6 +168,10 @@ public abstract class Enemy extends MovableObject{
 			sendCommand("moveRight");
 		}
 	}
+	
+	/**
+	 * Based on coordinates of enemy and character, the enemy moves towards the character
+	 */
 	public void chasePlayer(){
 		String s;
 		s=ai.makeStep(game.getWallArray(), game.getPlayer().xGridNearest, game.getPlayer().yGridNearest, lastX, lastY);
@@ -183,6 +203,14 @@ public abstract class Enemy extends MovableObject{
 			moveRandomly();
 		}
 	}
+	
+	/**
+	 * At the appropriate time and distance, the enemy will charge at the player at a specific speed and direction
+	 * <br><br>
+	 * <b>Inputs:</b>
+	 * <br><b>speed</b> - the rate at which the enemy travels over time
+	 * <br><b>duration</b> - the time that the enemy charges at the character
+	 */
 	public boolean chargeAtPlayer(int speed,int duration){
 		String dir=ai.isValidStraightLine(game.getWallArray(), game.getPlayer().xGridNearest, game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
 		if(dir.equals("stop")){
@@ -207,6 +235,9 @@ public abstract class Enemy extends MovableObject{
 		return true;
 	}
 	
+	/**
+	 * Enemy moves in one of the four directions: up, down, left, right
+	 */
 	public void moveToDirection(String dir){
 		
 		if(dir.equals("right")){
@@ -224,6 +255,9 @@ public abstract class Enemy extends MovableObject{
 		return;
 	}
 	
+	/**
+	 * Removes enemy
+	 */
 	public void remove(){
 		game.decreaseEnemyCount();
 		game.getController().removeEntity(this);
