@@ -7,10 +7,25 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+/**
+* <b>Description:</b>
+* <br>Produces the fire that is emitted from explosion
+* <br>Displays where the explosion has reached
+* <br>Decreases enemy and character health
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Fire extends GameObject{
 int strength;
 private int counter;
-
+	
+	/**
+	 * <b>Inputs:</b>
+	 * <br><b>x</b>,<b>y</b> - coordinates of fire
+	 * <br><b>game</b> - Game object
+	 * <br><b>Strength</b> - magnitude of damage inflicted by fire
+	 */
 	public Fire(int x, int y, Game game,int Strength) {
 		super(x,y,game);
 		
@@ -22,6 +37,10 @@ private int counter;
 		this.strength = Strength;
 		counter=0;
 	}
+	
+	/**
+	 * Determines the attributes of fire based on current conditions
+	 */
 	public void tick(){
 		counter++;
 		if(counter>5){
