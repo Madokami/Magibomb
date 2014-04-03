@@ -2,6 +2,15 @@ package gameObject;
 
 import game.Game;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines individual projectile
+* <br>Requires input of coordinates, and outputs direction and speed of projectile
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Scissors extends Projectile{
 
 	private int counter;
