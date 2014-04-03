@@ -2,6 +2,14 @@ package gameObject;
 
 import game.Game;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines PowerUps class that extends GameObject
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public abstract class PowerUps extends GameObject{
 	public String type;
 	public PowerUps(int x, int y, Game game) {
