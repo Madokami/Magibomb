@@ -4,6 +4,14 @@ import gameObject.GameObject.ORIENTATION;
 import gameObject.MovableObject.ANIMATION;
 import gameObject.MovableObject.FACING;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines animation of projectile while constantly checking conditions to determine its path and velocity
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class ProjectileAnimation {
 	private double counter;
 	private int frames;
