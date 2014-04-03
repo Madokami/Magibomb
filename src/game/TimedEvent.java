@@ -46,6 +46,9 @@ public class TimedEvent {
 	private boolean hasEvent;
 	private Random rand;
 	
+	/**
+	 * Loads different images
+	 */
 	public TimedEvent(Game game){
 		this.game=game;
 		loader = new BufferedImageLoader();
@@ -131,6 +134,9 @@ public class TimedEvent {
 		
 	}
 	
+	/**
+	 * Renders graphics such as backgrounds, colour, image locations, image size, etc.
+	 */
 	public void render(Graphics g){
 		if(System.currentTimeMillis()-startTime>duration){
 			translate = 1;
