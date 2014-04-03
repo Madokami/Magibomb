@@ -6,7 +6,6 @@ import java.util.Random;
 
 import system.IntToImage;
 
-
 /**
 * <b>Description:</b>
 * <br>Renders damage value and graphics based on input GameObject
