@@ -2,6 +2,15 @@ package gameObject;
 
 import system.BufferedImageLoader;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines SpriteData
+* <br>Requires input of coordinates, and outputs direction and speed of projectile
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class SpriteData {
 	public static BufferedImageLoader loader;
 	public static SpriteSheet char2;
