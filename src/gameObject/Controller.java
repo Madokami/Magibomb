@@ -9,6 +9,16 @@ import java.util.Random;
 
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>
+* Contains the controllers of the gaming system
+* <br>
+* Creates players, describes explosions, renders graphics etc.
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Controller implements Serializable {
 	public Game game;
 	
@@ -33,6 +43,10 @@ public class Controller implements Serializable {
 		wallArray = new boolean[GameSystem.GRIDW+3][GameSystem.GRIDH+3];
 		bombArray = new boolean[GameSystem.GRIDW+3][GameSystem.GRIDH+3];
 	}
+	
+	/**
+	 * Different objects are implemented based on existing conditions
+	 */
 	public void tick(){
 		for(int i=0;i<player.size();i++){
 			player.get(i).tick();
@@ -60,6 +74,10 @@ public class Controller implements Serializable {
 			placeHolderList.get(i).tick();
 		}
 	}
+	
+	/**
+	 * Renders each graphic by running through loops based on list sizes
+	 */
 	public void render(Graphics g){
 		
 		for(int i=0;i<powerupList.size();i++){
@@ -198,6 +216,14 @@ public class Controller implements Serializable {
 		return placeHolderList;
 	}
 	
+	/**
+	 * Responsible for detailing attributes of the explosion such as size and damaging effect
+	 * <br><br>
+	 * <b>Inputs:</b>
+	 * <br><b>x</b>,<b>y</b> - coordinates of fire
+	 * <br><b>size</b> - size of explosion
+	 * <br><b>strength</b> - magnitude of damage inflicted to enemy and character from explosion
+	 */
 	public void createExplosion(int x, int y, int size,int strength){
 		GameSystem.musicPlayer.playExplosion();
 		Game.explosionPlayed=true;
