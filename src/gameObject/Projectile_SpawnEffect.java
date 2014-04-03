@@ -3,6 +3,15 @@ package gameObject;
 import game.Game;
 import gameObject.GameObject.ORIENTATION;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines individual projectile
+* <br>Requires input of coordinates, and outputs direction and speed of projectile
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Projectile_SpawnEffect extends Projectile{
 	private int counter;
 	private int duration = 15;
