@@ -4,6 +4,15 @@ import game.Game;
 
 import java.awt.Graphics;
 
+/**
+* <b>Description:</b>
+* <br>
+* New type of enemy is defined with corresponding attributes such as speed and abilites
+* <br>Enemy spawns at specific coordinates on grid map
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Enemy_1_1 extends Enemy{
 	private int chargeCounter=0;
 	private ImageSequence attack;
