@@ -32,6 +32,14 @@ import system.GameTimer;
 import system.Server;
 import system.StartClient;
 
+/**
+* <b>Description:</b>
+* <br>
+* Overall Game class
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Game {
 	public GameTimer timer;
 	//private CommandHandler commandHandler;
