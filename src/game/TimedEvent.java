@@ -12,6 +12,14 @@ import system.BufferedImageLoader;
 import system.GameSystem;
 import system.SpecialEffects;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines the TimeEvent class in which graphics are loaded while checking pre-existing conditions
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class TimedEvent {
 	private long startTime;
 	private long duration;
