@@ -3,6 +3,15 @@ package gameObject;
 import java.util.LinkedList;
 import java.util.Random;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines Artificial Intelligence of enemies
+* <br>Enemy moves towards character when within a certain vicinity
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Ai
 {
 	//for make step, written by Liu Ge
@@ -26,6 +35,13 @@ public class Ai
 		
 	}
 	
+	/**
+	 * Outputs random valid points
+	 * <br><br>
+	 * <b>Inputs:</b>
+	 * <br><b>map</b> - two-dimensional array that contains coordinates
+	 * <br><b>number</b> - indicates size of for loop when manipulating points
+	 */
 	public LinkedList<Point> obtainRandomValidPoints(boolean[][] map, int number){
 		LinkedList<Point> ret= new LinkedList<Point>();
 		LinkedList<Point> points = new LinkedList<Point>();
@@ -51,6 +67,13 @@ public class Ai
 		return ret;
 	}
 	
+	/**
+	 * Checks if enemy is within certain vicinity of character
+	 * <br><br>
+	 * <b>Inputs:</b>
+	 * <br><b>pX</b>,<b>pY</b> - coordinates of character
+	 * <br><b>aiX</b><b>aiY</b> - coordinates of enemy
+	 */
 	public boolean nextToPlayer(int pX,int pY,int aiX,int aiY){
 		if(pX==aiX&&pY==aiY){
 			return true;
@@ -67,6 +90,15 @@ public class Ai
 		}
 		return false;
 	}
+	
+	/**
+	 * Checks if path between enemy and character is in straight line
+	 * <br><br>
+	 * <b>Inputs:</b>
+	 * <br><b>m</b> - map
+	 * <br><b>pX</b>,<b>pY</b> - coordinates of character
+	 * <br><b>aiX</b><b>aiY</b> - coordinates of enemy
+	 */
 	public String isValidStraightLine(boolean[][] m,int pX,int pY,int aiX,int aiY){
 		if(pX==aiX&&pY==aiY) return "stop";
 		if(pX==aiX||pY==aiY){
@@ -103,6 +135,15 @@ public class Ai
 		
 		
 	}
+	
+	/**
+	 * Initiates movement
+	 * <br><br>
+	 * <b>Inputs:</b>
+	 * <br><b>m</b> - map
+	 * <br><b>pX</b>,<b>pY</b> - coordinates of character
+	 * <br><b>aiX</b><b>aiY</b> - coordinates of enemy
+	 */
 	public String makeStep (boolean[][] m,int playerx,int playery,int aix,int aiy)
 	{
 		this.playerx=playerx;
