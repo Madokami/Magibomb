@@ -2,6 +2,14 @@ package gameObject;
 
 import game.Game;
 
+/**
+* <b>Description:</b>
+* <br>
+* HitableBrick class that extends Brick
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class HitableBrick extends Brick{
 
 	public HitableBrick(int x, int y, Game game) {
