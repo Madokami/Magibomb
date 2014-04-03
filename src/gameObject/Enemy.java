@@ -9,6 +9,14 @@ import java.util.Random;
 
 import system.GameSystem;
 
+/**
+* <b>Description:</b>
+* <br>Contains the attributes and data of the enemy
+* <br>Data is adjusted based on other factors such as AI and other players
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public abstract class Enemy extends MovableObject{
 	
 	public int score, exp;
