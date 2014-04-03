@@ -7,7 +7,7 @@ import system.GameSystem;
 /**
 * <b>Description:</b>
 * <br>Inputted command is executed based on existing conditions
-* <br>Commands are inputted as strings and then are executed accordingly
+* <br>Commands are inputted as Strings and then are executed accordingly
 * @author Team 6
 * @version 1.0
 * @since 2014-03-31
@@ -20,6 +20,9 @@ public class CommandHandler {
 		this.controller = controller;
 	}
 	
+	/**
+	 * Commands are executed based on current conditions
+	 */
 	public void tick(){
 		readCommand();
 		
@@ -41,6 +44,10 @@ public class CommandHandler {
 			commands.remove(0);
 		}
 	}
+
+	/**
+	 * Commands corresponding to different directional movements as well as stopping are executed
+	 */
 	public void excuteCommand(Command command){
 		
 		GameObject target = null;
@@ -75,6 +82,9 @@ public class CommandHandler {
 		}
 	}
 	
+	/**
+	 * Reads String command
+	 */
 	public void readCommand(){
 		if(GameSystem.getCommand==null) return;
 		
