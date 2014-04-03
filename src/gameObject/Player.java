@@ -17,6 +17,16 @@ import system.BufferedImageLoader;
 import system.GameSystem;
 import system.IntToImage;
 
+/**
+* <b>Description:</b>
+* <br>
+* Overall Player class that extends MovableObject
+* <br><br>
+* Incorporates attributes such as player image, health and mp, voice, etc.
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public abstract class Player extends MovableObject{
 	public BufferedImage soulGemImage;
 	public SpriteSheet soulGemSprite;
@@ -73,6 +83,13 @@ public abstract class Player extends MovableObject{
 	public int dyingDuration;
 	public int dyingDurationTimer;
 
+	/**
+	 * Defines player
+	 * <br><br>
+	 * <b>Inputs:</b>
+	 * <br><b>x</b>,<b>y</b> - coordinates of the player
+	 * <br><b>game</b> - Game object
+	 */
 	public Player(int x, int y, Game game) {
 		super(x, y, game);
 		
@@ -111,7 +128,9 @@ public abstract class Player extends MovableObject{
 		
 	}
 
-
+	/**
+	 * Checks present conditions in order to determine outcome of player object
+	 */
 	public void tick(){
 		super.tick();
 		
@@ -188,6 +207,10 @@ public abstract class Player extends MovableObject{
 		despairStatus = status.grabImage(4, 1, W_STATUS, H_STATUS);
 		
 	}
+	
+	/**
+	 * Renders graphics based on dimensions and position as well as colour
+	 */
 	public void renderSkills(Graphics g){
 		int spacing = 100;
 		int size = 70;
