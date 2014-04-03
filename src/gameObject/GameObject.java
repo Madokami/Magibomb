@@ -9,7 +9,15 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import system.GameSystem;
-//this is the super class that is extended by most game objects
+
+/**
+* <b>Description:</b>
+* <br>
+* GameObject class is extended by most game objects
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public abstract class GameObject{
 	//stores the absolute position of character
 	//stores the absolute position of character
@@ -79,7 +87,13 @@ public abstract class GameObject{
 		public ORIENTATION orientation = ORIENTATION.DOWN;
 		public double hp;
 		
-		
+		/**
+		 * Overall GameObject
+		 * <br><br>
+		 * <b>Inputs:</b>
+		 * <br><b>x</b>,<b>y</b> - coordinates
+		 * <br><b>game</b> - Game object
+		 */
 		public GameObject(int x, int y,Game game){
 			setSerialNumber();
 			
@@ -142,7 +156,13 @@ public abstract class GameObject{
 		}
 		
 		
-		
+		/**
+		 * Designates bounds of specific rectangle of grid map
+		 * <br><br>
+		 * <b>Inputs:</b>
+		 * <br><b>width</b> - width of rectangle
+		 * <br><b>height</b> - height of rectangle
+		 */
 		public final Rectangle getBounds(int width, int height){
 			double xCord=this.x;
 			double yCord=this.y;		
@@ -160,6 +180,15 @@ public abstract class GameObject{
 			this.hp-=damage;
 			this.damageRenderer.renderDamage(damage);
 		}
+		
+		/**
+		 * Applies damage to character
+		 * <br><br>
+		 * <b>Inputs:</b>
+		 * <br><b>value</b> - amount of damage
+		 * <br><b>invincibleDuration</b> - time in which the character does not receive damage
+		 * <br><b>target</b> - target object
+		 */
 		public void applyDamage(int value, int invincibleDuration, GameObject target){
 			if(target.invincible) return;
 			else{
