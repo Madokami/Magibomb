@@ -121,7 +121,6 @@ public class Game {
 	public static CHARACTER cChosen = CHARACTER.HOMURA;
 	public static CHARACTER cChosenP2 = null;
 	
-	
 	public Game(GameSystem sys){
 		
 	
@@ -149,6 +148,9 @@ public class Game {
 	public void loadLevel(){
 		levelLoader.load();
 	}
+	/**
+	 * Checks current conditions to determine changes in game system
+	 */
 	public void tick(){
 		/*
 		System.out.println(MultiplayerStats.HP);
@@ -259,6 +261,10 @@ public class Game {
 	public void setWait(){
 		gState=GameState.WAIT;
 	}
+	/**
+	 * Renders graphics
+	 * <br>Incorporates background, maps, obstacles, characters, enemies, etc.
+	 */
 	public void render(Graphics g){
 	
 			if(Game.gState==Game.GameState.LOAD){
@@ -306,6 +312,9 @@ public class Game {
 		timeStop = false;
 	}
 
+	/**
+	 * Interface between key that is pressedby user and the function that it corresponds to
+	 */
 	public void keyPressed(int key) {
 		if(key==KeyEvent.VK_P){
 			GameSystem.state=STATE.PAUSE;
