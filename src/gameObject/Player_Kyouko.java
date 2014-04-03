@@ -4,6 +4,17 @@ import system.IntToImage;
 import game.Game;
 import game.Game.CHARACTER;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines new individual player
+* <br>Utilizes unique image to display player
+* <br>Corresponds to input coordinates of grid map
+* <br>Contains features such as sound and abilites
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Player_Kyouko extends Player{
 	private int upAttackCounter=10;
 	private boolean upAttacking;
