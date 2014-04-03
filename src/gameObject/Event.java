@@ -1,5 +1,13 @@
 package gameObject;
 
+/**
+* <b>Description:</b>
+* <br>
+* Defines time and duration of events
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class Event {
 	private int duration;
 	private int durationTimer;
