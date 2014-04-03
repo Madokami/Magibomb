@@ -8,6 +8,17 @@ import gameObject.Player_Sayaka;
 
 import java.io.Serializable;
 
+/**
+* <b>Description:</b>
+* <br>
+* Details Player Data
+* <br>ex. Hp, mp, level, etc.
+* <br>Includes default data for characters
+* <br>Details for each individual character
+* @author Team 6
+* @version 1.0
+* @since 2014-03-31
+*/
 public class PlayerData implements Serializable {
 	public double saHp,saMaxHp,saMp,saMaxMp,saSoul,saMaxSoul,saExpCurrent;
 	public int saBombStrength,saBombLength,saSpd,saLevel,saBP;
@@ -29,6 +40,9 @@ public class PlayerData implements Serializable {
 	public int kyBombStrength,kyBombLength,kySpd,kyLevel,kyBP;
 	public static int kyHpLimit,kyMpLimit,kySpdLimit,kySoulLimit,kyBombSpdLimit,kyBombStrengthLimit,kyBombLengthLimit;
 	
+	/**
+	 * Default data for characters
+	 */
 	public void loadDefaultValues(){
 		saHp=100;
 		//saMaxHp=100;
