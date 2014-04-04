@@ -21,8 +21,11 @@ public class Enemy_2_1 extends Enemy{
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_2_1/stand",3);	
 		sequence.startSequence(stand);
 		
-		ultyTimerDuration=300;
-		
+		ultyCd=210;
+		this.setHp(70);
+		this.setSpeed(15);
+		this.setCollisionDamage(20);
+		this.setExp(65);
 		
 	}
 
