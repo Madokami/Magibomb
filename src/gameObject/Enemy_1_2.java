@@ -25,6 +25,11 @@ public class Enemy_1_2 extends Enemy{
 		sequence.startSequence(stand);
 		ultyCd=15;
 		// TODO Auto-generated constructor stub
+		
+		this.setHp(50);
+		this.setSpeed(12);
+		this.setCollisionDamage(20);
+		this.setExp(35);
 	}
 	
 
