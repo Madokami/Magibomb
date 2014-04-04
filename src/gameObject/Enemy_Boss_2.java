@@ -22,8 +22,12 @@ public class Enemy_Boss_2 extends Enemy{
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/boss_2/stand",8);	
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/boss_2/damage",4);
 		sequence.startSequence(stand);
+		this.setHp(270);
+		this.setSpeed(8);
+		this.setCollisionDamage(50);
+		this.setExp(200);
 		
-		ultyCd=200;
+		ultyCd=150;
 	}
 
 	@Override
