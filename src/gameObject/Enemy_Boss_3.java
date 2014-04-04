@@ -21,8 +21,12 @@ public class Enemy_Boss_3 extends Enemy{
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/boss_3/shuffle",8);
 		attack=new ImageSequence("/image/spriteSheet/actors/enemy/boss_3/thunder",8);
 		summon=new ImageSequence("/image/spriteSheet/actors/enemy/boss_3/tsukaima",8);
+		this.setHp(400);
+		this.setSpeed(8);
+		this.setCollisionDamage(40);
+		this.setExp(300);
 		
-		ultyCd=60;
+		ultyCd=90;
 	}
 
 	@Override
