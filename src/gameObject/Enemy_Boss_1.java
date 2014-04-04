@@ -24,10 +24,12 @@ public class Enemy_Boss_1 extends Enemy{
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/boss_1/stand",8);
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/boss_1/damage",4);		
 		sequence.startSequence(stand);
-		this.collisionDamage=40;
-		hp=250;
-		spd=10;
-
+		
+		this.setHp(250);
+		this.setSpeed(10);
+		this.setCollisionDamage(40);
+		this.setExp(150);
+		
 		ultyCd=300;
 		abi1Cd=200;
 		abi2Cd=600;
