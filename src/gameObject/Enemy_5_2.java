@@ -20,7 +20,11 @@ public class Enemy_5_2 extends Enemy_4{
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_2/stand",8);	
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_2/damage",4);
 		sequence.startSequence(stand);
-		ultyTimer=300;
+		ultyCd=150;
+		this.setHp(300);
+		this.setSpeed(10);
+		this.setCollisionDamage(35);
+		this.setExp(100);
 	}
 
 	@Override
