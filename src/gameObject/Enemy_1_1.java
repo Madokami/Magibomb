@@ -47,7 +47,7 @@ public class Enemy_1_1 extends Enemy{
 			setVelY(0);
 			sequence.startSequence(attack, stand);
 			controller.addEntity(new Scissors(xGridNearest,yGridNearest,game,this));
-			ultyTimer=0;
+			ultCd=300;
 		}
 	}
 	@Override
