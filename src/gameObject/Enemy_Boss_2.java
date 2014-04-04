@@ -23,7 +23,7 @@ public class Enemy_Boss_2 extends Enemy{
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/boss_2/damage",4);
 		sequence.startSequence(stand);
 		
-		ultyTimerDuration=200;
+		ultyCd=200;
 	}
 
 	@Override

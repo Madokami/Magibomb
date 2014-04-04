@@ -27,7 +27,7 @@ public abstract class Enemy extends MovableObject{
 	public int actionOffSet;
 	protected boolean canMove=true;
 	
-	protected int ultyTimer,ultyTimerDuration,abi1Timer,abi1TimerDuration,abi2Timer,abi2TimerDuration;
+	protected int ultyTimer,ultyCd,abi1Timer,abi1Cd,abi2Timer,abi2Cd;
 	
 	/**
 	 * Defines new enemy with attributes such as exp and collisionDamage
@@ -111,16 +111,16 @@ public abstract class Enemy extends MovableObject{
 		}
 		
 		ultyTimer++;
-		if(ultyTimer>ultyTimerDuration){
+		if(ultyTimer>ultyCd){
 			useUltimate();
 		}
 		abi1Timer++;
-		if(abi1Timer>abi1TimerDuration){
+		if(abi1Timer>abi1Cd){
 			useAbility1();
 			abi1Timer=0;
 		}
 		abi2Timer++;
-		if(abi2Timer>abi2TimerDuration){
+		if(abi2Timer>abi2Cd){
 			useAbility2();
 			abi2Timer=0;
 		}

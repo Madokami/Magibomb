@@ -19,7 +19,7 @@ public class Enemy_1_3 extends Enemy{
 		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_3/run",9);
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_3/stand",9);	
 		sequence.startSequence(stand);
-		ultyTimerDuration=150;
+		ultyCd=150;
 	}
 
 	@Override

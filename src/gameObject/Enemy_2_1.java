@@ -21,7 +21,7 @@ public class Enemy_2_1 extends Enemy{
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_2_1/stand",3);	
 		sequence.startSequence(stand);
 		
-		ultyTimerDuration=300;
+		ultyCd=300;
 	}
 
 	@Override

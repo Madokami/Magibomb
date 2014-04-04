@@ -28,7 +28,7 @@ public class Enemy_1_1 extends Enemy{
 		//stand=new ImageSequence("/image/spriteSheet/actors/enemy/boss_6/stand",10);
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_1/damage",4);		
 		sequence.startSequence(stand);
-		ultyTimerDuration=60;
+		ultyCd=60;
 		
 		
 		this.setHp(70);

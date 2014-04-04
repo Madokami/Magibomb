@@ -23,7 +23,7 @@ public class Enemy_1_2 extends Enemy{
 		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_2/run",8);
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_2/stand",8);	
 		sequence.startSequence(stand);
-		ultyTimerDuration=15;
+		ultyCd=15;
 		// TODO Auto-generated constructor stub
 	}
 	

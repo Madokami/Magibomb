@@ -20,7 +20,7 @@ public class Enemy_3_1 extends Enemy{
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_3_1/stand",8);
 		sequence.startSequence(stand);
 		
-		abi1TimerDuration=5;
+		abi1Cd=5;
 	}
 
 	@Override

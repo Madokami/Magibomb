@@ -24,7 +24,7 @@ public class Enemy_Boss_2_small extends Enemy{
 		stand = new ImageSequence("/image/spriteSheet/actors/enemy/boss_2_small/stand",1);	
 		sequence.startSequence(stand);
 		canMove=false;
-		ultyTimerDuration=20;
+		ultyCd=20;
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class Enemy_Boss_3 extends Enemy{
 		attack=new ImageSequence("/image/spriteSheet/actors/enemy/boss_3/thunder",8);
 		summon=new ImageSequence("/image/spriteSheet/actors/enemy/boss_3/tsukaima",8);
 		
-		ultyTimerDuration=60;
+		ultyCd=60;
 	}
 
 	@Override

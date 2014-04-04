@@ -28,9 +28,9 @@ public class Enemy_Boss_1 extends Enemy{
 		hp=200;
 		spd=10;
 
-		ultyTimerDuration=200;
-		abi1TimerDuration=30;
-		abi2TimerDuration=600;
+		ultyCd=200;
+		abi1Cd=30;
+		abi2Cd=600;
 	}
 
 	@Override

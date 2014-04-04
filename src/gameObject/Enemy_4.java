@@ -18,7 +18,7 @@ public abstract class Enemy_4 extends Enemy{
 	
 	public Enemy_4(int x, int y, Game game) {
 		super(x, y, game);
-		abi1TimerDuration=300+rand.nextInt(30);
+		abi1Cd=300+rand.nextInt(30);
 	}
 	
 	@Override

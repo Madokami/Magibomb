@@ -38,24 +38,24 @@ public class Enemy_Boss_5 extends Enemy{
 		this.exp=1000;
 		this.score=2000;
 		
-		abi1TimerDuration=5;
-		abi2TimerDuration=300;
-		ultyTimerDuration=60;
+		abi1Cd=5;
+		abi2Cd=300;
+		ultyCd=60;
 		
 	}
 	
 	public void tick(){
 		ultyTimer++;
-		if(ultyTimer>ultyTimerDuration){
+		if(ultyTimer>ultyCd){
 			useUltimate();
 		}
 		abi1Timer++;
-		if(abi1Timer>abi1TimerDuration){
+		if(abi1Timer>abi1Cd){
 			useAbility1();
 			abi1Timer=0;
 		}
 		abi2Timer++;
-		if(abi2Timer>abi2TimerDuration){
+		if(abi2Timer>abi2Cd){
 			useAbility2();
 			abi2Timer=0;
 		}
