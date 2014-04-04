@@ -24,7 +24,11 @@ public class Enemy_5_1 extends Enemy_4{
 		attack.setAnimationSpeed(0.5);
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_1/damage",5);
 		sequence.startSequence(stand);
-		ultyCd = 50;
+		ultyCd = 240;
+		this.setHp(200);
+		this.setSpeed(12);
+		this.setCollisionDamage(30);
+		this.setExp(100);
 	}
 
 
