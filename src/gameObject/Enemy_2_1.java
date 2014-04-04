@@ -21,13 +21,15 @@ public class Enemy_2_1 extends Enemy{
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_2_1/stand",3);	
 		sequence.startSequence(stand);
 		
-		ultyCd=300;
+		ultyTimerDuration=300;
+		
+		
 	}
 
 	@Override
 	public void useUltimate() {
 		if(chargeAtPlayer(20,20)){
-			ultyTimer=0;
+			ultyTimer=350;
 		}
 		
 	}
