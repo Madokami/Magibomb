@@ -32,15 +32,14 @@ public class Enemy_Boss_5 extends Enemy{
 		collisionWidth=4*GameSystem.GRID_SIZE;
 		collisionHeight=4*GameSystem.GRID_SIZE;
 		
-		this.spd=10;
-		this.hp=1000;
+		this.spd=12;
+		this.hp=600;
 		this.collisionDamage=50;
 		this.exp=1000;
-		this.score=2000;
 		
-		abi1Cd=5;
-		abi2Cd=300;
-		ultyCd=60;
+		abi1Cd=60;
+		abi2Cd=420;
+		ultyCd=120;
 		
 	}
 	
