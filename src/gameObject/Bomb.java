@@ -37,7 +37,7 @@ public class Bomb extends MovableObject{
 	 */
 	public Bomb(int x,int y, Game game,int bombStrength,int bombLength,int duration){
 		super(x,y,game);
-		
+		this.spd=30;
 		stand=new ImageSequence("/image/projectiles/bomb/stand",1);
 		sequence.startSequence(stand);
 		

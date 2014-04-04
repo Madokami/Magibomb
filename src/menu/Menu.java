@@ -27,10 +27,13 @@ public class Menu {
 	public MenuChar mChar;
 	public MenuScore mScore;
 	public MenuMultiplayer mMult;
+	public MenuDifficulty mDifficulty;
+	
 	public static BufferedImage logo;
 	
-	public static int X_START = GameSystem.WIDTH/2+120;
-	public static int Y_START = 150;
+	public static int X_START = 70;
+	public static int Y_START = GameSystem.ABSHEIGHT-30;
+	public static int POINTER_X_START,POINTER_Y_START;
 	public static int SPACING = 47;
 	
 	
@@ -60,7 +63,8 @@ public class Menu {
 		SETTING,
 		DEATH,
 		SCORE,
-		TWOPLAYER
+		TWOPLAYER,
+		DIFFICULTY
 	};
 	
 	//determines what menu option is currently selected by the user
@@ -82,24 +86,27 @@ public class Menu {
 		mDeath = new MenuDeath();
 		mScore = new MenuScore();
 		mMult = new MenuMultiplayer();
+		mDifficulty = new MenuDifficulty();
+		
 		//sample usage
 		//NOTE: use loader.loadGif(path) to load .gif, or else doesn't work.
 		start = GameSystem.loader.loadImage("/homu.png");
 		//menu = loader.loadImage("/menu.png");
-		menu=GameSystem.loader.loadImage("/image/menu/test.png");
+		menu=GameSystem.loader.loadImage("/image/menu/test2.png");
 		help = GameSystem.loader.loadImage("/help.png");
 		pointer=GameSystem.loader.loadImage("/image/menu/griefSeed2.png");
 		logo=GameSystem.loader.loadImage("/image/menu/magibomb.png");
 		//example .gif loading
 		gif = GameSystem.loader.loadGif("/homura.gif");
+		
+		POINTER_X_START=X_START-pointer.getWidth();
+		POINTER_Y_START=Y_START-pointer.getHeight();
 	}
 	
 	//this method is called automatically by GameSystem
 	//use this method to update variables continuously
 	//this method will be called exactly 30 times per second.
 	public void tick(){
-		X_START=70;
-		Y_START=GameSystem.ABSHEIGHT-30;
 		SPACING=300;
 		if(mState==MENUSTATE.CHOOSECHAR){
 			mChar.tick();
@@ -144,22 +151,20 @@ public class Menu {
 			if(selected==SELECTED.STORY){
 				//g.setColor(Color.LIGHT_GRAY);
 				g.drawString("Story", X_START-5, Y_START);
-				g.drawImage(pointer, X_START-5-pointer.getWidth(), Y_START-pointer.getHeight(), null);
+				g.drawImage(pointer, POINTER_X_START, POINTER_Y_START, null);
 			}
 			else if(selected==SELECTED.ARCADE){
 				//g.setColor(Color.LIGHT_GRAY);
 				g.drawString("Arcade", X_START-2+SPACING, Y_START);
-				g.drawImage(pointer, X_START-5-pointer.getWidth()+SPACING, Y_START-pointer.getHeight(), null);
+				g.drawImage(pointer, POINTER_X_START+SPACING, POINTER_Y_START, null);
 			}
 			else if(selected==SELECTED.TWOPLAYER){
 				//g.setColor(Color.LIGHT_GRAY);
 				g.drawString("Network", X_START-2+2*SPACING, Y_START);
-				g.drawImage(pointer, X_START-5-pointer.getWidth()+2*SPACING, Y_START-pointer.getHeight(), null);
+				g.drawImage(pointer, POINTER_X_START+2*SPACING, POINTER_Y_START, null);
 			}
 		}
-		else if(mState==MENUSTATE.CHOOSECHAR){
-			mChar.renderSelected(g);
-		}
+	
 	}
 	//change what is render based on the current MENUSTATE
 	public void renderCurrentState(Graphics g){
@@ -179,6 +184,9 @@ public class Menu {
 		else if(mState == MENUSTATE.TWOPLAYER){
 			mMult.render(g);
 		}
+		else if(mState == MENUSTATE.DIFFICULTY){
+			mDifficulty.render(g);
+		}
 	}
 	
 	//detects user keyboard input. the parameter "key" is passed down from GameSystem.keyPressed
@@ -194,6 +202,9 @@ public class Menu {
 		}
 		else if(mState==MENUSTATE.TWOPLAYER){
 			mMult.keyPressed(key);
+		}
+		else if(mState == MENUSTATE.DIFFICULTY){
+			mDifficulty.keyPressed(key);
 		}
 		//when "down" is pressed
 		else if(key==GameSystem.RIGHT){
@@ -238,9 +249,7 @@ public class Menu {
 				else if(Menu.selected==Menu.SELECTED.ARCADE){
 					//change Menu state to CHOOSECHAR state.
 					GameSystem.playConfirm();
-					mChar.setChooseChar();
-					mChar.yShift=1;
-					Menu.mState=Menu.MENUSTATE.CHOOSECHAR;
+					toDifficulty();
 				}
 				else if(Menu.selected==Menu.SELECTED.TWOPLAYER){
 					//change Menu state to CHOOSECHAR state.
@@ -286,6 +295,10 @@ public class Menu {
 		MenuChar.yShift=1;
 		Menu.mState=Menu.MENUSTATE.CHOOSECHAR;
 	}
+	public static void toCharStats(){
+		MenuChar.setDisplayStats();
+		Menu.mState=Menu.MENUSTATE.CHOOSECHAR;
+	}
 	public static void toMultiPlayer(){
 		Menu.mState=Menu.MENUSTATE.TWOPLAYER;
 	}
@@ -303,5 +316,8 @@ public class Menu {
 		GameSystem.twoPlayerMode=false;
 		GameSystem.turnOnBgm("/sound/music/title.wav");
 		Menu.mState=MENUSTATE.MAIN;
+	}
+	public static void toDifficulty(){
+		Menu.mState=MENUSTATE.DIFFICULTY;
 	}
 }

@@ -223,16 +223,16 @@ public abstract class GameObject{
 			if(kickedNum!=-1){
 				Bomb kickedBomb=game.getBombList().get(kickedNum);
 				if(orientation==ORIENTATION.UP){
-					kickedBomb.setVelY(-20);
+					kickedBomb.moveUp();
 				}
 				else if(orientation==ORIENTATION.DOWN){
-					kickedBomb.setVelY(20);
+					kickedBomb.moveDown();
 				}
 				else if(orientation==ORIENTATION.LEFT){
-					kickedBomb.setVelX(-20);
+					kickedBomb.moveLeft();
 				}
 				else if(orientation==ORIENTATION.RIGHT){
-					kickedBomb.setVelX(20);
+					kickedBomb.moveRight();
 				}
 			}
 		}

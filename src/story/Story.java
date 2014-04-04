@@ -37,6 +37,8 @@ public class Story {
 	int lineNum;
 	private boolean speaking;
 	
+	private int shiftX,shiftY;
+	
 	@SuppressWarnings("deprecation")
 	public Story(){
 		loader = new BufferedImageLoader();
@@ -67,7 +69,8 @@ public class Story {
 		readNextLine();
 	}
 	public void tick() {
-			
+			shiftX=125;
+			shiftY=110;
 	}
 	public void render(Graphics g){
 		Graphics2D g2d = (Graphics2D)g;
@@ -75,15 +78,15 @@ public class Story {
 		g.setFont(f1);
 		g.setColor(Color.WHITE);
 		//g.fillRect(0, 340, GameSystem.ABSWIDTH+10, 200);
-		g.drawImage(background, 0, 0, null);
-		g.drawImage(spriteRight,450,87,null);
-		g.drawImage(spriteLeft,50,87,null);
+		g.drawImage(background, 0+shiftX, 0+shiftY, null);
+		g.drawImage(spriteRight,450+shiftX,87+shiftY,null);
+		g.drawImage(spriteLeft,50+shiftX,87+shiftY,null);
 		g2d.setColor(Color.WHITE);
 		//g2d.draw(textBox);
 		//g2d.fill(textBox);
 		//g.drawImage(naTextBox,-90,370,900,225,null);
 		if(speaking){
-			g.drawImage(textBox,-50,330,null);
+			g.drawImage(textBox,-50+shiftX,330+shiftY,null);
 		}
 		g.setColor(Color.BLACK);
 		renderLines(g);
@@ -91,7 +94,7 @@ public class Story {
 	private void renderLines(Graphics g) {
 		try{
 			for(int i=0;i<lineNum;i++){
-				g.drawString(lines[i],120, 408+i*20);
+				g.drawString(lines[i],120+shiftX, 408+i*20+shiftY);
 			}
 			//the above forloop is basically a simplification of the following
 			/*

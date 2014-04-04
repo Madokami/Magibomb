@@ -186,10 +186,14 @@ public class MenuChar implements GeneralMenu{
 					g.drawImage(saSelectOff,3*cSelectIndex+2*cSelectWidth+8,(GameSystem.ABSHEIGHT-cSelectHeight)-(int)yShift+32,null);
 					g.drawImage(maSelectOff,4*cSelectIndex+3*cSelectWidth+8,(int)yShift+32,null);
 					g.drawImage(kySelectOff,5*cSelectIndex+4*cSelectWidth+8,(GameSystem.ABSHEIGHT-cSelectHeight)-(int)yShift+32,null);
+				
+					
 				}
 				else if(selectStyle==2){
 					g.setColor(Color.WHITE);
 					g.fillRect(0, 0, GameSystem.ABSWIDTH+10, GameSystem.ABSHEIGHT+10);
+					
+					
 					//g.drawImage(bg2,0,0,null);
 				}
 				
@@ -329,6 +333,8 @@ public class MenuChar implements GeneralMenu{
 						g.drawImage(cursorRight, 400+150, 16, null);
 					}
 				}
+				g.setColor(Color.BLACK);
+				g.drawString("Choose Character", Menu.X_START+Menu.SPACING/2, Menu.Y_START);
 			}
 			else if(isDisplayStatus()){
 				if(cAttribute == SELECTED_ATTRIBUTE.HP){
@@ -453,6 +459,9 @@ public class MenuChar implements GeneralMenu{
 					else if(cAttribute == SELECTED_ATTRIBUTE.RANGE){
 						cAttribute = SELECTED_ATTRIBUTE.START;
 					}
+					else if(cAttribute == SELECTED_ATTRIBUTE.START){
+						cAttribute = SELECTED_ATTRIBUTE.HP;
+					}
 					GameSystem.playSwitch();
 				}
 				else if(key==KeyEvent.VK_UP){
@@ -474,6 +483,9 @@ public class MenuChar implements GeneralMenu{
 					}
 					else if(cAttribute == SELECTED_ATTRIBUTE.START){
 						cAttribute = SELECTED_ATTRIBUTE.RANGE;
+					}
+					else if(cAttribute == SELECTED_ATTRIBUTE.HP){
+						cAttribute = SELECTED_ATTRIBUTE.START;
 					}
 					GameSystem.playSwitch();
 				}
@@ -646,6 +658,9 @@ public class MenuChar implements GeneralMenu{
 		
 		public static void setChooseChar(){
 			cState = CHAR_MENU_STATE.IS_CHOOSING;
+		}
+		public static void setDisplayStats(){
+			cState = CHAR_MENU_STATE.DISPLAYING_STATUS;
 		}
 		
 		public boolean isDisplayStatus(){
