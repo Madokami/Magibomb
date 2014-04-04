@@ -1,5 +1,7 @@
 package gameObject;
 
+import gameObject.GameObject.ORIENTATION;
+
 import java.util.LinkedList;
 
 import system.GameSystem;
@@ -27,6 +29,38 @@ public class Physics {
 		for(int i=0;i<bList.size();i++){
 			if(gameObject.xGridNearest==bList.get(i).xGridNearest&&gameObject.yGridNearest==bList.get(i).yGridNearest){
 				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public static int behindBomb(GameObject gameObject,LinkedList<Bomb> bList){
+		if(gameObject.orientation==ORIENTATION.UP){
+			for(int i=0;i<bList.size();i++){
+				if(gameObject.xGridNearest==bList.get(i).xGridNearest&&gameObject.yGridNearest==bList.get(i).yGridNearest+1){
+					return i;
+				}
+			}
+		}
+		else if(gameObject.orientation==ORIENTATION.DOWN){
+			for(int i=0;i<bList.size();i++){
+				if(gameObject.xGridNearest==bList.get(i).xGridNearest&&gameObject.yGridNearest==bList.get(i).yGridNearest-1){
+					return i;
+				}
+			}
+		}
+		else if(gameObject.orientation==ORIENTATION.RIGHT){
+			for(int i=0;i<bList.size();i++){
+				if(gameObject.xGridNearest==bList.get(i).xGridNearest-1&&gameObject.yGridNearest==bList.get(i).yGridNearest){
+					return i;
+				}
+			}
+		}
+		else if(gameObject.orientation==ORIENTATION.LEFT){
+			for(int i=0;i<bList.size();i++){
+				if(gameObject.xGridNearest==bList.get(i).xGridNearest+1&&gameObject.yGridNearest==bList.get(i).yGridNearest){
+					return i;
+				}
 			}
 		}
 		return -1;

@@ -86,10 +86,10 @@ public class Menu {
 		//NOTE: use loader.loadGif(path) to load .gif, or else doesn't work.
 		start = GameSystem.loader.loadImage("/homu.png");
 		//menu = loader.loadImage("/menu.png");
-		menu=GameSystem.loader.loadImage("/image/menu/mainVisual.png");
+		menu=GameSystem.loader.loadImage("/image/menu/test.png");
 		help = GameSystem.loader.loadImage("/help.png");
 		pointer=GameSystem.loader.loadImage("/image/menu/griefSeed2.png");
-		logo=GameSystem.loader.loadImage("/image/menu/logo.png");
+		logo=GameSystem.loader.loadImage("/image/menu/magibomb.png");
 		//example .gif loading
 		gif = GameSystem.loader.loadGif("/homura.gif");
 	}
@@ -125,7 +125,7 @@ public class Menu {
 		g.drawImage(menu, 0, 0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10, null);
 		//could omit the width and height in drawString or drawImage
 		//g.drawString(GameSystem.TITLE, GameSystem.ABSWIDTH/3, 100);
-		g.drawImage(logo, GameSystem.ABSWIDTH/4, 0, null);
+		g.drawImage(logo, GameSystem.ABSWIDTH/18, GameSystem.ABSHEIGHT/20, null);
 		if(mState==MENUSTATE.MAIN){
 			
 			g.drawString("Story", X_START-5, Y_START);

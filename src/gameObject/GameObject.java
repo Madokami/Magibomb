@@ -219,7 +219,7 @@ public abstract class GameObject{
 			controller.addEntity(new Bomb(this.xGridNearest,this.yGridNearest,game,bombStrength,bombLength,duration));
 		}
 		public void kickBomb(){
-			int kickedNum = Physics.onTopOfBomb(this, game.getBombList());
+			int kickedNum = Physics.behindBomb(this, game.getBombList());
 			if(kickedNum!=-1){
 				Bomb kickedBomb=game.getBombList().get(kickedNum);
 				if(orientation==ORIENTATION.UP){

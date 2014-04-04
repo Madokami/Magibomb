@@ -276,4 +276,18 @@ public abstract class Enemy extends MovableObject{
 	public abstract void useAbility1();
 	public abstract void useAbility2();
 	public abstract void useAbility3();
+	
+	public void setHp(double hp){
+		this.hp=hp*Game.DIFFICULTY;
+	}
+	public void setSpeed(double value){
+		this.spd=(int) (value*Game.DIFFICULTY);
+	}
+	public void setCollisionDamage(int value){
+		this.collisionDamage=(int) (value*Game.DIFFICULTY);
+	}
+	public void setExp(int value){
+		this.exp=value;
+		this.score=value;
+	}
 }

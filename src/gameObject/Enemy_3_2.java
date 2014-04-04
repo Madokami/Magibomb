@@ -19,6 +19,8 @@ public class Enemy_3_2 extends Enemy{
 		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_3_2/run",8);
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_3_2/stand",8);	
 		sequence.startSequence(stand);
+		
+		abi1TimerDuration=5;
 	}
 
 	@Override
@@ -29,7 +31,7 @@ public class Enemy_3_2 extends Enemy{
 
 	@Override
 	public void useAbility1() {
-		// TODO Auto-generated method stub
+		kickBomb();
 		
 	}
 

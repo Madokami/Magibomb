@@ -30,7 +30,12 @@ public class Enemy_1_1 extends Enemy{
 		sequence.startSequence(stand);
 		ultyTimerDuration=60;
 		
-		// TODO Auto-generated constructor stub
+		
+		this.setHp(70);
+		this.setSpeed(8);
+		this.setCollisionDamage(15);
+		this.setExp(50);
+		
 	}
 
 	@Override

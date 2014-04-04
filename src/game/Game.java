@@ -44,6 +44,7 @@ public class Game {
 	public GameTimer timer;
 	//private CommandHandler commandHandler;
 	public static boolean TITLE_DONE;
+	public static double DIFFICULTY=1;
 	
 	//test make change
 	//test change number 2

@@ -64,6 +64,8 @@ public class Bomb extends MovableObject{
 		for(int i=0;i<enemies.size();i++){
 			initiallyOnBomb.add(enemies.get(i));
 		}
+		
+		initiallyOnBomb.add(this);
 	}
 	
 	/**
