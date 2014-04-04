@@ -21,6 +21,10 @@ public class Enemy_3_2 extends Enemy{
 		sequence.startSequence(stand);
 		
 		abi1Cd=5;
+		this.setHp(150);
+		this.setSpeed(10);
+		this.setCollisionDamage(25);
+		this.setExp(80);
 	}
 
 	@Override
