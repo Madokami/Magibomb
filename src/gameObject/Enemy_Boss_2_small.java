@@ -25,6 +25,11 @@ public class Enemy_Boss_2_small extends Enemy{
 		sequence.startSequence(stand);
 		canMove=false;
 		ultyCd=20;
+		this.setHp(300);
+		this.setSpeed(0);
+		this.setCollisionDamage(0);
+		this.setExp(1);
+		
 	}
 
 	@Override
