@@ -30,7 +30,6 @@ public class Player_Homura extends Player{
 		
 		name="Homura";
 		skillUltName="Time Stop";
-		skill1 = loader.loadImage("/image/skills/hoSkill1.png");
 		this.skillUlt=loader.loadImage("/image/skills/hoSkillUlt.png");
 		
 		//this.moveRightGif=loader.loadGif("/image/spriteSheet/actors/player/homura/run.gif");

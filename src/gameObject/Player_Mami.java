@@ -26,8 +26,6 @@ public class Player_Mami extends Player{
 		pVoice=new MaVoice();
 		
 		name="  Mami";
-		skill1 = loader.loadImage("/image/skills/maSkill1.png");
-		skill2 = loader.loadImage("/image/skills/maSkill2.png");
 		skillUlt = loader.loadImage("/image/skills/maSkillUlt.png");
 		
 		

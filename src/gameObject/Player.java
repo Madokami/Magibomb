@@ -95,6 +95,10 @@ public abstract class Player extends MovableObject{
 		super(x, y, game);
 		
 		skill1Name=skill2Name=skill3Name=skillUltName=tempName;
+		skill1Name = "place bomb";
+		skill2Name = "kick bomb";
+		
+		
 		
 		loader = new BufferedImageLoader();
 		bombStrength = 50;
@@ -110,7 +114,8 @@ public abstract class Player extends MovableObject{
 		soulGemDarkSoundPlayed=false;
 		skillPlaceholder=loader.loadImage("/image/skills/skillPlaceholder.png");
 		skill1=skill2=skill3=skillUlt=skillPlaceholder;
-		
+		skill1=loader.loadImage("/image/skills/placeBomb.png");
+		skill2=loader.loadImage("/image/skills/kickBomb.png");
 		
 		
 		expBar=loader.loadImage("/image/expBar.png");

@@ -44,7 +44,7 @@ public class Game {
 	public GameTimer timer;
 	//private CommandHandler commandHandler;
 	public static boolean TITLE_DONE;
-	public static double DIFFICULTY=1;
+	public static double DIFFICULTY;
 	
 	//test make change
 	//test change number 2
@@ -189,7 +189,7 @@ public class Game {
 				player.updatePlayerData();
 				gameData.updateGameData(this);
 				goToScore();
-				//saveGame();
+				saveGame();
 				return;
 			}
 			
