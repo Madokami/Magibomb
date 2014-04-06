@@ -6,6 +6,7 @@ package system;
 * @version 1.0
 * @since 2014-03-27
 */
+
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
