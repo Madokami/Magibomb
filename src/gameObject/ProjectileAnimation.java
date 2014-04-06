@@ -1,8 +1,6 @@
 package gameObject;
 
 import gameObject.GameObject.ORIENTATION;
-import gameObject.MovableObject.ANIMATION;
-import gameObject.MovableObject.FACING;
 
 /**
 * <b>Description:</b>

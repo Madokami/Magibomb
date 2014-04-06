@@ -29,6 +29,7 @@ import menu.PauseMenu;
 
 public class GameSystem extends Canvas implements Runnable {
 	public static int CONFIRM,CANCEL,UP,DOWN,LEFT,RIGHT,ULT;
+	public static int CONFIRM2,CANCEL2,UP2,DOWN2,LEFT2,RIGHT2,ULT2;
 
 	public static final int GRID_SIZE = 56;
 	public static final int WIDTH = 300;
@@ -60,12 +61,17 @@ public class GameSystem extends Canvas implements Runnable {
 
 	public static boolean musicOn;
 	public static boolean mute = false;
+	
+	//used for offline 2 player mode
+	public static boolean TWO_PLAYER_MODE=false;
+	public static boolean PLAYER_ONE_CHOSEN=false;
 
+	//used for LAN
 	public static String getCommand=null;
 	public static String sendCommand=null;
 	public static String sendCommandSelf=null;
 	public static boolean signalComplete=true;
-	public static boolean twoPlayerMode=false;
+	public static boolean LAN_TWO_PLAYER_MODE=false;
 	public static boolean isPlayerOne = true;
 	public static boolean otherPlayerIsReady=false;
 	
@@ -97,7 +103,7 @@ public class GameSystem extends Canvas implements Runnable {
 		state = STATE.MENU;
 	}
 	
-	public void setDefaultKeyLayout(){
+	public static void setDefaultKeyLayout(){
 		CONFIRM=KeyEvent.VK_Z;
 		CANCEL=KeyEvent.VK_X;
 		UP=KeyEvent.VK_UP;
@@ -105,6 +111,24 @@ public class GameSystem extends Canvas implements Runnable {
 		LEFT=KeyEvent.VK_LEFT;
 		RIGHT=KeyEvent.VK_RIGHT;
 		ULT=KeyEvent.VK_C;
+	}
+	
+	public static void setTwoPlayerKeyLayout(){
+		CONFIRM=KeyEvent.VK_COMMA;
+		CANCEL=KeyEvent.VK_PERIOD;
+		ULT=KeyEvent.VK_SLASH;
+		UP=KeyEvent.VK_UP;
+		DOWN=KeyEvent.VK_DOWN;
+		LEFT=KeyEvent.VK_LEFT;
+		RIGHT=KeyEvent.VK_RIGHT;
+		
+		CONFIRM2=KeyEvent.VK_Z;
+		CANCEL2=KeyEvent.VK_X;
+		ULT2=KeyEvent.VK_C;
+		UP2=KeyEvent.VK_W;
+		DOWN2=KeyEvent.VK_S;
+		LEFT2=KeyEvent.VK_A;
+		RIGHT2=KeyEvent.VK_D;
 	}
 	
 	public static void main(String[] args) {
@@ -253,7 +277,7 @@ public class GameSystem extends Canvas implements Runnable {
 
 	}
 	public static synchronized void sendCommand(String s){
-		if(!GameSystem.twoPlayerMode){
+		if(!GameSystem.LAN_TWO_PLAYER_MODE){
 			return;
 		}
 		
@@ -273,7 +297,7 @@ public class GameSystem extends Canvas implements Runnable {
 	}
 	
 	public static synchronized void sendCommandToOther(String s){
-		if(!GameSystem.twoPlayerMode){
+		if(!GameSystem.LAN_TWO_PLAYER_MODE){
 			return;
 		}
 		

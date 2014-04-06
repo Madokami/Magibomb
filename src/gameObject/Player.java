@@ -4,13 +4,10 @@ package gameObject;
 import game.Game;
 import game.MultiplayerStats;
 import game.PlayerData;
-import gameObject.GameObject.ORIENTATION;
-import gameObject.MovableObject.ANIMATION;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import system.BufferedImageLoader;
@@ -34,19 +31,22 @@ public abstract class Player extends MovableObject{
 	public static final int soulGemHeight=96;
 	public double soulGemCounter=0;
 	public final double soulGemAnimationSpeed = 0.3;
-	protected String name;
+	public String name;
 	
 	protected int bombCount = 2;
 	
 	public BufferedImage expBar;
-	protected BufferedImage skillPlaceholder;
-	protected BufferedImage skill1;
-	protected BufferedImage skill2;
-	protected BufferedImage skill3;
-	protected BufferedImage skillUlt;
+	public BufferedImage skillPlaceholder;
+	public BufferedImage skill1;
+	public BufferedImage skill2;
+	public BufferedImage skill3;
+	public BufferedImage skillUlt;
 	
-	protected String tempName = "comming soon";
-	protected String skill1Name,skill2Name,skill3Name,skillUltName;
+	public int skill1Cost,skill2Cost,skill3Cost,skillUltCost;
+	public int skill1Cd,skill1Timer,skill2Cd,skill2Timer,skill3Cd,skill3Timer;
+	
+	public String tempName = "comming soon";
+	public String skill1Name,skill2Name,skill3Name,skillUltName;
 	
 	public BufferedImageLoader loader;
 	public double maxSoul;
@@ -55,8 +55,8 @@ public abstract class Player extends MovableObject{
 	
 	public SpriteSheet status;
 	public BufferedImage okStatus,midDamageStatus,highDamageStatus,despairStatus,statusBg;
-	public final int W_STATUS = 128;
-	public final int H_STATUS = 128;
+	public static final int W_STATUS = 128;
+	public static final int H_STATUS = 128;
 	
 	
 	public PlayerData pData;
@@ -68,7 +68,7 @@ public abstract class Player extends MovableObject{
 	
 	public double expCurrent;
 	public int BP;
-	public static int score;
+	public static int SCORE;
 	
 	public LevelUp levelUpdater;
 	
@@ -97,8 +97,13 @@ public abstract class Player extends MovableObject{
 		skill1Name=skill2Name=skill3Name=skillUltName=tempName;
 		skill1Name = "place bomb";
 		skill2Name = "kick bomb";
-		
-		
+		skillUltCost = 50;
+		skill1Cost = 20;
+		skill2Cost = 30;
+		skill1Cd=15;
+		skill2Cd=90;
+		skill1Timer=30;
+		skill2Timer=90;
 		
 		loader = new BufferedImageLoader();
 		bombStrength = 50;
@@ -124,14 +129,11 @@ public abstract class Player extends MovableObject{
 		
 		pData = game.getPlayerData();
 		levelUpdater = new LevelUp();
-		// TODO Auto-generated constructor stub
+
 		collisionWidth=56;
 		collisionHeight=56;
 		
-		if(GameSystem.twoPlayerMode){
-			loadFromMultiplayerData();
-		}
-		
+		soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
 	}
 
 	/**
@@ -140,8 +142,10 @@ public abstract class Player extends MovableObject{
 	public void tick(){
 		super.tick();
 		
-		if(GameSystem.twoPlayerMode){
-			if(this==game.getPlayer()){
+		skill1Timer++;
+		skill2Timer++;
+		if(GameSystem.LAN_TWO_PLAYER_MODE){
+			if(this==Game.getPlayer()){
 				if(positionUpdateTimer>15){
 					positionUpdateTimer=0;
 					sendCommand("updateX"+Double.toString(x));
@@ -149,10 +153,6 @@ public abstract class Player extends MovableObject{
 				}
 			}
 		}
-		/*
-		if(direction.equals("stand")){
-			image=this.standGif;
-		}*/
 	
 		playPlayerHpMissingVoices();
 		searchForPowerups();
@@ -188,14 +188,8 @@ public abstract class Player extends MovableObject{
 			
 		}
 		
-		
-	
-		//changes the player's "playerImage" depending on movement orientation
 		levelUpdater.checkIfLevelUp(this);
-		
-		//Animate.animate(this);
 		Animate.animateGem(this);
-		//Animate.animateWithGif(this);
 	}
 	
 	public void render(Graphics g){
@@ -228,10 +222,10 @@ public abstract class Player extends MovableObject{
 		g.drawImage(skillUlt, x+3*spacing,y,size,size,null);
 		
 		g.setColor(Color.WHITE);
-		g.drawString(skill1Name, x, y+spacing/10);
-		g.drawString(skill2Name, x+spacing, y+spacing/10);
-		g.drawString(skill3Name, x+2*spacing, y+spacing/10);
-		g.drawString(skillUltName, x+3*spacing, y+spacing/10);
+		g.drawString(skill1Name, x, y);
+		g.drawString(skill2Name, x+spacing, y);
+		g.drawString(skill3Name, x+2*spacing, y);
+		g.drawString(skillUltName, x+3*spacing, y);
 		
 		g.setColor(new Color(0f,0f,0f,.8f));
 		
@@ -245,28 +239,67 @@ public abstract class Player extends MovableObject{
 				g.drawImage(cd[i], x+3*spacing+spacing/2+i*12, y+spacing/2, null);
 			}
 		}
+		if(skill1Cd-skill1Timer>0){
+			int time = (skill1Cd-skill1Timer)/30;
+			BufferedImage[] cd = IntToImage.toImageSmall(time);						
+			g.fillRect(x, y, size, (skill1Cd-skill1Timer)*size/skill1Cd);
+			
+			
+			for(int i=0;i<cd.length;i++){
+				g.drawImage(cd[i], x+spacing/2+i*12, y+spacing/2, null);
+			}
+		}
+		if(skill2Cd-skill2Timer>0){
+			int time = (skill2Cd-skill2Timer)/30;
+			BufferedImage[] cd = IntToImage.toImageSmall(time);						
+			g.fillRect(x+spacing, y, size, (skill2Cd-skill2Timer)*size/skill2Cd);
+			
+			
+			for(int i=0;i<cd.length;i++){
+				g.drawImage(cd[i], x+spacing+spacing/2+i*12, y+spacing/2, null);
+			}
+		}
+		if(skill3Cd-skill3Timer>0){
+			int time = (skill3Cd-skill3Timer)/30;
+			BufferedImage[] cd = IntToImage.toImageSmall(time);						
+			g.fillRect(x+2*spacing, y, size, (skill3Cd-skill3Timer)*size/skill3Cd);
+			
+			
+			for(int i=0;i<cd.length;i++){
+				g.drawImage(cd[i], x+2*spacing+spacing/2+i*12, y+spacing/2, null);
+			}
+		}
+		
+		g.setFont(new Font("serif",Font.BOLD,25));
+		g.setColor(Color.BLUE);
+		g.drawString(Integer.toString(skill1Cost), x, y+70);
+		g.drawString(Integer.toString(skill2Cost), x+spacing, y+70);
+		g.setColor(Color.MAGENTA);
+		g.drawString(Integer.toString(skill3Cost), x+2*spacing, y+70);
+		g.setColor(Color.BLUE);
+		g.drawString(Integer.toString(skillUltCost), x+3*spacing, y+70);
 	}
 	
 	public void renderPlayerStatus(Graphics g){
-		//g.drawImage(statusBg,0, GameSystem.ABSHEIGHT-H_STATUS+28,null);
-		
+		int y = GameSystem.ABSHEIGHT-Player.H_STATUS-6;
 		g.setFont(new Font("arial",Font.BOLD,11));
 		if(soul==0){
-				g.drawImage(despairStatus,135, GameSystem.ABSHEIGHT-H_STATUS-6,null);
+				g.drawImage(despairStatus,135, y,null);
 				return;
 		}
 		if(hp/maxHp>0.6){
-			g.drawImage(okStatus,135, GameSystem.ABSHEIGHT-H_STATUS-6,null);
+			g.drawImage(okStatus,135, y,null);
 		}
 		else if(hp/maxHp<=0.6&&hp/maxHp>0.3){
-			g.drawImage(midDamageStatus,135, GameSystem.ABSHEIGHT-H_STATUS-6,null);
+			g.drawImage(midDamageStatus,135, y,null);
 		}
 		else if(hp/maxHp<=0.3){
-			g.drawImage(highDamageStatus,135, GameSystem.ABSHEIGHT-H_STATUS-6,null);
+			g.drawImage(highDamageStatus,135, y,null);
 		}
 	}
 	
 	public void renderSoulGem(Graphics g){
+		g.setFont(new Font("serif",Font.BOLD,12));
 		g.setColor(Color.LIGHT_GRAY);
 		g.drawString(name, 160, GameSystem.ABSHEIGHT-H_STATUS+3);
 		g.drawImage(soulGemImage,GameSystem.GAME_WIDTH/2-430,GameSystem.GAME_HEIGHT-10,null);
@@ -357,7 +390,7 @@ public abstract class Player extends MovableObject{
 	public void stopDying(){
 		if(!dying) return;
 		game.getController().removePlayer(this);
-		if(this==game.getPlayer()){
+		if(this==Game.getPlayer()||this==Game.getPlayer2()){
 			game.setPlayerIsAlive(false);
 		}
 	}
@@ -386,24 +419,38 @@ public abstract class Player extends MovableObject{
 		BP=MultiplayerStats.BP;
 		soul=MultiplayerStats.SOUL;
 	}
-	public void placeBomb(int bombStrength,int bombLength,int duration){
-		if(Physics.onTopOfBomb(this, game.getBombList())!=-1||animation==ANIMATION.DYING||animation==ANIMATION.DAMAGED){
-			return;
-		}
-		if(mp>0){
-			controller.addEntity(new Bomb(this.xGridNearest,this.yGridNearest,game,bombStrength,bombLength,duration));
-			mp-=0;
-		}
-		else{
-			GameSystem.playError();
-		}
-	}
 	
 	public BufferedImage getPlayerBackground(){
 		return this.playerBackground;
 	}
 	
-	public abstract void useAbility1();
-	public abstract void useAbility2();
+	public void useAbility1(){
+		if(mp<skill1Cost||dying){
+			return;
+		}
+		if(skill1Timer>skill1Cd){
+			placeBomb(bombStrength, bombLength, 90);
+			mp-=skill1Cost;
+			skill1Timer=0;
+		}
+		else{
+			GameSystem.playError();
+			pVoice.playCdSound();
+		}
+	}
+	public void useAbility2(){
+		if(mp<skill2Cost||dying){
+			return;
+		}
+		if(skill2Timer>skill2Cd){
+			this.kickBomb();
+			mp-=skill2Cost;
+			skill2Timer=0;
+		}
+		else{
+			GameSystem.playError();
+			pVoice.playCdSound();
+		}
+	}
 	public abstract void useAbility3();
 }

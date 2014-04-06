@@ -46,7 +46,6 @@ public class Ai
 		LinkedList<Point> ret= new LinkedList<Point>();
 		LinkedList<Point> points = new LinkedList<Point>();
 		Random rand = new Random();
-		int counter;
 		
 		for(int i=1;i<map.length;i++){
 			for(int j=1;j<map[i].length;j++){

@@ -1,10 +1,6 @@
 package gameObject;
 
 import game.Game;
-
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 /**

@@ -19,6 +19,7 @@ import gameObject.Enemy_Boss_3;
 import gameObject.Enemy_Boss_5;
 import gameObject.HitableBrick;
 import gameObject.PlaceHolder;
+import gameObject.Player;
 import gameObject.Player_Homura;
 import gameObject.Player_Kyouko;
 import gameObject.Player_Madoka;
@@ -64,7 +65,7 @@ public class LevelLoader {
 		int stage = game.getCurLevel();
 		
 		
-		if(GameSystem.twoPlayerMode){
+		if(GameSystem.LAN_TWO_PLAYER_MODE){
 			if(!GameSystem.isPlayerOne){
 				stage = MultiplayerStats.CURSTAGE;
 			}
@@ -245,7 +246,7 @@ public class LevelLoader {
 		GameSystem.turnOnBgm("/sound/music/stage3.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
-				{1,0,0,0,2,2,2,2,2,0,0,2,2,2,2,2},
+				{1,9,0,0,2,2,2,2,2,0,0,2,2,2,2,2},
 				{3,3,0,0,0,0,0,0,0,31,0,0,0,0,0,0},
 				{0,2,2,2,0,0,2,3,3,2,0,0,2,2,2,2},
 				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -254,7 +255,7 @@ public class LevelLoader {
 				{0,0,3,3,3,3,0,0,2,2,2,2,0,0,2,2},
 				{0,0,0,0,0,0,0,0,0,0,0,0,0,31,0,0},
 				{2,2,2,2,2,0,0,3,3,3,3,0,0,2,2,2},
-				{0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
 
 
 
@@ -267,7 +268,7 @@ public class LevelLoader {
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
 		int[][] data = new int[][]{
 				{2,2,2,2,2,2,2,2,2,2,2,3,3,3,2,2},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2},
+				{1,9,0,0,0,0,0,0,0,0,0,0,0,0,0,2},
 				{0,0,2,3,3,3,2,2,2,2,2,2,2,2,0,2},
 				{0,0,2,0,0,31,0,0,0,0,0,0,0,2,0,2},
 				{0,0,3,0,2,2,2,2,3,3,3,3,0,2,0,2},
@@ -355,6 +356,7 @@ public class LevelLoader {
 		GameSystem.otherPlayerIsReady=false;
 		GameSystem.serialNumber=0;
 		
+		Player.SCORE=0;
 		game.setVictory(false);
 		game.setController(new Controller(game));
 		game.setPlayerIsAlive(true);
@@ -391,7 +393,7 @@ public class LevelLoader {
 		g.drawString(title, 270, 240);
 		if(System.currentTimeMillis()-renderStageStart>duration){
 			Game.TITLE_DONE=true;
-			if(GameSystem.twoPlayerMode){
+			if(GameSystem.LAN_TWO_PLAYER_MODE){
 				Game.TITLE_DONE=true;
 				GameSystem.sendCommandToOther("ready");
 			}
@@ -443,6 +445,9 @@ public class LevelLoader {
 	private void assignPlayer(){
 		game.setPlayer(game.getController().getPlayer());
 	}
+	private void assignPlayer2(){
+		game.setPlayer2(game.getController().getPlayer());
+	}
 	
 	/**
 	 * Loads map graphics data
@@ -452,33 +457,37 @@ public class LevelLoader {
 			for(int j=0;j<mapData[i].length;j++){
 				
 				if(mapData[i][j]==1){
-					if(GameSystem.twoPlayerMode){
+					if(GameSystem.LAN_TWO_PLAYER_MODE){
 						if(GameSystem.isPlayerOne){
 							createPlayer(j+1,i+1);
 							assignPlayer();
 						}
 						else{
 							createPlayer2(j+1,i+1);
+							assignPlayer2();
 						}
 					}
 					else{
 						createPlayer(j+1,i+1);
 						assignPlayer();
 					}
+					
 				}
 				
 				else if(mapData[i][j]==9){
-					if(GameSystem.twoPlayerMode){
+					if(GameSystem.LAN_TWO_PLAYER_MODE){
 						if(!GameSystem.isPlayerOne){
 							createPlayer(j+1,i+1);
 							assignPlayer();
 						}
 						else{
 							createPlayer2(j+1,i+1);
+							assignPlayer2();
 						}
 					}
-					else{
-					
+					else if(GameSystem.TWO_PLAYER_MODE){
+						createPlayer2(j+1,i+1);
+						assignPlayer2();
 					}
 				}
 				

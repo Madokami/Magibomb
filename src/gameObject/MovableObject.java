@@ -1,9 +1,6 @@
 package gameObject;
 
 import game.Game;
-
-import java.awt.Image;
-
 import system.BufferedImageLoader;
 import system.GameSystem;
 
@@ -28,8 +25,8 @@ public abstract class MovableObject extends GameObject{
 	public boolean moving=false;
 	public boolean buttonReleased;
 	public String nextMove="null";
-	public int toleranceX = GameSystem.GRID_SIZE/2;
-	public int toleranceY = GameSystem.GRID_SIZE/2;
+	public int toleranceX = GameSystem.GRID_SIZE/3;
+	public int toleranceY = GameSystem.GRID_SIZE/3;
 	private double velX = 0;
 	private double velY = 0;
 	
@@ -58,7 +55,14 @@ public abstract class MovableObject extends GameObject{
 	
 	public int positionUpdateTimer;
 	
-	protected int ultyTimer,ultyCd,abi1Timer,abi1Cd,abi2Timer,abi2Cd,abi3Timer,abi3Cd;
+	public int ultyTimer;
+	public int ultyCd;
+	protected int abi1Timer;
+	protected int abi1Cd;
+	protected int abi2Timer;
+	protected int abi2Cd;
+	protected int abi3Timer;
+	protected int abi3Cd;
 	
 	
 	public enum ANIMATION{
@@ -165,7 +169,7 @@ public abstract class MovableObject extends GameObject{
 		abi1Timer++;
 		abi2Timer++;
 		abi3Timer++;
-		if(GameSystem.twoPlayerMode){
+		if(GameSystem.LAN_TWO_PLAYER_MODE){
 			if(GameSystem.isPlayerOne){
 				this.positionUpdateTimer++;
 			}
@@ -191,7 +195,12 @@ public abstract class MovableObject extends GameObject{
 	}
 	//moveUp shall move 1 grid up only
 	public void moveUp(){
-		if(animation==ANIMATION.DAMAGED||game.getPlayer().dying||channelling||charging) return;
+		if(GameSystem.TWO_PLAYER_MODE){
+			if(Game.getPlayer2().dying){
+				return;
+			}
+		}
+		if(animation==ANIMATION.DAMAGED||Game.getPlayer().dying||channelling||charging) return;
 		moving=true;
 		buttonReleased=false;
 		orientation=ORIENTATION.UP;
@@ -207,7 +216,12 @@ public abstract class MovableObject extends GameObject{
 	}
 	//moveDown shall move 1 grid down only
 	public void moveDown(){
-		if(animation==ANIMATION.DAMAGED||game.getPlayer().dying||channelling||charging) return;
+		if(GameSystem.TWO_PLAYER_MODE){
+			if(Game.getPlayer2().dying){
+				return;
+			}
+		}
+		if(animation==ANIMATION.DAMAGED||Game.getPlayer().dying||channelling||charging) return;
 		moving=true;
 		buttonReleased=false;
 		orientation=ORIENTATION.DOWN;
@@ -223,7 +237,12 @@ public abstract class MovableObject extends GameObject{
 	}
 	//moveRight shall move 1 grid right only
 	public void moveRight(){
-		if(animation==ANIMATION.DAMAGED||game.getPlayer().dying||channelling||charging) return;
+		if(GameSystem.TWO_PLAYER_MODE){
+			if(Game.getPlayer2().dying){
+				return;
+			}
+		}
+		if(animation==ANIMATION.DAMAGED||Game.getPlayer().dying||channelling||charging) return;
 		moving=true;
 		buttonReleased=false;
 		orientation=ORIENTATION.RIGHT;
@@ -240,7 +259,12 @@ public abstract class MovableObject extends GameObject{
 	}
 	//moveLeft shall move 1 grid left only
 	public void moveLeft(){
-		if(animation==ANIMATION.DAMAGED||game.getPlayer().dying||channelling||charging) return;
+		if(GameSystem.TWO_PLAYER_MODE){
+			if(Game.getPlayer2().dying){
+				return;
+			}
+		}
+		if(animation==ANIMATION.DAMAGED||Game.getPlayer().dying||channelling||charging) return;
 		moving=true;
 		buttonReleased=false;
 		orientation=ORIENTATION.LEFT;

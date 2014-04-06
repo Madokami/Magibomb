@@ -2,8 +2,6 @@ package gameObject;
 
 import game.Game;
 
-import java.awt.Graphics;
-
 /**
 * <b>Description:</b>
 * <br>
@@ -35,7 +33,7 @@ public class Enemy_1_2 extends Enemy{
 
 	@Override
 	public void useUltimate() {
-		if(ai.nextToPlayer(this.xGridNearest,yGridNearest,game.getPlayer().xGridNearest,game.getPlayer().yGridNearest)){
+		if(ai.nextToPlayer(this.xGridNearest,yGridNearest,Game.getPlayer().xGridNearest,Game.getPlayer().yGridNearest)){
 			controller.addEntity(new Projectile_ThornBall(xGridNearest,yGridNearest,game,this));
 			game.decreaseEnemyCount();
 			controller.removeEntity(this);

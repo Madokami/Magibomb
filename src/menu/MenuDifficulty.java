@@ -88,7 +88,7 @@ public class MenuDifficulty implements GeneralMenu{
 				Game.DIFFICULTY = hard;
 			}
 			GameSystem.playConfirm();
-			Menu.toChooseChar();
+			Menu.toTwoPlayers();
 		}
 		else if(key==GameSystem.CANCEL){
 			GameSystem.playCancel();

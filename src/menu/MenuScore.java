@@ -36,7 +36,7 @@ public class MenuScore implements GeneralMenu{
 		g.setFont(new Font("arial", Font.BOLD,30));
 		g.drawString("press 'space' go to next level", 200, 100);
 		g.drawString("please make this page look nicer", 180,200);
-		g.drawString("Current score: "+Player.score, 180,300);
+		g.drawString("Current score: "+Player.SCORE, 180,300);
 		
 		g.drawString("Continue", Menu.X_START, Menu.Y_START);
 		g.drawString("change character", Menu.X_START+Menu.SPACING, Menu.Y_START);
@@ -55,9 +55,11 @@ public class MenuScore implements GeneralMenu{
 	public void keyPressed(int key) {
 		if(key==GameSystem.CONFIRM){
 			if(selected==SELECTED.CONTINUE){
+				MenuChar.handler.refreshAll();
 				Menu.toCharStats();
 			}
 			else if(selected==SELECTED.CHANGE_CHARACTER){
+				GameSystem.PLAYER_ONE_CHOSEN=false;
 				Menu.toChooseChar();
 			}
 			

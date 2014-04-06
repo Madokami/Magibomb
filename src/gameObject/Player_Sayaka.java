@@ -4,7 +4,6 @@ import menu.MenuChar;
 import system.GameSystem;
 import system.IntToImage;
 import game.Game;
-import game.Game.CHARACTER;
 
 /**
 * <b>Description:</b>
@@ -41,9 +40,9 @@ public class Player_Sayaka extends Player{
 		soulGemSprite=SpriteData.gem_sayaka;
 		soulGemImage=soulGemSprite.grabImage(1, 1, soulGemWidth, soulGemHeight);
 		
-		if(Game.cChosen==CHARACTER.SAYAKA){
-			pData.loadPlayerStatus(this);
-		}
+		
+		pData.loadPlayerStatus(this);
+		
 		
 		levelImage=IntToImage.toImageSmall(level);
 		soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
@@ -66,32 +65,27 @@ public class Player_Sayaka extends Player{
 			this.pVoice.playCdSound();
 			return;
 		}
-		int time = 30;
-		int chargeSpd = 40;
-		GameSystem.musicPlayer.playSwoosh();
-		this.setInvincible(time);
-		controller.addEntity(new SaDash(xGridNearest,yGridNearest,game,this,time));
-		
-		startCharge(chargeSpd,time);
-		ultyTimer=0;
+		if(mp>skillUltCost){
+			mp-=skillUltCost;
+			int time = 30;
+			int chargeSpd = 40;
+			GameSystem.musicPlayer.playSwoosh();
+			this.setInvincible(time);
+			controller.addEntity(new SaDash(xGridNearest,yGridNearest,game,this,time));
+			
+			startCharge(chargeSpd,time);
+			ultyTimer=0;
+		}
 	}
 	
 	public void updatePlayerData(){
 		pData.upDatePlayerData(this);
 	}
-	@Override
-	public void useAbility2() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public void useAbility3() {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void useAbility1() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

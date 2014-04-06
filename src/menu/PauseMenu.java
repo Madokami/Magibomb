@@ -46,7 +46,7 @@ public class PauseMenu implements GeneralMenu{
 		loader = new BufferedImageLoader();
 		this.game=game;
 		pointer = loader.loadImage("/image/menu/pointer.png");
-		background = loader.loadImage("/image/white.png");
+		//background = loader.loadImage("/image/white.png");
 	}
 	
 	public void render(Graphics g) {

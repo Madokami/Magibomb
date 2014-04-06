@@ -362,40 +362,48 @@ public class MenuChar implements GeneralMenu{
 				handler.render(g);
 				g.setColor(Color.LIGHT_GRAY);
 				g.setFont(new Font("serif",Font.BOLD,18));
-				g.drawString("Start", statsX-12+120,statsY+27+statsShift*7+20);
+				if(GameSystem.TWO_PLAYER_MODE&&!GameSystem.PLAYER_ONE_CHOSEN){				
+					g.drawString("Choose p1", statsX-32+120,statsY+27+statsShift*7+20);				
+				}
+				else{
+					g.drawString("Start", statsX-12+120,statsY+27+statsShift*7+20);
+				}
 			}
 			effect.render(g);
 		}
 
 		public void keyPressed(int key) {
 			if(this.isChooseChar()){
-				if(key==KeyEvent.VK_X){
+				if(key==GameSystem.CANCEL){
 					yShift=1;
 					GameSystem.playCancel();
 					
-					GameSystem.twoPlayerMode=false;
+					GameSystem.LAN_TWO_PLAYER_MODE=false;
 					GameSystem.isPlayerOne=true;
+					GameSystem.TWO_PLAYER_MODE=false;
+					GameSystem.PLAYER_ONE_CHOSEN=false;
 					Menu.mState=Menu.MENUSTATE.MAIN;
 					
 					effect.startFadeWhiteReversed();
 				}
-				else if(key==KeyEvent.VK_LEFT){		
+				else if(key==GameSystem.LEFT){		
 					if(isRotating) return;
 					startRotateLeft();
 					GameSystem.playSwitch();
 				}
-				else if(key==KeyEvent.VK_RIGHT){
+				else if(key==GameSystem.RIGHT){
 					if(isRotating) return;
 					startRotateRight();
 					GameSystem.playSwitch();
 				}
-				else if(key==KeyEvent.VK_Z){
+				else if(key==GameSystem.CONFIRM){
 					if(isRotating) return;
+					
 					handler.refreshAll();
 					this.setDisplayStatus();
 					GameSystem.playConfirm();
 					effect.startFadeWhiteReversed();
-					if(GameSystem.twoPlayerMode){
+					if(GameSystem.LAN_TWO_PLAYER_MODE){
 						transferPlayerData();
 						setSecondPlayer();
 					}
@@ -406,41 +414,86 @@ public class MenuChar implements GeneralMenu{
 			
 			
 			else if(this.isDisplayStatus()){
-				 if(key==KeyEvent.VK_Z){
+				 if(key==GameSystem.CONFIRM){
 					if(cAttribute == SELECTED_ATTRIBUTE.START){
-						if(cSelected == CHARACTER.MADOKA){
-							Game.cChosen=Game.CHARACTER.MADOKA;
+						if(GameSystem.TWO_PLAYER_MODE){
+							if(!GameSystem.PLAYER_ONE_CHOSEN){
+								GameSystem.PLAYER_ONE_CHOSEN=true;
+								if(cSelected == CHARACTER.MADOKA){
+									Game.cChosen=Game.CHARACTER.MADOKA;
+								}
+								else if(cSelected == CHARACTER.HOMURA){
+									Game.cChosen=Game.CHARACTER.HOMURA;
+								}
+								else if(cSelected == CHARACTER.SAYAKA){
+									Game.cChosen=Game.CHARACTER.SAYAKA;
+								}
+								else if(cSelected == CHARACTER.MAMI){
+									Game.cChosen=Game.CHARACTER.MAMI;
+								}
+								else if(cSelected == CHARACTER.KYOUKO){
+									Game.cChosen=Game.CHARACTER.KYOUKO;
+								}
+								Menu.toChooseChar();
+							}
+							else{
+								if(cSelected == CHARACTER.MADOKA){
+									Game.cChosenP2=Game.CHARACTER.MADOKA;
+								}
+								else if(cSelected == CHARACTER.HOMURA){
+									Game.cChosenP2=Game.CHARACTER.HOMURA;
+								}
+								else if(cSelected == CHARACTER.SAYAKA){
+									Game.cChosenP2=Game.CHARACTER.SAYAKA;
+								}
+								else if(cSelected == CHARACTER.MAMI){
+									Game.cChosenP2=Game.CHARACTER.MAMI;
+								}
+								else if(cSelected == CHARACTER.KYOUKO){
+									Game.cChosenP2=Game.CHARACTER.KYOUKO;
+								}
+								Menu.toGameMode();
+								GameSystem.setTwoPlayerKeyLayout();
+							}
 						}
-						else if(cSelected == CHARACTER.HOMURA){
-							Game.cChosen=Game.CHARACTER.HOMURA;
-						}
-						else if(cSelected == CHARACTER.SAYAKA){
-							Game.cChosen=Game.CHARACTER.SAYAKA;
-						}
-						else if(cSelected == CHARACTER.MAMI){
-							Game.cChosen=Game.CHARACTER.MAMI;
-						}
-						else if(cSelected == CHARACTER.KYOUKO){
-							Game.cChosen=Game.CHARACTER.KYOUKO;
-						}
-						if(GameSystem.twoPlayerMode){
-							transferPlayerData();
-							setSecondPlayer();
+						else{
+							if(cSelected == CHARACTER.MADOKA){
+								Game.cChosen=Game.CHARACTER.MADOKA;
+							}
+							else if(cSelected == CHARACTER.HOMURA){
+								Game.cChosen=Game.CHARACTER.HOMURA;
+							}
+							else if(cSelected == CHARACTER.SAYAKA){
+								Game.cChosen=Game.CHARACTER.SAYAKA;
+							}
+							else if(cSelected == CHARACTER.MAMI){
+								Game.cChosen=Game.CHARACTER.MAMI;
+							}
+							else if(cSelected == CHARACTER.KYOUKO){
+								Game.cChosen=Game.CHARACTER.KYOUKO;
+							}
 							
+							if(GameSystem.LAN_TWO_PLAYER_MODE){
+								transferPlayerData();
+								setSecondPlayer();
+								
+							}
+							Menu.toGameMode();
 						}
+						
 						handler.setNewValues();
 						GameSystem.playConfirm();
 						playSelectionSound();
-						Menu.toGameMode();
+						
 					}
 				}
-				else if(key==KeyEvent.VK_X){
+				else if(key==GameSystem.CANCEL){
 					yShift=1;
 					handler.restoreOriginalValue();
 					GameSystem.playCancel();
 					setChooseChar();
 				}
-				else if(key==KeyEvent.VK_DOWN){
+				else if(key==GameSystem.DOWN){
 					if(cAttribute == SELECTED_ATTRIBUTE.HP){
 						cAttribute = SELECTED_ATTRIBUTE.MP;
 					}
@@ -464,7 +517,7 @@ public class MenuChar implements GeneralMenu{
 					}
 					GameSystem.playSwitch();
 				}
-				else if(key==KeyEvent.VK_UP){
+				else if(key==GameSystem.UP){
 					
 					if(cAttribute == SELECTED_ATTRIBUTE.MP){
 						cAttribute = SELECTED_ATTRIBUTE.HP;
@@ -491,7 +544,7 @@ public class MenuChar implements GeneralMenu{
 				}
 				
 				//increase stats if you have enough pt
-				else if(key==KeyEvent.VK_RIGHT){
+				else if(key==GameSystem.RIGHT){
 					if(cAttribute == SELECTED_ATTRIBUTE.HP){
 						if(handler.BPCur>=handler.hpCost){
 							GameSystem.playConfirm();
@@ -560,7 +613,7 @@ public class MenuChar implements GeneralMenu{
 					}
 				}
 				//reduces stats if conditions meet
-				else if(key==KeyEvent.VK_LEFT){
+				else if(key==GameSystem.LEFT){
 					if(cAttribute == SELECTED_ATTRIBUTE.HP){
 						if(handler.BPCur+handler.hpCost<=handler.BPOriginal&&handler.hpCur-handler.hpValue>=handler.hpOriginal){
 							GameSystem.playConfirm();
@@ -700,7 +753,7 @@ public class MenuChar implements GeneralMenu{
 				else if(cSelected == CHARACTER.MADOKA){
 					cSelected=CHARACTER.KYOUKO;
 				}
-				if(GameSystem.twoPlayerMode){
+				if(GameSystem.LAN_TWO_PLAYER_MODE){
 					transferPlayerData();
 					setSecondPlayer();
 				}
@@ -721,7 +774,7 @@ public class MenuChar implements GeneralMenu{
 				else if(cSelected == CHARACTER.KYOUKO){
 					cSelected=CHARACTER.MADOKA;
 				}
-				if(GameSystem.twoPlayerMode){
+				if(GameSystem.LAN_TWO_PLAYER_MODE){
 					transferPlayerData();
 					setSecondPlayer();
 				}

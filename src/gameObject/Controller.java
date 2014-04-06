@@ -3,7 +3,6 @@ package gameObject;
 import game.Game;
 
 import java.awt.Graphics;
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -19,7 +18,7 @@ import system.GameSystem;
 * @version 1.0
 * @since 2014-03-31
 */
-public class Controller implements Serializable {
+public class Controller{
 	public Game game;
 	
 	public LinkedList<GameObject> everything = new LinkedList<GameObject>();
@@ -34,8 +33,6 @@ public class Controller implements Serializable {
 	public LinkedList<PlaceHolder> placeHolderList = new LinkedList<PlaceHolder>();
 	public boolean[][] wallArray;
 	public boolean[][] bombArray;
-	
-	private DamageRenderer damageRenderer;
 	
 	Random r = new Random();
 	public Controller(Game game){

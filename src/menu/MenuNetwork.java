@@ -11,10 +11,10 @@ import system.Client;
 import system.ClientSelf;
 import system.GameSystem;
 
-public class MenuMultiplayer implements GeneralMenu{
+public class MenuNetwork implements GeneralMenu{
 	//private BufferedImage backGround;
 	public String stateChosen="hostGame";
-	public MenuMultiplayer(){
+	public MenuNetwork(){
 		//backGround=GameSystem.loader.loadImage("/image/menu/multBg.png");
 	}
 	
@@ -48,7 +48,7 @@ public class MenuMultiplayer implements GeneralMenu{
 	public void keyPressed(int key) {
 		// TODO Auto-generated method stub
 		if(key==GameSystem.CONFIRM){
-			GameSystem.twoPlayerMode=true;
+			GameSystem.LAN_TWO_PLAYER_MODE=true;
 			
 			if(stateChosen=="hostGame"){
 				GameSystem.isPlayerOne=true;

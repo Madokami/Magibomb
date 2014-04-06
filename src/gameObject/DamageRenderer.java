@@ -20,7 +20,6 @@ public class DamageRenderer {
 	private final int renderDuration=15;
 	private GameObject owner;
 	private int randX[],randY[];
-	private int positionX[],positionY[];
 	private Random rand;
 	private int randRange=40;
 	
@@ -34,7 +33,6 @@ public class DamageRenderer {
 		counter=new int[10];
 		randX=new int[10];
 		randY=new int[10];
-		positionX=positionY=new int[10];
 		for(int i=0;i<counter.length;i++){
 			counter[i]=20;
 		}

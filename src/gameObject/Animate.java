@@ -3,11 +3,6 @@ package gameObject;
 import gameObject.MovableObject.ANIMATION;
 import gameObject.MovableObject.FACING;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
-import system.GameSystem;
-
 /**
  * <b>Description:</b>
  * <br><br>
@@ -63,7 +58,6 @@ public class Animate {
 	Divides spritesheet into equal quadrangles corresponding to individual frames
 	*/
 	public static void animateGem(Player p) {
-		// TODO Auto-generated method stub
 		p.soulGemImage=p.soulGemSprite.grabImage(1, 1, Player.soulGemWidth, Player.soulGemHeight);
 		if(1-p.soul/p.maxSoul>=0.25&&1-p.soul/p.maxSoul<0.5){
 			double count = p.soulGemCounter%8;

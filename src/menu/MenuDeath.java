@@ -52,18 +52,20 @@ public class MenuDeath{
 	}
 	
 	public void keyPressed(int key) {
-		if(key==KeyEvent.VK_DOWN){
+		if(key==GameSystem.DOWN){
 			if(dSelected==DEATH.RESTART){
 				dSelected=DEATH.BACKTOMENU;
 			}
 		}
-		else if(key==KeyEvent.VK_UP){
+		else if(key==GameSystem.UP){
 			if(dSelected==DEATH.BACKTOMENU){
 				dSelected=DEATH.RESTART;
 			}	
 		}
-		else if(key==KeyEvent.VK_Z){
+		else if(key==GameSystem.CONFIRM){
 			if(dSelected==DEATH.BACKTOMENU){
+				GameSystem.TWO_PLAYER_MODE=false;
+				GameSystem.PLAYER_ONE_CHOSEN=false;
 				Menu.backToMenu();
 			}
 			else if(dSelected==DEATH.RESTART){

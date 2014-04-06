@@ -31,7 +31,7 @@ public class Enemy_1_3 extends Enemy{
 
 	@Override
 	public void useUltimate() {
-		String dir = ai.isValidStraightLine(controller.getWallArray(), this.xGridNearest,yGridNearest,game.getPlayer().xGridNearest,game.getPlayer().yGridNearest);
+		String dir = ai.isValidStraightLine(controller.getWallArray(), this.xGridNearest,yGridNearest,Game.getPlayer().xGridNearest,Game.getPlayer().yGridNearest);
 		if(dir!="stop"){
 			if(dir=="right"){
 				controller.addEntity(new Enemy_1_2(xGridNearest-1,yGridNearest,game));

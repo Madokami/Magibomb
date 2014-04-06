@@ -1,9 +1,6 @@
 package gameObject;
 
 import game.Game;
-
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -67,7 +64,7 @@ public abstract class Enemy extends MovableObject{
 			this.moveToLastAcceptableLocation();
 		}
 		*/
-		if(GameSystem.twoPlayerMode){
+		if(GameSystem.LAN_TWO_PLAYER_MODE){
 			if(GameSystem.isPlayerOne){
 				if(positionUpdateTimer>15){
 					positionUpdateTimer=0;
@@ -151,7 +148,6 @@ public abstract class Enemy extends MovableObject{
 	}
 	public void providePoints(Player p){
 		p.expCurrent+=exp;
-		p.score+=score;
 	}
 	
 	/**
@@ -182,7 +178,7 @@ public abstract class Enemy extends MovableObject{
 	 */
 	public void chasePlayer(){
 		String s;
-		s=ai.makeStep(game.getWallArray(), game.getPlayer().xGridNearest, game.getPlayer().yGridNearest, lastX, lastY);
+		s=ai.makeStep(game.getWallArray(), Game.getPlayer().xGridNearest, Game.getPlayer().yGridNearest, lastX, lastY);
 		if(s.equals("up")) {
 			if(!Physics.blockedByEnemy(this, game.getEnemyList(), lastX, lastY-1)){
 				this.sendCommand("moveUp");
@@ -220,7 +216,7 @@ public abstract class Enemy extends MovableObject{
 	 * <br><b>duration</b> - the time that the enemy charges at the character
 	 */
 	public boolean chargeAtPlayer(int speed,int duration){
-		String dir=ai.isValidStraightLine(game.getWallArray(), game.getPlayer().xGridNearest, game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
+		String dir=ai.isValidStraightLine(game.getWallArray(), Game.getPlayer().xGridNearest, Game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
 		if(dir.equals("stop")){
 			return false;
 		}
@@ -269,7 +265,11 @@ public abstract class Enemy extends MovableObject{
 	public void remove(){
 		game.decreaseEnemyCount();
 		game.getController().removeEntity(this);
-		providePoints(game.getPlayer());
+		providePoints(Game.getPlayer());
+		if(GameSystem.TWO_PLAYER_MODE){
+			providePoints(Game.getPlayer2());
+		}
+		Player.SCORE+=score;
 	}
 	
 	public abstract void useUltimate();

@@ -4,7 +4,6 @@ import menu.MenuChar;
 import system.GameSystem;
 import system.IntToImage;
 import game.Game;
-import game.Game.CHARACTER;
 
 /**
 * <b>Description:</b>
@@ -18,8 +17,6 @@ import game.Game.CHARACTER;
 * @since 2014-03-31
 */
 public class Player_Kyouko extends Player{
-	private int upAttackCounter=10;
-	private boolean upAttacking;
 	public Player_Kyouko(int x, int y, Game game) {
 		super(x, y, game);
 		playerBackground = MenuChar.kyBg;
@@ -52,9 +49,9 @@ public class Player_Kyouko extends Player{
 		status = SpriteData.kyStatus;
 		setStatusImages();
 		
-		if(Game.cChosen==CHARACTER.KYOUKO){
-			pData.loadPlayerStatus(this);
-		}
+		
+		pData.loadPlayerStatus(this);
+		
 		
 		levelImage=IntToImage.toImageSmall(level);
 		soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
@@ -76,21 +73,11 @@ public class Player_Kyouko extends Player{
 	}
 
 	@Override
-	public void useAbility2() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void useAbility3() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void useAbility1() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

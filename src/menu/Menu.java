@@ -26,8 +26,9 @@ public class Menu {
 	public MenuDeath mDeath;
 	public MenuChar mChar;
 	public MenuScore mScore;
-	public MenuMultiplayer mMult;
+	public MenuNetwork mNetwork;
 	public MenuDifficulty mDifficulty;
+	public MenuTwoPlayer mTwoPlayer;
 	
 	public static BufferedImage logo;
 	
@@ -63,8 +64,9 @@ public class Menu {
 		SETTING,
 		DEATH,
 		SCORE,
-		TWOPLAYER,
-		DIFFICULTY
+		NETWORK,
+		DIFFICULTY,
+		TWO_PLAYERS
 	};
 	
 	//determines what menu option is currently selected by the user
@@ -72,7 +74,7 @@ public class Menu {
 	public static enum SELECTED{
 		STORY,
 		ARCADE,
-		TWOPLAYER,
+		NETWORK,
 	};
 	
 	//Initializes the two states.
@@ -85,8 +87,9 @@ public class Menu {
 		mChar = new MenuChar(game);
 		mDeath = new MenuDeath();
 		mScore = new MenuScore();
-		mMult = new MenuMultiplayer();
+		mNetwork = new MenuNetwork();
 		mDifficulty = new MenuDifficulty();
+		mTwoPlayer = new MenuTwoPlayer();
 		
 		//sample usage
 		//NOTE: use loader.loadGif(path) to load .gif, or else doesn't work.
@@ -114,8 +117,8 @@ public class Menu {
 		else if(mState==MENUSTATE.DEATH){
 			mDeath.tick();
 		}
-		else if(mState==MENUSTATE.TWOPLAYER){
-			mMult.tick();
+		else if(mState==MENUSTATE.NETWORK){
+			mNetwork.tick();
 		}
 	}
 	
@@ -158,7 +161,7 @@ public class Menu {
 				g.drawString("Arcade", X_START-2+SPACING, Y_START);
 				g.drawImage(pointer, POINTER_X_START+SPACING, POINTER_Y_START, null);
 			}
-			else if(selected==SELECTED.TWOPLAYER){
+			else if(selected==SELECTED.NETWORK){
 				//g.setColor(Color.LIGHT_GRAY);
 				g.drawString("Network", X_START-2+2*SPACING, Y_START);
 				g.drawImage(pointer, POINTER_X_START+2*SPACING, POINTER_Y_START, null);
@@ -181,11 +184,14 @@ public class Menu {
 		else if(mState == MENUSTATE.SCORE){
 			mScore.render(g);
 		}
-		else if(mState == MENUSTATE.TWOPLAYER){
-			mMult.render(g);
+		else if(mState == MENUSTATE.NETWORK){
+			mNetwork.render(g);
 		}
 		else if(mState == MENUSTATE.DIFFICULTY){
 			mDifficulty.render(g);
+		}
+		else if(mState == MENUSTATE.TWO_PLAYERS){
+			mTwoPlayer.render(g);
 		}
 	}
 	
@@ -200,11 +206,14 @@ public class Menu {
 		else if(mState==MENUSTATE.SCORE){
 			mScore.keyPressed(key);
 		}
-		else if(mState==MENUSTATE.TWOPLAYER){
-			mMult.keyPressed(key);
+		else if(mState==MENUSTATE.NETWORK){
+			mNetwork.keyPressed(key);
 		}
 		else if(mState == MENUSTATE.DIFFICULTY){
 			mDifficulty.keyPressed(key);
+		}
+		else if(mState == MENUSTATE.TWO_PLAYERS){
+			mTwoPlayer.keyPressed(key);
 		}
 		//when "down" is pressed
 		else if(key==GameSystem.RIGHT){
@@ -217,7 +226,7 @@ public class Menu {
 					GameSystem.playSwitch();
 				}
 				else if(Menu.selected==Menu.SELECTED.ARCADE){
-					Menu.selected=Menu.SELECTED.TWOPLAYER;
+					Menu.selected=Menu.SELECTED.NETWORK;
 					//hopefully find a better sound effect. this one is too long
 					GameSystem.playSwitch();
 				}
@@ -229,7 +238,7 @@ public class Menu {
 					Menu.selected=Menu.SELECTED.STORY;
 					GameSystem.playSwitch();
 				}
-				else if(Menu.selected==Menu.SELECTED.TWOPLAYER){
+				else if(Menu.selected==Menu.SELECTED.NETWORK){
 					Menu.selected=Menu.SELECTED.ARCADE;
 					//hopefully find a better sound effect. this one is too long
 					GameSystem.playSwitch();
@@ -237,8 +246,7 @@ public class Menu {
 			}
 		}
 		
-		//user has pressed "z"
-		else if(key==KeyEvent.VK_Z){
+		else if(key==GameSystem.CONFIRM){
 			if(mState==MENUSTATE.MAIN){
 				//if currently story mode is selected
 				if(Menu.selected==Menu.SELECTED.STORY){
@@ -251,7 +259,7 @@ public class Menu {
 					GameSystem.playConfirm();
 					toDifficulty();
 				}
-				else if(Menu.selected==Menu.SELECTED.TWOPLAYER){
+				else if(Menu.selected==Menu.SELECTED.NETWORK){
 					//change Menu state to CHOOSECHAR state.
 					//StartClient.init();
 					String fdaIp="132.216.48.176";
@@ -278,7 +286,7 @@ public class Menu {
 					}
 					*/
 					GameSystem.playConfirm();
-					toMultiPlayer();
+					toNetwork();
 				}
 			}
 			
@@ -295,12 +303,15 @@ public class Menu {
 		MenuChar.yShift=1;
 		Menu.mState=Menu.MENUSTATE.CHOOSECHAR;
 	}
+	public static void toTwoPlayers(){
+		Menu.mState=Menu.MENUSTATE.TWO_PLAYERS;
+	}
 	public static void toCharStats(){
 		MenuChar.setDisplayStats();
 		Menu.mState=Menu.MENUSTATE.CHOOSECHAR;
 	}
-	public static void toMultiPlayer(){
-		Menu.mState=Menu.MENUSTATE.TWOPLAYER;
+	public static void toNetwork(){
+		Menu.mState=Menu.MENUSTATE.NETWORK;
 	}
 	
 	public static void toGameMode() {
@@ -313,7 +324,7 @@ public class Menu {
 	public static void backToMenu() {
 		GameSystem.turnOffBgm();
 		System.gc();
-		GameSystem.twoPlayerMode=false;
+		GameSystem.LAN_TWO_PLAYER_MODE=false;
 		GameSystem.turnOnBgm("/sound/music/title.wav");
 		Menu.mState=MENUSTATE.MAIN;
 	}

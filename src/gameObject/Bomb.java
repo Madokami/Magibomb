@@ -93,7 +93,7 @@ public class Bomb extends MovableObject{
 	public void explode(){
 		game.getController().createExplosion((int)super.xGridNearest, (int)super.yGridNearest, length, strength);
 		game.getController().removeEntity(this);
-		game.getPlayer().bombCount++;
+		Game.getPlayer().bombCount++;
 	}
 	
 	/**

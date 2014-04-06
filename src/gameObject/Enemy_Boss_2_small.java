@@ -1,6 +1,5 @@
 package gameObject;
 
-import java.util.LinkedList;
 
 import game.Game;
 
@@ -16,7 +15,6 @@ import game.Game;
 */
 public class Enemy_Boss_2_small extends Enemy{
 
-	private boolean teleported=true;
 	
 	public Enemy_Boss_2_small(int x, int y, Game game) {
 		super(x, y, game);
@@ -27,7 +25,7 @@ public class Enemy_Boss_2_small extends Enemy{
 		ultyCd=20;
 		this.setHp(300);
 		this.setSpeed(0);
-		this.setCollisionDamage(0);
+		this.setCollisionDamage(1);
 		this.setExp(1);
 		
 	}
@@ -54,11 +52,6 @@ public class Enemy_Boss_2_small extends Enemy{
 	public void useAbility3() {
 		// TODO Auto-generated method stub
 		
-	}
-	@Override
-	public void takeDamage(int damage){
-		super.takeDamage(damage);
-		teleported=false;
 	}
 	public void remove(){
 		super.remove();

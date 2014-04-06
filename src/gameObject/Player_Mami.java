@@ -4,7 +4,6 @@ import menu.MenuChar;
 import system.GameSystem;
 import system.IntToImage;
 import game.Game;
-import game.Game.CHARACTER;
 
 /**
 * <b>Description:</b>
@@ -41,9 +40,9 @@ public class Player_Mami extends Player{
 		status = SpriteData.maStatus;
 		setStatusImages();
 		
-		if(Game.cChosen==CHARACTER.MAMI){
-			pData.loadPlayerStatus(this);
-		}
+		
+		pData.loadPlayerStatus(this);
+		
 		
 		levelImage=IntToImage.toImageSmall(level);
 		soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
@@ -51,12 +50,17 @@ public class Player_Mami extends Player{
 		maxMp=mp;
 		maxSoul=soul;
 	}
-	public void useUltimate(){
-		if(channelling==true) {
-			if(mp<=0){
+	public void tick(){
+		super.tick();
+		if(channelling){
+			if(mp<maxMp*0.06/30+50/30.0){
 				stopChannelling();
 			}
-			mp-=0;
+			mp-=maxMp*0.06/30+50/30.0;
+		}
+	}
+	public void useUltimate(){
+		if(channelling==true) {
 			return;
 		}
 		
@@ -66,11 +70,8 @@ public class Player_Mami extends Player{
 			return;
 		}
 		
-		if(mp<50){
-			return;
-		}
-		else{
-			mp-=5;
+		if(mp>skillUltCost){
+			mp-=skillUltCost;
 			channelling=true;
 			game.getController().addEntity(new TiroFinale(this.xGridNearest,yGridNearest,game,this));
 			//game.getController().addEntity(new Projectile_blackBeam(this.xGridNearest,yGridNearest,game,this));
@@ -84,19 +85,10 @@ public class Player_Mami extends Player{
 		pData.upDatePlayerData(this);
 	}
 	@Override
-	public void useAbility2() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
 	public void useAbility3() {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void useAbility1() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 }

@@ -1,6 +1,6 @@
 package gameObject;
 
-import java.util.LinkedList;
+
 
 import game.Game;
 
@@ -47,7 +47,7 @@ public class Enemy_5_1 extends Enemy_4{
 
 	@Override
 	public void useUltimate() {
-		String dir = ai.isValidStraightLine(controller.wallArray, game.getPlayer().xGridNearest, game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
+		String dir = ai.isValidStraightLine(controller.wallArray, Game.getPlayer().xGridNearest, Game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
 		if(dir!="stop"){
 			moveToDirection(dir);
 			setVelX(0);

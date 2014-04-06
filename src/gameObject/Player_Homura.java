@@ -1,8 +1,6 @@
 package gameObject;
 
 import game.Game;
-import game.Game.CHARACTER;
-
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -49,9 +47,9 @@ public class Player_Homura extends Player{
 		status = SpriteData.hoStatus;
 		setStatusImages();
 		
-		if(Game.cChosen==CHARACTER.HOMURA){
-			pData.loadPlayerStatus(this);
-		}
+	
+		pData.loadPlayerStatus(this);
+		
 		levelImage=IntToImage.toImageSmall(level);
 		soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
 		maxHp=hp;
@@ -71,11 +69,11 @@ public class Player_Homura extends Player{
 			this.pVoice.playCdSound();
 			return;
 		}
-		if(mp-50<0){
+		if(mp-skillUltCost<0){
 			return;
 		}
 		else{
-			mp=mp-50;
+			mp=mp-skillUltCost;
 			pVoice.playUltimateSound();
 			sequence.startSequence(ulty, stand);
 			setVelX(0);
@@ -92,22 +90,12 @@ public class Player_Homura extends Player{
 	}
 
 	@Override
-	public void useAbility2() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void useAbility3() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void useAbility1() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 
 }

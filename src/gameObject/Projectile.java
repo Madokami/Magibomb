@@ -1,10 +1,7 @@
 package gameObject;
 
 import game.Game;
-import gameObject.GameObject.ORIENTATION;
-
 import java.util.LinkedList;
-
 import system.GameSystem;
 
 /**
@@ -36,7 +33,7 @@ public abstract class Projectile extends MovableObject {
 		// TODO Auto-generated constructor stub
 	}
 	public void tick(){
-		if(owner==game.getPlayer()){
+		if(owner==Game.getPlayer()){
 			LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
 			for(int i=0;i<enemies.size();i++){
 				applyDamage(damage,invincibleDuration,enemies.get(i));

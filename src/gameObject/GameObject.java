@@ -5,7 +5,6 @@ import game.Game;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import system.GameSystem;
@@ -200,7 +199,12 @@ public abstract class GameObject{
 			if(target.invincible) return;
 			else{
 				target.setInvincible(invincibleDuration);
-				target.takeDamage(value+rand.nextInt(randomValue));
+				if(randomValue>0){
+					target.takeDamage(value+rand.nextInt(randomValue));
+				}
+				else{
+					target.takeDamage(value);
+				}
 			}
 		}
 		
@@ -252,7 +256,7 @@ public abstract class GameObject{
 		}
 		*/
 		public void sendCommand(String s){
-			if(!GameSystem.twoPlayerMode){
+			if(!GameSystem.LAN_TWO_PLAYER_MODE){
 				return;
 			}
 			if(GameSystem.sendCommand!=null){
@@ -271,7 +275,7 @@ public abstract class GameObject{
 		}
 		
 		public void sendCommandToOther(String s){
-			if(!GameSystem.twoPlayerMode){
+			if(!GameSystem.LAN_TWO_PLAYER_MODE){
 				return;
 			}
 			if(GameSystem.sendCommand!=null){

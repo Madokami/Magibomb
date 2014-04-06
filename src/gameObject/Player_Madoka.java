@@ -4,7 +4,6 @@ import menu.MenuChar;
 import system.GameSystem;
 import system.IntToImage;
 import game.Game;
-import game.Game.CHARACTER;
 
 /**
 * <b>Description:</b>
@@ -50,9 +49,9 @@ public class Player_Madoka extends Player{
 		status = SpriteData.mdStatus;
 		setStatusImages();
 		
-		if(Game.cChosen==CHARACTER.MADOKA){
-			pData.loadPlayerStatus(this);
-		}
+		
+		pData.loadPlayerStatus(this);
+		
 		levelImage=IntToImage.toImageSmall(level);
 		soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
 		maxHp=hp;
@@ -79,24 +78,16 @@ public class Player_Madoka extends Player{
 			this.pVoice.playCdSound();
 			return;
 		}
-		if(this.mp>50){
+		if(this.mp>skillUltCost){
 			game.getController().addEntity(new Projectile_PinkArrow(xGridNearest,yGridNearest,game,this));
-			mp-=50;
+			mp-=skillUltCost;
 		}
-	}
-	public void useAbility1(){
-		
 	}
 	
 	public void updatePlayerData(){
 		pData.upDatePlayerData(this);
 	}
 
-	@Override
-	public void useAbility2() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void useAbility3() {

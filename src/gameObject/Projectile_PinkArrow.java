@@ -1,7 +1,5 @@
 package gameObject;
 
-import system.BufferedImageLoader;
-import system.GameSystem;
 import game.Game;
 
 /**

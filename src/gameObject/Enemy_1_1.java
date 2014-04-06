@@ -2,7 +2,6 @@ package gameObject;
 
 import game.Game;
 
-import java.awt.Graphics;
 
 /**
 * <b>Description:</b>
@@ -15,7 +14,6 @@ import java.awt.Graphics;
 * @since 2014-03-31
 */
 public class Enemy_1_1 extends Enemy{
-	private int chargeCounter=0;
 	private ImageSequence attack;
 	
 	public Enemy_1_1(int x, int y, Game game) {
@@ -40,7 +38,7 @@ public class Enemy_1_1 extends Enemy{
 
 	@Override
 	public void useUltimate() {
-		String dir = ai.isValidStraightLine(controller.wallArray, game.getPlayer().xGridNearest, game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
+		String dir = ai.isValidStraightLine(controller.wallArray, Game.getPlayer().xGridNearest, Game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
 		if(dir!="stop"){
 			moveToDirection(dir);
 			setVelX(0);

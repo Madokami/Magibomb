@@ -1,9 +1,6 @@
 package gameObject;
 
 import game.Game;
-import gameObject.GameObject.ORIENTATION;
-
-import java.awt.Graphics;
 
 /**
 * <b>Description:</b>
