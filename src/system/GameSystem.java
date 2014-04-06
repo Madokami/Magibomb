@@ -1,5 +1,11 @@
 package system;
-
+/**
+* Description:
+* Game system
+* @author Team 6
+* @version 1.45
+* @since 2014-04-06
+*/
 import game.Game;
 
 import game.Input;
@@ -83,7 +89,9 @@ public class GameSystem extends Canvas implements Runnable {
 
 	public static STATE state;
 	
-
+	/**
+	 * initialize data
+	 */
 	public void init() {
 		spriteData = new SpriteData();
 		game = new Game(this);
@@ -102,7 +110,9 @@ public class GameSystem extends Canvas implements Runnable {
 		GameSystem.turnOnBgm("/sound/music/title.wav");
 		state = STATE.MENU;
 	}
-	
+	/**
+	 * set default keyboard key function
+	 */	
 	public static void setDefaultKeyLayout(){
 		CONFIRM=KeyEvent.VK_Z;
 		CANCEL=KeyEvent.VK_X;
@@ -113,7 +123,9 @@ public class GameSystem extends Canvas implements Runnable {
 		ULT=KeyEvent.VK_C;
 		UTILITY=KeyEvent.VK_SPACE;
 	}
-	
+	/**
+	 * set keyboard key function for two player mode
+	 */
 	public static void setTwoPlayerKeyLayout(){
 		CONFIRM=KeyEvent.VK_COMMA;
 		CANCEL=KeyEvent.VK_PERIOD;
@@ -134,6 +146,10 @@ public class GameSystem extends Canvas implements Runnable {
 		UTILITY2=KeyEvent.VK_SPACE;
 	}
 	
+	/**
+	 * execute start() and init()
+	 * @param args command args input
+	 */
 	public static void main(String[] args) {
 		GameSystem sys = new GameSystem();
 		sys.start();
@@ -160,7 +176,9 @@ public class GameSystem extends Canvas implements Runnable {
 		frame.setVisible(true);
 		musicOn = false;
 	}
-
+	/**
+	 * Run timer
+	 */
 	public void run() {
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 30.0;
@@ -193,7 +211,9 @@ public class GameSystem extends Canvas implements Runnable {
 		stop();
 
 	}
-
+	/**
+	 * call tick() method depending on game state
+	 */
 	private void tick() {
 		if (state == STATE.GAME) {
 			game.tick();
@@ -207,6 +227,9 @@ public class GameSystem extends Canvas implements Runnable {
 		}
 	}
 
+	/**
+	 * Call render() method depending on game state
+	 */
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
@@ -234,6 +257,9 @@ public class GameSystem extends Canvas implements Runnable {
 		bs.show();
 	}
 
+	/**
+	 * start system
+	 */
 	private synchronized void start() {
 		if (running)
 			return;
@@ -242,6 +268,9 @@ public class GameSystem extends Canvas implements Runnable {
 		thread.start();
 	}
 
+	/**
+	 * stop system
+	 */
 	private synchronized void stop() {
 		if (!running)
 			return;
@@ -255,6 +284,10 @@ public class GameSystem extends Canvas implements Runnable {
 		System.exit(1);
 	}
 
+	/**
+	 * call keyPressed() method depending on game state
+	 * @param e
+	 */
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		// int save = KeyEvent.getExtendedKeyCodeForChar('s');
@@ -279,6 +312,11 @@ public class GameSystem extends Canvas implements Runnable {
 		return;
 
 	}
+	
+	/**
+	 * send command to game player
+	 * @param s command string
+	 */
 	public static synchronized void sendCommand(String s){
 		if(!GameSystem.LAN_TWO_PLAYER_MODE){
 			return;
@@ -299,6 +337,10 @@ public class GameSystem extends Canvas implements Runnable {
 		}
 	}
 	
+	/**
+	 * send command to other game player
+	 * @param s command string
+	 */
 	public static synchronized void sendCommandToOther(String s){
 		if(!GameSystem.LAN_TWO_PLAYER_MODE){
 			return;
@@ -311,57 +353,95 @@ public class GameSystem extends Canvas implements Runnable {
 			GameSystem.sendCommand="!"+s+",-1;";
 		}
 	}
-	
+
+	/**
+	 * call keyRelease() in game.java if in game state
+	 * @param e
+	 */	
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 		if (state == STATE.GAME) {
 			game.keyReleased(key);
 		}
 	}
-
+	/**
+	 * turn on background music
+	 */
 	public static void turnOnBgm() {
 
 		musicPlayer.playMusic("/sound/sisPuellaMagica.wav");
 		musicOn = true;
 	}
-
-	// this will play the .wav file idicated given the url
+	/**
+	 * this will play the .wav file indicated given the url
+	 * @param url url of the music source
+	 */
 	public static void turnOnBgm(String url) {
 
 		System.out.println("turnOnBgm Called");
 		musicPlayer.playMusic(url);
 	}
 
+	/**
+	 * turn off background music
+	 */
 	public static void turnOffBgm() {
 		musicPlayer.stopMusic();
 	}
 
+	/**
+	 * play character voice
+	 * @param path source path of voice sound file
+	 */
 	public static void playVoice(String path) {
 		musicPlayer.playVoice(path);
 	}
 
+	/**
+	 * play sound
+	 * @param path source path of sound file
+	 */
 	public static void playSound(String path) {
 		musicPlayer.playSound(path);
 	}
 
+	/**
+	 * play "switch" sound
+	 */
 	public static void playSwitch() {
 		musicPlayer.playSound("/sound/switch1.wav");
 	}
 
+	/**
+	 * play "confirm" sound
+	 */
 	public static void playConfirm() {
 		musicPlayer.playSound("/sound/choice2.wav");
 	}
 
+	/**
+	 * play "cancel" sound
+	 */
 	public static void playCancel() {
 		musicPlayer.playSound("/sound/cancel2.wav");
 	}
-
+	/**
+	 * play "error" sound
+	 */
 	public static void playError() {
 		musicPlayer.playSound("/sound/failure1.wav");
 	}
+	/**
+	 * set music volume
+	 * @param value integer indicating music volume
+	 */	
 	public static void setMusicVolume(int value){
 		musicPlayer.setMusicVolume(value);
 	}
+	
+	/**
+	 * load game data
+	 */
 	public void loadGame() {
 		try {
 			GameData loadData;
