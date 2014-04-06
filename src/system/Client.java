@@ -1,5 +1,11 @@
 package system;
-
+/**
+* Description:
+* Connect client host
+* @author Team 6
+* @version 1.0
+* @since 2014-03-27
+*/
 import java.net.Socket;
 import java.net.ServerSocket;
 import java.io.*;
@@ -12,6 +18,10 @@ public class Client implements Runnable
 	private long count;
 	java.util.Scanner reader;
 	private String host;
+	
+	/**
+	 * call init() method
+	 */
 	public void run()
 	{
 		init();
@@ -20,6 +30,10 @@ public class Client implements Runnable
 		host=ip;
 		System.out.println("client started");
 	}
+	
+	/**
+	 * Initialize client information
+	 */
 	public void init()
 	{
 		try
@@ -64,6 +78,10 @@ public class Client implements Runnable
 
 		}
 	}
+	
+	/**
+	 * Delete an order command while sending the command to an other computer server
+	 */
 	public void sendOneCommand(){
 		//count++;
 		//System.out.println("sendOneCommand entered");
@@ -100,6 +118,11 @@ public class Client implements Runnable
 		}	
 			
 		}
+		
+	/**
+	 * Set host ip address
+	 * @param ip client ip address
+	 */
 	public void setIp(String ip){
 		host=ip;
 	}
