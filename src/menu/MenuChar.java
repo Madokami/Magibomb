@@ -6,6 +6,7 @@ package menu;
 * @version 1.4
 * @since 2014-04-06
 */
+
 import game.Game;
 import game.Game.CHARACTER;
 
