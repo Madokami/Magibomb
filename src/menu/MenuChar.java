@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* "choose character" menu
+* @author Team 6
+* @version 1.4
+* @since 2014-04-06
+*/
 import game.Game;
 import game.Game.CHARACTER;
 
@@ -163,6 +169,9 @@ public class MenuChar implements GeneralMenu{
 			
 		}
 		
+		/**
+		 * set rotation direction of characters
+		 */
 		public void tick(){
 			shiftDown();
 			effect.tick();
@@ -176,6 +185,9 @@ public class MenuChar implements GeneralMenu{
 			}
 		}
 		
+		/**
+		 * Draw menu button onto screen
+		 */
 		public void render(Graphics g){
 			if(isChooseChar()){
 				if(selectStyle==1){
@@ -223,6 +235,9 @@ public class MenuChar implements GeneralMenu{
 			renderSelected(g);
 		}
 		
+		/**
+		 * shift down to another character
+		 */
 		public void shiftDown(){
 			if(yShift>=(GameSystem.ABSHEIGHT-cSelectHeight)/2){
 				yShift=(GameSystem.ABSHEIGHT-cSelectHeight)/2;
@@ -233,7 +248,12 @@ public class MenuChar implements GeneralMenu{
 		}
 		
 		
-		
+		/**
+		 * 
+		 * draw "selected" menu button
+		 *
+		 * @param g current graphic
+		 */
 		public synchronized void renderSelected(Graphics g){
 			if(isChooseChar()){
 				if(cSelected == CHARACTER.MADOKA){
@@ -371,7 +391,11 @@ public class MenuChar implements GeneralMenu{
 			}
 			effect.render(g);
 		}
-
+		
+		/**
+		 * Execute keyboard key functions
+		 * @param key keyboard key pressed
+		 */
 		public void keyPressed(int key) {
 			if(this.isChooseChar()){
 				if(key==GameSystem.CANCEL){
@@ -683,6 +707,10 @@ public class MenuChar implements GeneralMenu{
 				}
 			}
 		}
+		
+		/**
+		 * play selection sound depending on character selected
+		 */
 		public void playSelectionSound(){
 			if(cSelected == CHARACTER.MADOKA){
 				GameSystem.musicPlayer.playVoice("/sound/mdSelect.wav");
@@ -701,7 +729,10 @@ public class MenuChar implements GeneralMenu{
 			}
 		}
 		
-		
+		/**
+		 * check if player is choosing game character
+		 * @return a boolean indicating whether player is choosing game character
+		 */
 		public boolean isChooseChar(){
 			if(cState == CHAR_MENU_STATE.IS_CHOOSING){
 				return true;
@@ -709,13 +740,24 @@ public class MenuChar implements GeneralMenu{
 			return false;
 		}
 		
+		/**
+		 * set character menu state to is_choosing
+		 */
 		public static void setChooseChar(){
 			cState = CHAR_MENU_STATE.IS_CHOOSING;
 		}
+		
+		/**
+		 * display character status
+		 */
 		public static void setDisplayStats(){
 			cState = CHAR_MENU_STATE.DISPLAYING_STATUS;
 		}
 		
+		/**
+		 * check if the screen is displaying status
+		 * @return a boolean indicating whether the screen is displaying status
+		 */
 		public boolean isDisplayStatus(){
 			if(cState == CHAR_MENU_STATE.DISPLAYING_STATUS){
 				return true;
@@ -723,19 +765,33 @@ public class MenuChar implements GeneralMenu{
 			return false;
 		}
 		
+		/**
+		 * display character status
+		 */
 		public void setDisplayStatus(){
 			cState = CHAR_MENU_STATE.DISPLAYING_STATUS;
 		}
 		
+		/**
+		 * Rotate right to next character
+		 */
 		public void startRotateRight(){
 			rotateDirection="right";
 			isRotating=true;
 		}
+		
+		/**
+		 * Rotate left to previous character
+		 */
 		public void startRotateLeft(){
 			rotateDirection="left";
 			isRotating=true;
 		}
 		
+		/**
+		 * Set next rotating cycle of characters
+		 * @param s "right" or "left"
+		 */
 		public void setNextCycle(String s){
 			if(s.equals("right")){
 				if(cSelected == CHARACTER.HOMURA){
@@ -780,12 +836,18 @@ public class MenuChar implements GeneralMenu{
 				}
 			}
 		}
+		
+		/**
+		 * reset rotation variables
+		 */
 		public void resetRotationVariables(){
 			centerShiftX=centerShiftY=leftShiftX=leftShiftY=rightShiftX=rightShiftY=backLeftShiftX=backRightShiftX=backRightShiftY=backLeftShiftY=0;
 			centerScale=leftScale=rightScale=backRightScale=backLeftScale=1;
 		}
 		
-		
+		/**
+		 * let characters to rotate left
+		 */
 		public void rotateLeft(){
 			if(centerShiftX>(leftPosX-centerPosX)) centerShiftX+=(leftPosX-centerPosX)/15.0*rotationSpeed;
 			else centerShiftX=(leftPosX-centerPosX);
@@ -838,7 +900,9 @@ public class MenuChar implements GeneralMenu{
 			}
 		}
 		
-		
+		/**
+		 * let characters to rotate right
+		 */
 		public void rotateRight(){
 			if(centerShiftX<(rightPosX-centerPosX)) centerShiftX+=(rightPosX-centerPosX)/15.0*rotationSpeed;
 			else centerShiftX=(rightPosX-centerPosX);
@@ -889,6 +953,10 @@ public class MenuChar implements GeneralMenu{
 				resetRotationVariables();
 			}
 		}
+		
+		/**
+		 * send one'character data to another
+		 */
 		public synchronized void transferPlayerData(){
 			GameSystem.sendCommandToOther("sendHp");
 			GameSystem.sendCommandToOther("sendMp");
@@ -900,6 +968,10 @@ public class MenuChar implements GeneralMenu{
 			
 			
 		}
+		
+		/**
+		 * set second player character
+		 */
 		public synchronized void setSecondPlayer(){
 			if(cSelected == CHARACTER.MADOKA){
 				GameSystem.sendCommandToOther("setMd");
