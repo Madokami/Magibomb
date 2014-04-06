@@ -8,7 +8,6 @@ package story;
 * @since 2014-04-04
 */
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
