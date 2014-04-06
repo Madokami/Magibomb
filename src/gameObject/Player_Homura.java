@@ -88,14 +88,4 @@ public class Player_Homura extends Player{
 	public void updatePlayerData(){
 		pData.upDatePlayerData(this);
 	}
-
-	@Override
-	public void useAbility3() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	
-
 }

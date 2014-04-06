@@ -58,6 +58,10 @@ public class Player_Kyouko extends Player{
 		maxHp=hp;
 		maxMp=mp;
 		maxSoul=soul;
+		
+		skillUltCost = 75;
+		ultyCd = 100;
+		ultyTimer=100;
 	}
 	
 	public void useUltimate(){
@@ -66,18 +70,16 @@ public class Player_Kyouko extends Player{
 			this.pVoice.playCdSound();
 			return;
 		}
+		if(mp>skillUltCost){
+			mp-=skillUltCost;
+			controller.addEntity(new Projectile_Fire(xGridNearest-1,yGridNearest-1,game,this));
+			ultyTimer=0;
+		}
+		
 		
 	}
 	public void updatePlayerData(){
 		pData.upDatePlayerData(this);
 	}
-
-	@Override
-	public void useAbility3() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 
 }

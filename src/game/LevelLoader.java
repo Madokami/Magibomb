@@ -33,6 +33,7 @@ import java.awt.Image;
 
 import system.BufferedImageLoader;
 import system.GameSystem;
+import system.GameTimer;
 
 /**
 * <b>Description:</b>
@@ -355,6 +356,8 @@ public class LevelLoader {
 	public void reset(){
 		GameSystem.otherPlayerIsReady=false;
 		GameSystem.serialNumber=0;
+		Game.TITLE_DONE=false;
+		GameTimer.resetTimer();
 		
 		Player.SCORE=0;
 		game.setVictory(false);

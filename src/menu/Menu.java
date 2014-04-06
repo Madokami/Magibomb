@@ -14,10 +14,8 @@ import java.awt.image.BufferedImage;
 
 import system.BufferedImageLoader;
 import system.Client;
-import system.ClientSelf;
 import system.GameSystem;
 import system.GameSystem.STATE;
-import system.StartClient;
 //Note: if the Menu class get too fat with information and gets confusing, you should create
 //additional classes
 public class Menu {
@@ -31,9 +29,11 @@ public class Menu {
 	public MenuTwoPlayer mTwoPlayer;
 	
 	public static BufferedImage logo;
+	public BufferedImage startImage,startImageOn,quitImage,quitImageOn,networkImage,networkImageOn;
+	
 	
 	public static int X_START = 70;
-	public static int Y_START = GameSystem.ABSHEIGHT-30;
+	public static int Y_START = GameSystem.ABSHEIGHT-80;
 	public static int POINTER_X_START,POINTER_Y_START;
 	public static int SPACING = 47;
 	
@@ -72,13 +72,13 @@ public class Menu {
 	//determines what menu option is currently selected by the user
 	//"selected" options will light up
 	public static enum SELECTED{
-		STORY,
-		ARCADE,
+		START,
 		NETWORK,
+		QUIT,
 	};
 	
 	//Initializes the two states.
-	public static SELECTED selected = SELECTED.STORY;
+	public static SELECTED selected = SELECTED.START;
 	public static MENUSTATE mState = MENUSTATE.MAIN;
 	
 	public Menu(Game game){
@@ -101,6 +101,12 @@ public class Menu {
 		logo=GameSystem.loader.loadImage("/image/menu/magibomb.png");
 		//example .gif loading
 		gif = GameSystem.loader.loadGif("/homura.gif");
+		startImage=GameSystem.loader.loadImage("/image/menu/start2.png");
+		startImageOn=GameSystem.loader.loadImage("/image/menu/start.png");
+		quitImage=GameSystem.loader.loadImage("/image/menu/quit2.png");
+		quitImageOn=GameSystem.loader.loadImage("/image/menu/quit.png");
+		networkImage=GameSystem.loader.loadImage("/image/menu/network2.png");
+		networkImageOn=GameSystem.loader.loadImage("/image/menu/network.png");
 		
 		POINTER_X_START=X_START-pointer.getWidth();
 		POINTER_Y_START=Y_START-pointer.getHeight();
@@ -138,9 +144,11 @@ public class Menu {
 		g.drawImage(logo, GameSystem.ABSWIDTH/18, GameSystem.ABSHEIGHT/20, null);
 		if(mState==MENUSTATE.MAIN){
 			
-			g.drawString("Story", X_START-5, Y_START);
-			g.drawString("Arcade", X_START-2+SPACING, Y_START);
-			g.drawString("Network", X_START-2+2*SPACING, Y_START);
+			//g.drawString("Story", X_START-5, Y_START);
+			//g.drawString("Arcade", X_START-2+SPACING, Y_START);
+			g.drawImage(startImage,X_START, Y_START,null);
+			g.drawImage(networkImage,X_START+SPACING, Y_START,null);
+			g.drawImage(quitImage,X_START+2*SPACING, Y_START,null);
 			//g.drawString("Quit", X_START-2+3*SPACING, Y_START);
 		}
 		//make sure renderSelected is under renderCurrentState or else you won't see the changes
@@ -151,20 +159,20 @@ public class Menu {
 	//this method simply filters what to draw out based on the current Menu.SELECTED state
 	public void renderSelected(Graphics g){
 		if(mState==MENUSTATE.MAIN){
-			if(selected==SELECTED.STORY){
+			if(selected==SELECTED.START){
 				//g.setColor(Color.LIGHT_GRAY);
-				g.drawString("Story", X_START-5, Y_START);
-				g.drawImage(pointer, POINTER_X_START, POINTER_Y_START, null);
-			}
-			else if(selected==SELECTED.ARCADE){
-				//g.setColor(Color.LIGHT_GRAY);
-				g.drawString("Arcade", X_START-2+SPACING, Y_START);
-				g.drawImage(pointer, POINTER_X_START+SPACING, POINTER_Y_START, null);
+				g.drawImage(startImageOn,X_START, Y_START,null);
+				//g.drawImage(pointer, POINTER_X_START, POINTER_Y_START, null);
 			}
 			else if(selected==SELECTED.NETWORK){
 				//g.setColor(Color.LIGHT_GRAY);
-				g.drawString("Network", X_START-2+2*SPACING, Y_START);
-				g.drawImage(pointer, POINTER_X_START+2*SPACING, POINTER_Y_START, null);
+				g.drawImage(networkImageOn,X_START+SPACING, Y_START,null);
+				//g.drawImage(pointer, POINTER_X_START+SPACING, POINTER_Y_START, null);
+			}
+			else if(selected==SELECTED.QUIT){
+				//g.setColor(Color.LIGHT_GRAY);
+				g.drawImage(quitImageOn,X_START+2*SPACING, Y_START,null);
+				//g.drawImage(pointer, POINTER_X_START+2*SPACING, POINTER_Y_START, null);
 			}
 		}
 	
@@ -219,28 +227,33 @@ public class Menu {
 		else if(key==GameSystem.RIGHT){
 			//if the current selected mode is story
 			if(mState==MENUSTATE.MAIN){
-				if(Menu.selected==Menu.SELECTED.STORY){
+				if(Menu.selected==Menu.SELECTED.START){
 					//change the current selected mode to arcade
-					Menu.selected=Menu.SELECTED.ARCADE;
-					//hopefully find a better sound effect. this one is too long
+					Menu.selected=Menu.SELECTED.NETWORK;
 					GameSystem.playSwitch();
 				}
-				else if(Menu.selected==Menu.SELECTED.ARCADE){
-					Menu.selected=Menu.SELECTED.NETWORK;
-					//hopefully find a better sound effect. this one is too long
+				else if(Menu.selected==Menu.SELECTED.NETWORK){
+					Menu.selected=Menu.SELECTED.QUIT;
+					GameSystem.playSwitch();
+				}
+				else if(Menu.selected==Menu.SELECTED.QUIT){
+					Menu.selected=Menu.SELECTED.START;
 					GameSystem.playSwitch();
 				}
 			}
 		}
 		else if(key==GameSystem.LEFT){
 			if(mState==MENUSTATE.MAIN){
-				if(Menu.selected==Menu.SELECTED.ARCADE){
-					Menu.selected=Menu.SELECTED.STORY;
+				if(Menu.selected==Menu.SELECTED.NETWORK){
+					Menu.selected=Menu.SELECTED.START;
 					GameSystem.playSwitch();
 				}
-				else if(Menu.selected==Menu.SELECTED.NETWORK){
-					Menu.selected=Menu.SELECTED.ARCADE;
-					//hopefully find a better sound effect. this one is too long
+				else if(Menu.selected==Menu.SELECTED.QUIT){
+					Menu.selected=Menu.SELECTED.NETWORK;
+					GameSystem.playSwitch();
+				}
+				else if(Menu.selected==Menu.SELECTED.START){
+					Menu.selected=Menu.SELECTED.QUIT;
 					GameSystem.playSwitch();
 				}
 			}
@@ -249,16 +262,11 @@ public class Menu {
 		else if(key==GameSystem.CONFIRM){
 			if(mState==MENUSTATE.MAIN){
 				//if currently story mode is selected
-				if(Menu.selected==Menu.SELECTED.STORY){
-					GameSystem.playConfirm();
-					toStoryMode();
-				}
-				//similarly if arcade mode is selected
-				else if(Menu.selected==Menu.SELECTED.ARCADE){
-					//change Menu state to CHOOSECHAR state.
+				if(Menu.selected==Menu.SELECTED.START){
 					GameSystem.playConfirm();
 					toDifficulty();
 				}
+				//similarly if arcade mode is selected
 				else if(Menu.selected==Menu.SELECTED.NETWORK){
 					//change Menu state to CHOOSECHAR state.
 					//StartClient.init();
@@ -269,24 +277,11 @@ public class Menu {
 						client = new Thread(new Client("142.157.164.180"));
 						client.start();
 					}
-					/*
-					if(clientSelf==null){
-						clientSelf = new Thread(new ClientSelf(Menu.myIp));
-						clientSelf.start();
-					}
-					*/
-					
-					/*
-					if(!GameSystem.twoPlayerMode){
-						GameSystem.twoPlayerMode=true;
-						//GameSystem.sendCommand("twoPlayer");
-					}
-					else{
-						GameSystem.isPlayerOne=false;
-					}
-					*/
 					GameSystem.playConfirm();
 					toNetwork();
+				}
+				else if(Menu.selected==Menu.SELECTED.QUIT){
+					System.exit(0);
 				}
 			}
 			

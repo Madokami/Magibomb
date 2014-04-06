@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 
 import menu.Menu.MENUSTATE;
 import system.Client;
-import system.ClientSelf;
 import system.GameSystem;
 
 public class MenuNetwork implements GeneralMenu{

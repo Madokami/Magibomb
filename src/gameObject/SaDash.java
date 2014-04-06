@@ -17,34 +17,11 @@ public class SaDash extends Projectile{
 	public SaDash(int x, int y, Game game, GameObject o, int duration) {
 		super(x, y, game, o);
 		this.duration = duration;
-		flyRight = new ImageSequence("/image/projectiles/bariaRight", 4);
-		flyDown = new ImageSequence("/image/projectiles/bariaDown", 4);
+		flyRight = new ImageSequence("/image/projectiles/bariaRight", 12);
+		flyDown = new ImageSequence("/image/projectiles/bariaDown", 12);
 		
 		setStartingAnimation();
 		setStartingVelocity(0);
-		/*
-		ss=SpriteData.saDash;
-		ssWidth=48;
-		ssHeight=48;
-		ssX=1;
-		ssY=1;
-		MS=1;
-		frames=12;
-		if(o.orientation==ORIENTATION.RIGHT){
-			direction="right";
-		}
-		else if(o.orientation==ORIENTATION.LEFT){
-			direction="left";
-		}
-		if(o.orientation==ORIENTATION.UP){
-			direction="up";
-		}
-		if(o.orientation==ORIENTATION.DOWN){
-			direction="down";
-		}
-		this.x=o.x;
-		this.y=o.y;
-		*/
 	}
 	public void tick(){
 		super.tick();
@@ -55,23 +32,6 @@ public class SaDash extends Projectile{
 		if(durationTimer>duration||!((MovableObject)owner).charging){
 			remove();
 		}
-		
-		/*
-		if(owner.orientation==ORIENTATION.RIGHT){
-			direction="right";
-		}
-		else if(owner.orientation==ORIENTATION.LEFT){
-			direction="left";
-		}
-		if(owner.orientation==ORIENTATION.UP){
-			direction="up";
-		}
-		if(owner.orientation==ORIENTATION.DOWN){
-			direction="down";
-		}
-		
-		Animate.animate(this);
-		*/
 	}
 	
 	

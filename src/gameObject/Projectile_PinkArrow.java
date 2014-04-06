@@ -27,7 +27,7 @@ public class Projectile_PinkArrow extends Projectile{
 		flySpeed=40;
 		
 		this.setStartingVelocity(flySpeed);
-		
+		setDamage(((Player)owner).bombStrength/2);
 	}
 	public void tick(){
 		super.tick();

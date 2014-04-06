@@ -28,6 +28,9 @@ public class Enemy_Boss_2_small extends Enemy{
 		this.setCollisionDamage(1);
 		this.setExp(1);
 		
+		abi2Cd = 600;
+		abi2Timer=300;
+		
 	}
 
 	@Override
@@ -44,7 +47,8 @@ public class Enemy_Boss_2_small extends Enemy{
 
 	@Override
 	public void useAbility2() {
-		// TODO Auto-generated method stub
+		controller.addEntity(new Enemy_2_1(xGridNearest,yGridNearest,game));
+		game.increaseEnemyCount();
 		
 	}
 

@@ -1,10 +1,13 @@
 package menu;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import system.GameSystem;
 
 public class MenuTwoPlayer implements GeneralMenu{
+	private BufferedImage onePlayer,onePlayerOn,twoPlayers,twoPlayersOn;
+	
 	private enum SELECTED{
 		ONE_PLAYER,
 		TWO_PLAYERS,
@@ -12,6 +15,13 @@ public class MenuTwoPlayer implements GeneralMenu{
 	
 	private SELECTED selected = SELECTED.ONE_PLAYER;
 	
+	public MenuTwoPlayer(){
+		onePlayer=GameSystem.loader.loadImage("/image/menu/1player2.png");
+		onePlayerOn=GameSystem.loader.loadImage("/image/menu/1player.png");
+		twoPlayers=GameSystem.loader.loadImage("/image/menu/2players2.png");
+		twoPlayersOn=GameSystem.loader.loadImage("/image/menu/2players.png");
+		
+	}
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
@@ -20,8 +30,8 @@ public class MenuTwoPlayer implements GeneralMenu{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawString("1 Player", Menu.X_START, Menu.Y_START);
-		g.drawString("2 Players", Menu.X_START+2*Menu.SPACING, Menu.Y_START);
+		g.drawImage(onePlayer,Menu.X_START, Menu.Y_START,null);
+		g.drawImage(twoPlayers,Menu.X_START+2*Menu.SPACING, Menu.Y_START,null);
 		
 		this.renderSelected(g);
 	}
@@ -29,10 +39,12 @@ public class MenuTwoPlayer implements GeneralMenu{
 	@Override
 	public void renderSelected(Graphics g) {
 		if(selected==SELECTED.ONE_PLAYER){
-			g.drawImage(Menu.pointer, Menu.POINTER_X_START, Menu.POINTER_Y_START, null);
+			g.drawImage(onePlayerOn,Menu.X_START, Menu.Y_START,null);
+			//g.drawImage(Menu.pointer, Menu.POINTER_X_START, Menu.POINTER_Y_START, null);
 		}
 		else if(selected==SELECTED.TWO_PLAYERS){
-			g.drawImage(Menu.pointer, Menu.POINTER_X_START+2*Menu.SPACING, Menu.POINTER_Y_START, null);
+			g.drawImage(twoPlayersOn,Menu.X_START+2*Menu.SPACING, Menu.Y_START,null);
+			//g.drawImage(Menu.pointer, Menu.POINTER_X_START+2*Menu.SPACING, Menu.POINTER_Y_START, null);
 		}
 		
 	}

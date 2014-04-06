@@ -32,7 +32,6 @@ import system.IntToImage;
 import system.GameSystem.STATE;
 import system.GameTimer;
 import system.Server;
-import system.StartClient;
 
 /**
 * <b>Description:</b>
@@ -554,6 +553,9 @@ public class Game {
 				player.sendCommand("ult");
 				player.useUltimate();
 				
+			}
+			else if(key==GameSystem.UTILITY){
+				player.useAbility3();
 			}
 			else if(key==GameSystem.CONFIRM){
 				player.sendCommand("placeBomb");

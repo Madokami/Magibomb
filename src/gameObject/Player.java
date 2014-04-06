@@ -104,6 +104,8 @@ public abstract class Player extends MovableObject{
 		skill2Cd=90;
 		skill1Timer=30;
 		skill2Timer=90;
+		skill3Cd=150;
+		skill3Timer=150;
 		
 		loader = new BufferedImageLoader();
 		bombStrength = 50;
@@ -141,9 +143,10 @@ public abstract class Player extends MovableObject{
 	 */
 	public void tick(){
 		super.tick();
-		
+		skill3Cost = (int) (maxMp/2);
 		skill1Timer++;
 		skill2Timer++;
+		skill3Timer++;
 		if(GameSystem.LAN_TWO_PLAYER_MODE){
 			if(this==Game.getPlayer()){
 				if(positionUpdateTimer>15){
@@ -183,7 +186,7 @@ public abstract class Player extends MovableObject{
 				}
 			}
 			if(mp<maxMp){
-				mp=mp+maxMp*0.002;
+				mp=mp+maxMp*0.001;
 			}
 			
 		}
@@ -425,7 +428,7 @@ public abstract class Player extends MovableObject{
 	}
 	
 	public void useAbility1(){
-		if(mp<skill1Cost||dying){
+		if(mp<skill1Cost||dying||Physics.onTopOfBomb(this, controller.getBList())!=-1){
 			return;
 		}
 		if(skill1Timer>skill1Cd){
@@ -452,5 +455,18 @@ public abstract class Player extends MovableObject{
 			pVoice.playCdSound();
 		}
 	}
-	public abstract void useAbility3();
+	public void useAbility3(){
+		if(skill3Timer<skill3Cd){
+			GameSystem.playError();
+			pVoice.playCdSound();
+			return;
+		}
+		if(soul>skill3Cost){
+			soul-=skill3Cost;
+			mp=maxMp;
+			skill3Timer=0;
+			soulGemValueImage=IntToImage.toImageGriefSyndrome((int)soul);
+		}
+		
+	}
 }

@@ -28,8 +28,8 @@ import menu.Menu;
 import menu.PauseMenu;
 
 public class GameSystem extends Canvas implements Runnable {
-	public static int CONFIRM,CANCEL,UP,DOWN,LEFT,RIGHT,ULT;
-	public static int CONFIRM2,CANCEL2,UP2,DOWN2,LEFT2,RIGHT2,ULT2;
+	public static int CONFIRM,CANCEL,UP,DOWN,LEFT,RIGHT,ULT,UTILITY;
+	public static int CONFIRM2,CANCEL2,UP2,DOWN2,LEFT2,RIGHT2,ULT2,UTILITY2;
 
 	public static final int GRID_SIZE = 56;
 	public static final int WIDTH = 300;
@@ -111,6 +111,7 @@ public class GameSystem extends Canvas implements Runnable {
 		LEFT=KeyEvent.VK_LEFT;
 		RIGHT=KeyEvent.VK_RIGHT;
 		ULT=KeyEvent.VK_C;
+		UTILITY=KeyEvent.VK_SPACE;
 	}
 	
 	public static void setTwoPlayerKeyLayout(){
@@ -121,6 +122,7 @@ public class GameSystem extends Canvas implements Runnable {
 		DOWN=KeyEvent.VK_DOWN;
 		LEFT=KeyEvent.VK_LEFT;
 		RIGHT=KeyEvent.VK_RIGHT;
+		UTILITY=KeyEvent.VK_CONTROL;
 		
 		CONFIRM2=KeyEvent.VK_Z;
 		CANCEL2=KeyEvent.VK_X;
@@ -129,6 +131,7 @@ public class GameSystem extends Canvas implements Runnable {
 		DOWN2=KeyEvent.VK_S;
 		LEFT2=KeyEvent.VK_A;
 		RIGHT2=KeyEvent.VK_D;
+		UTILITY2=KeyEvent.VK_SPACE;
 	}
 	
 	public static void main(String[] args) {

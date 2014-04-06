@@ -81,11 +81,4 @@ public class Player_Sayaka extends Player{
 	public void updatePlayerData(){
 		pData.upDatePlayerData(this);
 	}
-	
-	@Override
-	public void useAbility3() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

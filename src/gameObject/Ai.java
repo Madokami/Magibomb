@@ -90,6 +90,12 @@ public class Ai
 		return false;
 	}
 	
+	public boolean onTopOfPlayer(int pX,int pY,int aiX,int aiY){
+		if(pX==aiX&&pY==aiY){
+			return true;
+		}
+		return false;
+	}
 	/**
 	 * Checks if path between enemy and character is in straight line
 	 * <br><br>
@@ -143,7 +149,7 @@ public class Ai
 	 * <br><b>pX</b>,<b>pY</b> - coordinates of character
 	 * <br><b>aiX</b><b>aiY</b> - coordinates of enemy
 	 */
-	public String makeStep (boolean[][] m,int playerx,int playery,int aix,int aiy)
+	public String makeStep(boolean[][] m,int playerx,int playery,int aix,int aiy)
 	{
 		this.playerx=playerx;
 		this.playery=playery;
@@ -169,6 +175,12 @@ public class Ai
 	}
 	private void search(int a, int n)
 	{
+		if (n==0) 
+		{
+			d="stop";
+			return;
+			
+		}
 		int k=0;
 		int x;
 		int y;

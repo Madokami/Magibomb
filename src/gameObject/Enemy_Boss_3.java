@@ -21,23 +21,29 @@ public class Enemy_Boss_3 extends Enemy{
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/boss_3/shuffle",8);
 		attack=new ImageSequence("/image/spriteSheet/actors/enemy/boss_3/thunder",8);
 		summon=new ImageSequence("/image/spriteSheet/actors/enemy/boss_3/tsukaima",8);
+		sequence.startSequence(stand);
+		
 		this.setHp(400);
 		this.setSpeed(8);
 		this.setCollisionDamage(40);
 		this.setExp(300);
 		
 		ultyCd=90;
+		abi2Cd=500;
 	}
 
 	@Override
 	public void useUltimate() {
 		//laser attack
-		setVelX(0);
-		setVelY(0);
-		sequence.startSequence(attack, stand);
-		controller.addEntity(new Projectile_Thunder(this.xGridNearest,this.yGridNearest,game,this));
-		
-		ultyTimer=0;
+		String dir = ai.isValidStraightLine(controller.wallArray, Game.getPlayer().xGridNearest, Game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
+		if(dir!="stop"){
+			moveToDirection(dir);
+			setVelX(0);
+			setVelY(0);
+			sequence.startSequence(attack, stand);
+			controller.addEntity(new Projectile_Thunder(xGridNearest,yGridNearest,game,this));
+			ultyTimer=0;
+		}
 	}
 
 	@Override
@@ -47,7 +53,14 @@ public class Enemy_Boss_3 extends Enemy{
 
 	@Override
 	public void useAbility2() {
-		// TODO Auto-generated method stub
+		int temp = rand.nextInt(2);
+		if(temp==0){
+			controller.addEntity(new Enemy_3_1(xGridNearest,yGridNearest,game));
+		}
+		else{
+			controller.addEntity(new Enemy_3_2(xGridNearest,yGridNearest,game));
+		}
+		game.increaseEnemyCount();
 		
 	}
 

@@ -4,6 +4,7 @@ import game.Game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import menu.Menu.MENUSTATE;
 import system.GameSystem;
@@ -12,6 +13,7 @@ public class MenuDifficulty implements GeneralMenu{
 	private double easy = 0.5;
 	private double medium = 1;
 	private double hard = 2;
+	private BufferedImage normalImage,normalImageOn,hardImage,hardImageOn,brutalImage,brutalImageOn;
 	private enum SELECTED{
 		EASY,
 		MEDIUM,
@@ -20,6 +22,14 @@ public class MenuDifficulty implements GeneralMenu{
 	
 	private SELECTED selected = SELECTED.MEDIUM;
 	
+	public MenuDifficulty(){
+		normalImage = GameSystem.loader.loadImage("/image/menu/normal2.png");
+		normalImageOn = GameSystem.loader.loadImage("/image/menu/normal.png");
+		hardImage = GameSystem.loader.loadImage("/image/menu/hard2.png");
+		brutalImage = GameSystem.loader.loadImage("/image/menu/brutal2.png");
+		hardImageOn = GameSystem.loader.loadImage("/image/menu/hard.png");
+		brutalImageOn = GameSystem.loader.loadImage("/image/menu/brutal.png");
+	}
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
@@ -28,10 +38,9 @@ public class MenuDifficulty implements GeneralMenu{
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.drawString("Easy",Menu.X_START,Menu.Y_START);
-		g.drawString("Medium",Menu.X_START+Menu.SPACING,Menu.Y_START);
-		g.drawString("Hard",Menu.X_START+2*Menu.SPACING,Menu.Y_START);
+		g.drawImage(normalImage,Menu.X_START, Menu.Y_START,null);
+		g.drawImage(hardImage,Menu.X_START+Menu.SPACING, Menu.Y_START,null);
+		g.drawImage(brutalImage,Menu.X_START+2*Menu.SPACING, Menu.Y_START,null);
 		
 		renderSelected(g);
 		
@@ -40,13 +49,16 @@ public class MenuDifficulty implements GeneralMenu{
 	@Override
 	public void renderSelected(Graphics g) {
 		if(selected==SELECTED.EASY){
-			g.drawImage(Menu.pointer, Menu.POINTER_X_START,Menu.POINTER_Y_START, null);
+			g.drawImage(normalImageOn,Menu.X_START, Menu.Y_START,null);
+			//g.drawImage(Menu.pointer, Menu.POINTER_X_START,Menu.POINTER_Y_START, null);
 		}
 		else if(selected==SELECTED.MEDIUM){
-			g.drawImage(Menu.pointer, Menu.POINTER_X_START+Menu.SPACING,Menu.POINTER_Y_START, null);
+			g.drawImage(hardImageOn,Menu.X_START+Menu.SPACING, Menu.Y_START,null);
+			//g.drawImage(Menu.pointer, Menu.POINTER_X_START+Menu.SPACING,Menu.POINTER_Y_START, null);
 		}
 		else if(selected==SELECTED.HARD){
-			g.drawImage(Menu.pointer, Menu.POINTER_X_START+2*Menu.SPACING,Menu.POINTER_Y_START, null);
+			g.drawImage(brutalImageOn,Menu.X_START+2*Menu.SPACING, Menu.Y_START,null);
+			//g.drawImage(Menu.pointer, Menu.POINTER_X_START+2*Menu.SPACING,Menu.POINTER_Y_START, null);
 		}
 		
 	}

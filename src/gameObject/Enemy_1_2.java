@@ -33,7 +33,7 @@ public class Enemy_1_2 extends Enemy{
 
 	@Override
 	public void useUltimate() {
-		if(ai.nextToPlayer(this.xGridNearest,yGridNearest,Game.getPlayer().xGridNearest,Game.getPlayer().yGridNearest)){
+		if(ai.onTopOfPlayer(this.xGridNearest,yGridNearest,Game.getPlayer().xGridNearest,Game.getPlayer().yGridNearest)){
 			controller.addEntity(new Projectile_ThornBall(xGridNearest,yGridNearest,game,this));
 			game.decreaseEnemyCount();
 			controller.removeEntity(this);

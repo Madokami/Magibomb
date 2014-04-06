@@ -7,10 +7,10 @@ import java.awt.image.BufferedImage;
 
 public class GameTimer {
 	public int timeCounter;
-	public int sGameTime;
-	public int mGameTime;
-	public BufferedImage[] seconds;
-	public BufferedImage[] minutes;
+	public static int sGameTime;
+	public static int mGameTime;
+	public static BufferedImage[] seconds;
+	public static BufferedImage[] minutes;
 	
 	public GameTimer(){
 		timeCounter=0;
@@ -55,5 +55,11 @@ public class GameTimer {
 			g.drawImage(seconds[i], GameSystem.ABSWIDTH-30+16*i, 12, null);
 		}
 		
+	}
+	public static void resetTimer(){
+		sGameTime=0;
+		mGameTime=0;
+		seconds=IntToImage.toImageSmall(sGameTime);
+		minutes=IntToImage.toImageSmall(mGameTime);
 	}
 }
