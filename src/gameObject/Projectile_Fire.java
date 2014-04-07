@@ -6,6 +6,10 @@ public class Projectile_Fire extends Projectile{
 	int counter;
 	int duration=90;
 	
+	/**
+	 * defines fire projectile
+	 * @param coordinates, game, game object
+	 */
 	public Projectile_Fire(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
 		flyRight = new ImageSequence("/image/projectiles/kyFire", 8);
@@ -21,6 +25,9 @@ public class Projectile_Fire extends Projectile{
 		this.collisionHeight=100;
 		
 	}
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		counter++;
