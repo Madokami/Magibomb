@@ -19,6 +19,7 @@ public class Projectile_blackBeam extends Projectile{
 	/**
 	 * defines blackBeam projectile
 	 * @param coordinates, game, game object
+	 * @return projectile
 	 */
 	public Projectile_blackBeam(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
