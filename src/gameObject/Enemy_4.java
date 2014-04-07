@@ -18,6 +18,7 @@ public abstract class Enemy_4 extends Enemy{
 	/**
 	 * defines new enemy
 	 * @panam coordinates, game object
+	 * @return enemy
 	 */	
 	public Enemy_4(int x, int y, Game game) {
 		super(x, y, game);
