@@ -104,6 +104,9 @@ public class Game {
 	GameSystem sys;
 	BufferedImage cutIn;
 	
+	/**
+	 * defines characters
+	 */
 	public enum CHARACTER{
 		MADOKA,
 		HOMURA,
@@ -113,7 +116,9 @@ public class Game {
 	};
 	
 	
-	
+	/**
+	 * defines game states
+	 */
 	public static enum GameState{
 		PLAY,
 		WAIT,
@@ -123,6 +128,9 @@ public class Game {
 	public static CHARACTER cChosen = CHARACTER.HOMURA;
 	public static CHARACTER cChosenP2 = null;
 	
+	/**
+	 * defines overall game system
+	 */
 	public Game(GameSystem sys){
 		
 	
@@ -148,6 +156,9 @@ public class Game {
 
 	}
 
+	/**
+	 * loads level
+	 */
 	public void loadLevel(){
 		levelLoader.load();
 	}
@@ -239,27 +250,41 @@ public class Game {
 
 		
 	}
+	/**
+	 * renders stage title
+	 * @panam duration
+	 */
 	public void renderStageTitle(int duration){
 		levelLoader.renderStart(duration);
 		gState=GameState.LOAD;
 	}
+	/**
+	 * updates playing
+	 */
 	public void updatePlaying(){
 		if(!playerIsAlive){
 			playing=false;
 		}
 	}
+	/**
+	 * defines witing state
+	 */
 	public boolean isWaiting(){
 		if(gState==GameState.WAIT){
 			return true;
 		}
 		return false;
 	}
+	/**
+	 * sets wait state
+	 */
 	public void setWait(){
 		gState=GameState.WAIT;
 	}
 	/**
 	 * Renders graphics
 	 * <br>Incorporates background, maps, obstacles, characters, enemies, etc.
+	 * @panam graphic object
 	 */
 	public void render(Graphics g){
 	
@@ -313,6 +338,10 @@ public class Game {
 		
 	}
 	
+	/**
+	 * renders two player game
+	 * @panam graphic object
+	 */
 	private void renderTwoPlayerSoulGem(Graphics g) {
 		int soulX = GameSystem.GAME_WIDTH/2-440;
 		int nameX = 110;
@@ -333,6 +362,10 @@ public class Game {
 		
 	}
 
+	/**
+	 * renders two player level
+	 * @panam graphic object
+	 */
 	private void renderTwoPlayerLevel(Graphics g) {
 		int shift = 454;
 		int x = 75;
@@ -344,7 +377,10 @@ public class Game {
 		}
 		
 	}
-
+	/**
+	 * renders two player skills
+	 * @panam graphic object
+	 */
 	private void renderTwoPlayerSkills(Graphics g) {
 		int shift = 454;
 		int spacing = 64;
@@ -470,7 +506,10 @@ public class Game {
 		g.drawString(Integer.toString(player2.skillUltCost), x+3*spacing+shift, y+70);
 		
 	}
-
+	/**
+	 * renders two player experience
+	 * @panam graphic object
+	 */
 	private void renderTwoPlayerExp(Graphics g) {
 		int shift = 454;
 		int x = 96;
@@ -486,7 +525,10 @@ public class Game {
 		g.fillRect(x+shift, GameSystem.GAME_HEIGHT+96, (int)(ratio*67), 4);
 		
 	}
-
+	/**
+	 * renders two player status
+	 * @panam graphic object
+	 */
 	private void renderTwoPlayerStatus(Graphics g) {
 		int shift = 454;
 		int x = 82;
@@ -520,7 +562,6 @@ public class Game {
 		}
 			
 	}
-
 	public void timeStop(){
 		timeStop = true;
 	}
@@ -534,6 +575,7 @@ public class Game {
 
 	/**
 	 * Interface between key that is pressedby user and the function that it corresponds to
+	 * @panam key integer
 	 */
 	public void keyPressed(int key) {
 		if(key==KeyEvent.VK_P){
@@ -618,7 +660,10 @@ public class Game {
 		}
 		
 	}
-
+	/**
+	 * defines key that is released and its effects to players movement
+	 * @panam key integer
+	 */
 	public void keyReleased(int key) {
 		if(key==GameSystem.RIGHT&&player.orientation==ORIENTATION.RIGHT){			
 			player.sendCommand("moveStop");
@@ -662,30 +707,44 @@ public class Game {
 		}
 	
 	}
-	
+	/**
+	 * decreases number of enemies
+	 */
 	public void decreaseEnemyCount() {
 		enemyCount--;
 		
 	}
-	
+	/**
+	 * redirects to menu while changing music
+	 */
 	public void goToMenu(){
 		GameSystem.turnOffBgm();
 		GameSystem.turnOnBgm("/sound/music/title.wav");	
 		Menu.mState=Menu.MENUSTATE.MAIN;
 		GameSystem.state=GameSystem.STATE.MENU;
 	}
+	/**
+	 * redirects to menu after death while changing music
+	 */
 	public void goToDeath(){
 		GameSystem.turnOffBgm();
 		GameSystem.turnOnBgm("/sound/music/death.wav");
 		Menu.mState=Menu.MENUSTATE.DEATH;
 		GameSystem.state=GameSystem.STATE.MENU;
 	}
+	/**
+	 * redirects to score menu while changing music
+	 */
 	public void goToScore(){
 		GameSystem.turnOffBgm();
 		GameSystem.turnOnBgm("/sound/music/theme1.wav");	
 		Menu.mState=Menu.MENUSTATE.SCORE;
 		GameSystem.state=GameSystem.STATE.MENU;
 	}
+	/**
+	 * renders the health of the player
+	 * @panam graphic object
+	 */
 	public void renderPlayerHealth(Graphics g){
 		int x = 241;
 		int y = 565;
@@ -716,6 +775,10 @@ public class Game {
 			g.drawRect(x, y, width,height);
 		}
 	}
+	/**
+	 * renders player mana
+	 * @panam graphic object
+	 */
 	public void renderPlayerMana(Graphics g){
 		int x = 241;
 		int y = 581;
@@ -742,13 +805,17 @@ public class Game {
 			g.drawRect(x, y,width,height);
 		}
 	}
-	
+	/**
+	 * checks if player is victorious
+	 */
 	public void checkVictoryCondition(){
 		if(enemyCount<=0){
 			victory=true;
 		}
 	}
-	
+	/**
+	 * saves game
+	 */
 	public void saveGame(){
 		try
 	      {
@@ -770,7 +837,10 @@ public class Game {
 	          i.printStackTrace();
 	      }
 	}
-	
+	/**
+	 * renders stage objects
+	 * @panam graphic object
+	 */
 	public void renderStageObjects(Graphics g){
 		if(curLevel==1){
 			stageRenderer.render1(g);
