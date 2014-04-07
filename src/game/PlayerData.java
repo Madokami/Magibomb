@@ -111,6 +111,10 @@ public class PlayerData implements Serializable {
 		kyBP=10;
 	}
 	
+	/**
+	 * loads player status and attributes
+	 * @panam player object
+	 */
 	public void loadPlayerStatus(Player_Sayaka sa){
 		sa.hp=saHp;
 		//sa.maxHp=saMaxHp;
@@ -125,7 +129,10 @@ public class PlayerData implements Serializable {
 		sa.level=saLevel;
 		sa.BP=saBP;
 	}
-	
+	/**
+	 * loads player status and attributes
+	 * @panam player object
+	 */
 	public void loadPlayerStatus(Player_Homura ho){
 		ho.hp=hoHp;
 		//ho.maxHp=hoMaxHp;
@@ -140,7 +147,10 @@ public class PlayerData implements Serializable {
 		ho.level=hoLevel;
 		ho.BP=hoBP;
 	}
-	
+	/**
+	 * loads player status and attributes
+	 * @panam player object
+	 */
 	public void loadPlayerStatus(Player_Madoka md){
 		md.hp=mdHp;
 		//md.maxHp=mdMaxHp;
@@ -155,7 +165,10 @@ public class PlayerData implements Serializable {
 		md.level=mdLevel;
 		md.BP=mdBP;
 	}
-	
+	/**
+	 * loads player status and attributes
+	 * @panam player object
+	 */
 	public void loadPlayerStatus(Player_Mami ma){
 		ma.hp=maHp;
 		//ma.maxHp=maMaxHp;
@@ -170,7 +183,10 @@ public class PlayerData implements Serializable {
 		ma.level=maLevel;
 		ma.BP=maBP;
 	}
-	
+	/**
+	 * loads player status and attributes
+	 * @panam player object
+	 */
 	public void loadPlayerStatus(Player_Kyouko	ky){
 		ky.hp=kyHp;
 		//ky.maxHp=kyMaxHp;
@@ -188,7 +204,10 @@ public class PlayerData implements Serializable {
 	
 	//these methods will update the PlayerData Class with current values in the Player Class. 
 	//This could doing so could result in the player getting permanently buffed with temp bonus.
-	
+	/**
+	 * updates player status and attributes
+	 * @panam player object
+	 */
 	public void upDatePlayerData(Player_Sayaka sa){
 		/*
 		saHp=sa.hp;
@@ -205,7 +224,10 @@ public class PlayerData implements Serializable {
 		saLevel=sa.level;
 		saBP=sa.BP;
 	}
-	
+	/**
+	 * loads player status and attributes
+	 * @panam player object
+	 */
 	public void upDatePlayerData(Player_Homura ho){
 		/*
 		hoHp=ho.hp;
@@ -222,7 +244,10 @@ public class PlayerData implements Serializable {
 		hoLevel=ho.level;
 		hoBP=ho.BP;
 	}
-	
+	/**
+	 * loads player status and attributes
+	 * @panam player object
+	 */
 	public void upDatePlayerData(Player_Madoka md){
 		/*
 		mdHp=md.hp;
@@ -239,7 +264,10 @@ public class PlayerData implements Serializable {
 		mdLevel=md.level;
 		mdBP=md.BP;
 	}
-	
+	/**
+	 * loads player status and attributes
+	 * @panam player object
+	 */
 	public void upDatePlayerData(Player_Mami ma){
 		/*
 		maHp=ma.hp;
@@ -256,7 +284,10 @@ public class PlayerData implements Serializable {
 		maLevel=ma.level;
 		maBP=ma.BP;
 	}
-	
+	/**
+	 * loads player status and attributes
+	 * @panam player object
+	 */
 	public void upDatePlayerData(Player_Kyouko ky){
 		/*
 		kyHp=ky.hp;
