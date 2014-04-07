@@ -18,7 +18,10 @@ import game.Game;
 */
 public class Player_Sayaka extends Player{
 	
-	
+	/**
+	 * defines new character
+	 * @param coordinates, game object
+	 */
 	public Player_Sayaka(int x, int y, Game game) {
 		super(x, y, game);
 		playerBackground = MenuChar.saBg;
@@ -53,6 +56,9 @@ public class Player_Sayaka extends Player{
 		ultyCd=180;
 		ultyTimer=180;
 	}
+	/**
+	 * applies unique character attributes
+	 */
 	public void useUltimate(){
 		/*
 		game.event1.startEvent(1000, "sayakaCutIn");
@@ -77,7 +83,9 @@ public class Player_Sayaka extends Player{
 			ultyTimer=0;
 		}
 	}
-	
+	/**
+	 * updates player data
+	 */
 	public void updatePlayerData(){
 		pData.upDatePlayerData(this);
 	}
