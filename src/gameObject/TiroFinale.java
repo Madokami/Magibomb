@@ -16,6 +16,7 @@ public class TiroFinale extends Projectile{
 	/**
 	 * Define individual projectile
 	 * @param coordinates, game, game object o
+	 * @return projectile
 	 */
 	public TiroFinale(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
