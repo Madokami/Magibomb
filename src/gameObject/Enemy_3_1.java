@@ -32,7 +32,7 @@ public class Enemy_3_1 extends Enemy{
 
 	@Override
 	/**
-	 * defines enemy attricutes
+	 * defines enemy attributes
 	 */
 	public void useUltimate() {
 		// TODO Auto-generated method stub
