@@ -94,6 +94,7 @@ public abstract class MovableObject extends GameObject{
 	 * <br><b>x</b>,<b>y</b> - coordinates
 	 * <br><b>game</b> - Game object
 	 * @panam coordinates, game object
+	 * @return moveable object
 	 */
 	public MovableObject(int x, int y, Game game) {
 		super(x, y, game);
@@ -416,6 +417,7 @@ public abstract class MovableObject extends GameObject{
 	/**
 	 * checks if path is blocked by obstacle
 	 * @panam previous coordinates, next coordinates
+	 * @return check if blocked
 	 */
 	public boolean checkIfBlocked(int lastX,int lastY,int nextX, int nextY){
 		try{
@@ -522,6 +524,7 @@ public abstract class MovableObject extends GameObject{
 	/**
 	 * initiates character charge
 	 * @panam magnitude, duration
+	 * @return stating of charge
 	 */
 	public void startCharge(int value, int duration){
 		chargeSpeed=value;
@@ -576,6 +579,7 @@ public abstract class MovableObject extends GameObject{
 	/**
 	 * defines damage
 	 * @panam duration
+	 * @return starting of charge
 	 */
 	private void startDamaged(int duration){
 		damaged=true;
@@ -586,6 +590,7 @@ public abstract class MovableObject extends GameObject{
 	/**
 	 * stops damage
 	 * @panam damage
+	 * @return stops damage
 	 */
 	private void stopDamaged(){
 		if(!damaged) return;
