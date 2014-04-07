@@ -36,32 +36,16 @@ public abstract class Projectile extends MovableObject {
 	 * uses current status to determine next iteration
 	 */
 	public void tick(){
-		if(GameSystem.TWO_PLAYER_MODE){
-			if(owner==Game.getPlayer()||owner==Game.getPlayer2()){
-				LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
-				for(int i=0;i<enemies.size();i++){
-					applyDamage(damage,invincibleDuration,enemies.get(i));
-				}
-			}
-			else{
-				LinkedList<Player> playerHit = Physics.hitPlayer(this, controller.getPlayerList());
-				for(int i=0;i<playerHit.size();i++){
-					applyDamage(damage,invincibleDuration,playerHit.get(i));
-				}
+		if(owner==Game.getPlayer()){
+			LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
+			for(int i=0;i<enemies.size();i++){
+				applyDamage(damage,invincibleDuration,enemies.get(i));
 			}
 		}
 		else{
-			if(owner==Game.getPlayer()){
-				LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
-				for(int i=0;i<enemies.size();i++){
-					applyDamage(damage,invincibleDuration,enemies.get(i));
-				}
-			}
-			else{
-				LinkedList<Player> playerHit = Physics.hitPlayer(this, controller.getPlayerList());
-				for(int i=0;i<playerHit.size();i++){
-					applyDamage(damage,invincibleDuration,playerHit.get(i));
-				}
+			LinkedList<Player> playerHit = Physics.hitPlayer(this, controller.getPlayerList());
+			for(int i=0;i<playerHit.size();i++){
+				applyDamage(damage,invincibleDuration,playerHit.get(i));
 			}
 		}
 		if(hp<=0){
@@ -94,6 +78,7 @@ public abstract class Projectile extends MovableObject {
 	/**
 	 * aligns image with owner object
 	 * @param owner object
+	 * @return allignment due to orientation
 	 */
 	public void allignOrientationWithOwner(GameObject owner){
 		if(owner.orientation==ORIENTATION.DOWN){
