@@ -91,6 +91,7 @@ public abstract class Player extends MovableObject{
 	 * <br><b>x</b>,<b>y</b> - coordinates of the player
 	 * <br><b>game</b> - Game object
 	 * @param coordinates, game object
+	 * @return player
 	 */
 	public Player(int x, int y, Game game) {
 		super(x, y, game);
@@ -98,7 +99,6 @@ public abstract class Player extends MovableObject{
 		skill1Name=skill2Name=skill3Name=skillUltName=tempName;
 		skill1Name = "place bomb";
 		skill2Name = "kick bomb";
-		skill3Name = "restore mp";
 		skillUltCost = 50;
 		skill1Cost = 20;
 		skill2Cost = 30;
@@ -125,7 +125,6 @@ public abstract class Player extends MovableObject{
 		skill1=skill2=skill3=skillUlt=skillPlaceholder;
 		skill1=loader.loadImage("/image/skills/placeBomb.png");
 		skill2=loader.loadImage("/image/skills/kickBomb.png");
-		skill3=loader.loadImage("/image/skills/restoreMana.png");
 		
 		
 		expBar=loader.loadImage("/image/expBar.png");
@@ -216,6 +215,7 @@ public abstract class Player extends MovableObject{
 	/**
 	 * Renders graphics based on dimensions and position as well as colour
 	 * @param graphic object
+	 * @return render skills
 	 */
 	public void renderSkills(Graphics g){
 		int spacing = 100;
@@ -290,6 +290,7 @@ public abstract class Player extends MovableObject{
 	/**
 	 * renders player status
 	 * @param graphic object
+	 * @return render player status
 	 */
 	public void renderPlayerStatus(Graphics g){
 		int y = GameSystem.ABSHEIGHT-Player.H_STATUS-6;
@@ -312,6 +313,7 @@ public abstract class Player extends MovableObject{
 	/**
 	 * renders player soulgem
 	 * @param graphic object
+	 * @return render soul gem
 	 */
 	public void renderSoulGem(Graphics g){
 		g.setFont(new Font("serif",Font.BOLD,12));
@@ -325,6 +327,7 @@ public abstract class Player extends MovableObject{
 	/**
 	 * renders experience
 	 * @param graphic object
+	 * @return render experience
 	 */
 	public void renderExp(Graphics g){
 		g.drawImage(expBar, 115+34, GameSystem.GAME_HEIGHT+93, null);
@@ -335,6 +338,7 @@ public abstract class Player extends MovableObject{
 	/**
 	 * renders player level
 	 * @param graphic object
+	 * @return render player level
 	 */
 	public void renderPlayerLevel(Graphics g){
 		for(int i=0;i<levelImage.length;i++){
@@ -392,6 +396,7 @@ public abstract class Player extends MovableObject{
 	/**
 	 * accelerates or decelerates player
 	 * @param value, duration
+	 * @return change of speed
 	 */
 	public void changeSpeed(int value, int duration){
 		speedChangeDuration=duration;
@@ -433,6 +438,7 @@ public abstract class Player extends MovableObject{
 	/**
 	 * plays animation of player dying
 	 * @param duration
+	 * @return dying
 	 */
 	public void startDying(int duration){
 		if(dying) return;
