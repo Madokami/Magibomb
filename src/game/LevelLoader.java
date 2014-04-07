@@ -57,6 +57,7 @@ public class LevelLoader {
 	/**
 	 * loads level
 	 * @panam game object
+	 * @return level loader
 	 */
 	public LevelLoader(Game game){
 		this.game=game;
@@ -69,6 +70,7 @@ public class LevelLoader {
 	/**
 	 * loads level for two players at same time
 	 * @panam game object
+	 * @synchronization
 	 */
 	public synchronized void load(){
 		int stage = game.getCurLevel();
@@ -429,6 +431,7 @@ public class LevelLoader {
 	/**
 	 * renders start
 	 * @panam duration
+	 * @return rendering of start
 	 */
 	public void renderStart(int duration){
 		this.renderStageStart = System.currentTimeMillis();
@@ -438,6 +441,7 @@ public class LevelLoader {
 	/**
 	 * redners graphics
 	 * @panam graphic object
+	 * @return render graphics
 	 */
 	public void render(Graphics g){
 		title = "Stage".concat(" ").concat(Integer.toString(game.getCurLevel()));
@@ -457,6 +461,7 @@ public class LevelLoader {
 	/**
 	 * Creates player from one of the five character classes
 	 * @panam i j
+	 * @return newly created player
 	 */
 	private void createPlayer(int i, int j) {
 		if(game.cChosen==Game.CHARACTER.MADOKA){
@@ -479,6 +484,7 @@ public class LevelLoader {
 	/**
 	 * Creates player from one of the five character classes
 	 * @panam i j
+	 * @return newly created player
 	 */
 	private void createPlayer2(int i, int j) {
 		if(game.cChosenP2==Game.CHARACTER.MADOKA){
@@ -508,6 +514,7 @@ public class LevelLoader {
 	/**
 	 * Loads map graphics data
 	 * @panam mapData array
+	 * @return loading from array
 	 */
 	private void loadFromArray(int[][] mapData){
 		for(int i=0;i<mapData.length;i++){
@@ -606,6 +613,7 @@ public class LevelLoader {
 	/**
 	 * adds enemy
 	 * @panam enemy object
+	 * @return added enemy
 	 */
 	private void addEnemy(Enemy e){
 		game.getController().addEntity(e);
