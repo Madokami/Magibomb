@@ -26,6 +26,7 @@ public class PowerUps_DamageUp extends PowerUps{
 	/**
 	 * increases bomb strength by 5
 	 * @param player object
+	 * @return applies effect
 	 */
 	public void applyEffect(Player player) {
 		player.bombStrength+=5;
