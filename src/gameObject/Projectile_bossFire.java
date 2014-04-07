@@ -14,6 +14,10 @@ import game.Game;
 public class Projectile_bossFire extends Projectile{
 	private int counter;
 	private int duration = 60;
+	/**
+	 * defines boosFire projectile
+	 * @param coordinates, game, game object
+	 */
 	public Projectile_bossFire(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
 		flyRight = new ImageSequence("/image/projectiles/bossFire", 5);
@@ -25,6 +29,9 @@ public class Projectile_bossFire extends Projectile{
 		
 		pAnimate.startSequence(flyRight);
 	}
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		counter++;
