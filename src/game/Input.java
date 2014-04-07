@@ -19,6 +19,7 @@ public class Input extends KeyAdapter{
 	/**
 	 * defines input
 	 * @panam game system object
+	 * @return input
 	 */
 	public Input(GameSystem sys){
 		this.sys = sys;
