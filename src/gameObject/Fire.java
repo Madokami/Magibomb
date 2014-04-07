@@ -20,7 +20,8 @@ private int counter;
 	 * <b>Inputs:</b>
 	 * <br><b>x</b>,<b>y</b> - coordinates of fire
 	 * <br><b>game</b> - Game object
-	 * <br><b>Strength</b> - magnitude of damage inflicted by fire
+	 * <br><b>Strength</b> - magnitude of damage inflicted by 
+	 * @panam coordinates, game object, strength
 	 */
 	public Fire(int x, int y, Game game,int Strength) {
 		super(x,y,game);

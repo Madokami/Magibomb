@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* Game difficulty menu
+* @author Team 6
+* @version 1.45
+* @since 2014-04-06
+*/
 import game.Game;
 
 import java.awt.Color;
@@ -37,6 +43,9 @@ public class MenuDifficulty implements GeneralMenu{
 	}
 
 	@Override
+	/**
+	 * Draw menu bottom onto screen 
+	 */
 	public void render(Graphics g) {
 		g.drawImage(normalImage,Menu.X_START, Menu.Y_START,null);
 		g.drawImage(hardImage,Menu.X_START+Menu.SPACING, Menu.Y_START,null);
@@ -47,6 +56,9 @@ public class MenuDifficulty implements GeneralMenu{
 	}
 
 	@Override
+	/**
+	 * draw "selected" menu button
+	 */
 	public void renderSelected(Graphics g) {
 		if(selected==SELECTED.EASY){
 			g.drawImage(normalImageOn,Menu.X_START, Menu.Y_START,null);
@@ -64,6 +76,10 @@ public class MenuDifficulty implements GeneralMenu{
 	}
 
 	@Override
+	/**
+	 * select game difficulty depending on keyboard key pressed
+	 * @param key keyboard key pressed
+	 */
 	public void keyPressed(int key) {
 		if(key==GameSystem.RIGHT){
 			if(selected==SELECTED.EASY){

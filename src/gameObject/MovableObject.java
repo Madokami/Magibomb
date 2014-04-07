@@ -93,6 +93,7 @@ public abstract class MovableObject extends GameObject{
 	 * <b>Inputs:</b>
 	 * <br><b>x</b>,<b>y</b> - coordinates
 	 * <br><b>game</b> - Game object
+	 * @panam coordinates, game object
 	 */
 	public MovableObject(int x, int y, Game game) {
 		super(x, y, game);
@@ -162,6 +163,9 @@ public abstract class MovableObject extends GameObject{
 		
 		
 	}
+	/**
+	 * defines timers
+	 */
 	private void tickTimers() {
 		chargeDurationTimer++;
 		damagedDurationTimer++;
@@ -177,6 +181,9 @@ public abstract class MovableObject extends GameObject{
 		//damage.tick();
 		
 	}
+	/**
+	 * applies special abilities
+	 */
 	private void applySpecialAbilitiesWithinDuration(){
 		if(damagedDurationTimer>damagedDuration){
 			stopDamaged();
@@ -193,7 +200,9 @@ public abstract class MovableObject extends GameObject{
 			stopCharge();
 		}
 	}
-	//moveUp shall move 1 grid up only
+	/**
+	 * moveUp shall move 1 grid up only
+	 */
 	public void moveUp(){
 		if(GameSystem.TWO_PLAYER_MODE){
 			if(Game.getPlayer2().dying){
@@ -214,7 +223,9 @@ public abstract class MovableObject extends GameObject{
 		velY=-1*spd/2;
 		velX=0;
 	}
-	//moveDown shall move 1 grid down only
+	/**
+	 * moveDown shall move 1 grid down only
+	 */
 	public void moveDown(){
 		if(GameSystem.TWO_PLAYER_MODE){
 			if(Game.getPlayer2().dying){
@@ -235,7 +246,9 @@ public abstract class MovableObject extends GameObject{
 		velY=spd/2;
 		velX=0;
 	}
-	//moveRight shall move 1 grid right only
+	/**
+	 * moveRight shall move 1 grid right only
+	 */
 	public void moveRight(){
 		if(GameSystem.TWO_PLAYER_MODE){
 			if(Game.getPlayer2().dying){
@@ -312,6 +325,7 @@ public abstract class MovableObject extends GameObject{
 		
 		return false;
 	}
+	//updates the player position based on the grid map
 	public void updatePosition(){
 		//maps the position to the closest "grid"
 		if(y-curY>=GameSystem.GRID_SIZE/2){
@@ -374,7 +388,7 @@ public abstract class MovableObject extends GameObject{
 		*/
 		
 	}
-	
+	//sets next coordinates
 	public void setNextXY(){
 		if(orientation==ORIENTATION.DOWN){
 			nextX=lastX;
@@ -399,6 +413,10 @@ public abstract class MovableObject extends GameObject{
 		}
 		*/
 	}
+	/**
+	 * checks if path is blocked by obstacle
+	 * @panam previous coordinates, next coordinates
+	 */
 	public boolean checkIfBlocked(int lastX,int lastY,int nextX, int nextY){
 		try{
 			if(game.getController().wallArray[lastX][lastY]||game.getController().wallArray[nextX][nextY]){
@@ -413,6 +431,9 @@ public abstract class MovableObject extends GameObject{
 		}
 		return false;
 	}
+	/**
+	 * checks if path is blocked
+	 */
 	public boolean checkIfBlocked(){
 		setNextXY();
 		/*if(Physics.hitWall(this, game.wi)){
@@ -434,7 +455,9 @@ public abstract class MovableObject extends GameObject{
 		return false;
 		
 	}
-	
+	/**
+	 * checks if there is collision with wall
+	 */
 	public boolean checkWallCollision(){
 		if(Physics.hitWall(this, game.getBrickList())!=-1){
 			return true;
@@ -444,6 +467,9 @@ public abstract class MovableObject extends GameObject{
 		}
 		return false;
 	}
+	/**
+	 * checks if there is collision with bomb
+	 */
 	public boolean checkBombCollision(){
 		int tempNum=Physics.hitBomb(this, game.getBombList());
 		if(tempNum!=-1){
@@ -456,7 +482,9 @@ public abstract class MovableObject extends GameObject{
 		}
 		return false;
 	}
-	
+	/**
+	 * checks if coordinates edge of grid map
+	 */
 	public void checkIfAtEdge() {
 		if(x<=0){
 			x=1;
@@ -483,17 +511,26 @@ public abstract class MovableObject extends GameObject{
 		}
 		
 	}
+	/**
+	 * moves to last possible location of map
+	 */
 	public void moveToLastAcceptableLocation(){
 		this.x=this.xTemp;
 		this.y=this.yTemp;
 	}
 	
-	
+	/**
+	 * initiates character charge
+	 * @panam magnitude, duration
+	 */
 	public void startCharge(int value, int duration){
 		chargeSpeed=value;
 		chargeDuration=duration;
 		chargeDurationTimer=0;
 	}
+	/**
+	 * stops charge
+	 */
 	public void stopCharge(){
 		if(!charging){
 			return;
@@ -505,6 +542,9 @@ public abstract class MovableObject extends GameObject{
 		moveStop();
 		
 	}
+	/**
+	 * defines charge based on direction and speed
+	 */
 	private void charge(){
 		if(charging) return;
 		
@@ -533,12 +573,20 @@ public abstract class MovableObject extends GameObject{
 		}
 		if(dash!=null) this.sequence.startSequence(dash);
 	}
+	/**
+	 * defines damage
+	 * @panam duration
+	 */
 	private void startDamaged(int duration){
 		damaged=true;
 		damagedDuration=duration;
 		damagedDurationTimer=0;
 	}
 	
+	/**
+	 * stops damage
+	 * @panam damage
+	 */
 	private void stopDamaged(){
 		if(!damaged) return;
 		damaged=false;
@@ -560,6 +608,9 @@ public abstract class MovableObject extends GameObject{
 	public double getVelY(){
 		return this.velY;
 	}
+	/**
+	 * readjusts movement speed based on direction
+	 */
 	public void refreshMovementSpeed(){
 		if(orientation==ORIENTATION.RIGHT) moveRight();
 		else if(orientation==ORIENTATION.LEFT) moveLeft();
@@ -569,6 +620,9 @@ public abstract class MovableObject extends GameObject{
 	public void refreshMapPostion(){
 		
 	}
+	/**
+	 * checks if blocked
+	 */
 	private boolean adjustToBlockageAndReturnTrueIfBlocked(){
 		if(checkIfBlocked()){
 			if(this.checkBombCollision()){

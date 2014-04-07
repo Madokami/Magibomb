@@ -1,5 +1,11 @@
 package system;
-
+/**
+* Description:
+* Game server
+* @author Team 6
+* @version 1.0
+* @since 2014-03-27
+*/
 import game.Game;
 import game.MultiplayerStats;
 import gameObject.GameObject;
@@ -27,6 +33,9 @@ public class Server implements Runnable
 		this.game=game;
 	}
 	
+	/**
+	 * initialize game server information
+	 */
 	public void init() 
 	{
 		try
@@ -87,6 +96,11 @@ public class Server implements Runnable
 			
 		}
 	}
+	
+	/**
+	 * execute command received from client
+	 * @param oneCommand command received from client
+	 */
 	private void executeOneCommand(String oneCommand){
 		String command=oneCommand.substring(0,oneCommand.indexOf(","));
 		String indexString = oneCommand.substring(oneCommand.indexOf(",")+1,oneCommand.length());
@@ -99,6 +113,12 @@ public class Server implements Runnable
 			sendCommand(command,target);
 		}
 	}
+	
+	/**
+	 * Send command to game
+	 * @param command command received from client
+	 * @param target GameObject that executes command order
+	 */
 	private void sendCommand(String command,GameObject target){
 		if(index!=-1){
 			if(command.equals("moveRight")){
@@ -180,6 +200,12 @@ public class Server implements Runnable
 			}
 		}
 	}
+	
+	/**
+	 * Search for GameObject in game
+	 * @param index index of the GameObject
+	 * @return the GameObject found
+	 */
 	private GameObject searchForIndex(int index){
 		GameObject ret = null;
 		if(game.getController()!=null){

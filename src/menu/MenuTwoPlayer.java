@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* Two player menu
+* @author Team 6
+* @version 1.45
+* @since 2014-04-06
+*/
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -29,6 +35,10 @@ public class MenuTwoPlayer implements GeneralMenu{
 	}
 
 	@Override
+	/**
+	 * Draw menu button "1 player" or "2 player"
+	 * @param g current graphic
+	 */
 	public void render(Graphics g) {
 		g.drawImage(onePlayer,Menu.X_START, Menu.Y_START,null);
 		g.drawImage(twoPlayers,Menu.X_START+2*Menu.SPACING, Menu.Y_START,null);
@@ -37,6 +47,10 @@ public class MenuTwoPlayer implements GeneralMenu{
 	}
 
 	@Override
+	/**
+	 * Draw selected menu button "1 player" or "2 player"
+	 * @param g current graphic
+	 */
 	public void renderSelected(Graphics g) {
 		if(selected==SELECTED.ONE_PLAYER){
 			g.drawImage(onePlayerOn,Menu.X_START, Menu.Y_START,null);
@@ -50,6 +64,10 @@ public class MenuTwoPlayer implements GeneralMenu{
 	}
 
 	@Override
+	/**
+	 * Set player information depending on keyboard key pressed
+	 * @param key keyboard key pressed
+	 */
 	public void keyPressed(int key) {
 		if(key==GameSystem.CONFIRM){
 			if(selected==SELECTED.ONE_PLAYER){

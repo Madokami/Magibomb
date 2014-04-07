@@ -14,6 +14,9 @@ public class Event {
 	private int value;
 	private boolean on;
 	
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		durationTimer++;
 		if(durationTimer>duration){
@@ -23,11 +26,19 @@ public class Event {
 	public boolean isOn(){
 		return on;
 	}
+	/**
+	 * defines start
+	 * @panam duration
+	 */
 	public void start(int duration){
 		this.duration=duration;
 		this.durationTimer=0;
 		this.on=true;
 	}
+	/**
+	 * defines start
+	 * @panam duration, value
+	 */
 	public void start(int duration,int value){
 		this.duration=duration;
 		this.durationTimer=0;

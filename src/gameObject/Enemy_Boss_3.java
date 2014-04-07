@@ -15,6 +15,10 @@ import game.Game;
 public class Enemy_Boss_3 extends Enemy{
 	protected ImageSequence attack;
 	protected ImageSequence summon;
+	/**
+	 * defines new enemy boss
+	 * @panam coordinates, game object
+	 */
 	public Enemy_Boss_3(int x, int y, Game game) {
 		super(x, y, game);
 		stand=new ImageSequence("/image/spriteSheet/actors/enemy/boss_3/stand",8);	
@@ -33,6 +37,9 @@ public class Enemy_Boss_3 extends Enemy{
 	}
 
 	@Override
+	/**
+	 * defines boss attributes
+	 */
 	public void useUltimate() {
 		//laser attack
 		String dir = ai.isValidStraightLine(controller.wallArray, Game.getPlayer().xGridNearest, Game.getPlayer().yGridNearest, xGridNearest, yGridNearest);

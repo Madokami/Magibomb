@@ -48,6 +48,7 @@ public class TimedEvent {
 	
 	/**
 	 * Loads different images
+	 * @panam game object
 	 */
 	public TimedEvent(Game game){
 		this.game=game;
@@ -74,6 +75,9 @@ public class TimedEvent {
 		effect=new SpecialEffects();
 	}
 	
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		if(!hasEvent()){
 			return;
@@ -136,6 +140,7 @@ public class TimedEvent {
 	
 	/**
 	 * Renders graphics such as backgrounds, colour, image locations, image size, etc.
+	 * @panam graphic object
 	 */
 	public void render(Graphics g){
 		if(System.currentTimeMillis()-startTime>duration){
@@ -185,6 +190,10 @@ public class TimedEvent {
 			g.drawImage(saCutIn2,(int) (-100+translate),(int) (120+translate/3),null);
 		}
 	}
+	/**
+	 * creates white stripes with same length
+	 * @panam graphic object
+	 */
 	public void createStripes(Graphics g){
 			g.drawImage(whiteStripes,rand.nextInt(GameSystem.ABSWIDTH)-whiteStripes.getWidth()/2,(int) rand.nextInt(GameSystem.ABSHEIGHT+100)/2,null);
 			g.drawImage(whiteStripes,rand.nextInt(GameSystem.ABSWIDTH)-whiteStripes.getWidth()/2,(int) rand.nextInt(GameSystem.ABSHEIGHT+100)/2,null);
@@ -201,7 +210,10 @@ public class TimedEvent {
 			g.drawImage(whiteStripes,rand.nextInt(GameSystem.ABSWIDTH)-whiteStripes.getWidth()/2,(int) rand.nextInt(GameSystem.ABSHEIGHT+100)/2,null);
 			g.drawImage(whiteStripes,rand.nextInt(GameSystem.ABSWIDTH)-whiteStripes.getWidth()/2,(int) rand.nextInt(GameSystem.ABSHEIGHT+100)/2,null);
 	}
-	
+	/**
+	 * commences an event
+	 * @panam duration, key String
+	 */
 	public void startEvent(long duration, String key){
 		this.duration = duration;
 		this.startTime=System.currentTimeMillis();
@@ -209,6 +221,10 @@ public class TimedEvent {
 		hasEvent=true;
 	}
 	
+	/**
+	 * shifts an image by specifc height and width
+	 * @panam image object
+	 */
 	private void translateImage(BufferedImage image){
 		int width = image.getWidth();
 		int height = image.getHeight();

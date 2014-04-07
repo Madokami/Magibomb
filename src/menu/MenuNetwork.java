@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* Game difficulty menu
+* @author Team 6
+* @version 1.45
+* @since 2014-04-06
+*/
 import game.Game;
 
 import java.awt.Color;
@@ -21,7 +27,10 @@ public class MenuNetwork implements GeneralMenu{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+	 * draw menu button "Host" and "Join"
+	 */
 	public void render(Graphics g) {
 		//g.drawImage(backGround, 0, 0, GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10,null);
 		//g.drawImage(backGround, -400, 0,null);
@@ -30,7 +39,9 @@ public class MenuNetwork implements GeneralMenu{
 		renderSelected(g);
 	}
 
-	
+	/**
+	 * draw "selected" menu button
+	 */
 	public void renderSelected(Graphics g) {
 		g.setColor(Color.LIGHT_GRAY);
 		if(stateChosen=="hostGame"){
@@ -44,6 +55,10 @@ public class MenuNetwork implements GeneralMenu{
 		
 	}
 
+	/**
+	 * select host or join depending on keyboard key pressed
+	 * @param key keyboard key pressed
+	 */
 	public void keyPressed(int key) {
 		// TODO Auto-generated method stub
 		if(key==GameSystem.CONFIRM){
@@ -78,6 +93,10 @@ public class MenuNetwork implements GeneralMenu{
 		}
 	}
 	
+	/**
+	 * update chosen state
+	 * @param state current state
+	 */
 	public void setState(String state){
 		this.stateChosen=state;
 	}

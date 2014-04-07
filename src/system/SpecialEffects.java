@@ -1,5 +1,11 @@
 package system;
-
+/**
+* Description:
+* Special effects of the game
+* @author Team 6
+* @version 1.0
+* @since 2014-03-27
+*/
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -33,6 +39,10 @@ public class SpecialEffects {
 		*/
 		
 	}
+	
+	/**
+	 * Update fadeWhite and fadeWhiteReversed variables
+	 */
 	public void tick(){
 		if(fadeWhite>=10){
 			isFadeWhite=false;
@@ -46,6 +56,10 @@ public class SpecialEffects {
 		
 	}
 	
+	/**
+	 * draw white fading effect
+	 * @param g current graphic
+	 */
 	private void fadeWhite(Graphics g){
 		if(!isFadeWhite){
 			return;
@@ -57,6 +71,10 @@ public class SpecialEffects {
 		g.drawImage(white[fadeWhite], 0, 0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10,null);
 			
 	}
+	
+	/**
+	 * start white fading effect
+	 */
 	public void startFadeWhite(){
 		if(isFadeWhite){
 			return;
@@ -64,11 +82,20 @@ public class SpecialEffects {
 		fadeWhite=0;
 		isFadeWhite=true;
 	}
+	
+	/**
+	 * call fadeWhite() and fadeWhiteReversed
+	 * @param g current graphic
+	 */
 	public void render(Graphics g) {
 		fadeWhite(g);
 		fadeWhiteReversed(g);
 	}
 	
+	/**
+	 * draw reversed white fading effect
+	 * @param g current graphic
+	 */
 	private void fadeWhiteReversed(Graphics g){
 		if(!isFadeWhiteReversed){
 			return;
@@ -80,6 +107,10 @@ public class SpecialEffects {
 		g.drawImage(white[9-fadeWhiteReversed], 0, 0,GameSystem.ABSWIDTH+10,GameSystem.ABSHEIGHT+10,null);
 			
 	}
+	
+	/**
+	 * start reversed white fading effect
+	 */
 	public void startFadeWhiteReversed() {
 		if(isFadeWhiteReversed){
 			return;

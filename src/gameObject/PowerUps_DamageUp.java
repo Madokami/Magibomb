@@ -11,7 +11,10 @@ import game.Game;
 * @since 2014-03-31
 */
 public class PowerUps_DamageUp extends PowerUps{
-
+	/**
+	 * defines power ups
+	 * @param coordinates, game object
+	 */
 	public PowerUps_DamageUp(int x, int y, Game game) {
 		super(x, y, game);
 		ss = SpriteData.upgrades;
@@ -19,6 +22,10 @@ public class PowerUps_DamageUp extends PowerUps{
 	}
 
 	@Override
+	/**
+	 * increases bomb strength by 5
+	 * @param player object
+	 */
 	public void applyEffect(Player player) {
 		player.bombStrength+=5;
 	}

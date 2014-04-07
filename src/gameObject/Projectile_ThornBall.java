@@ -15,6 +15,10 @@ public class Projectile_ThornBall extends Projectile{
 
 	protected int counter;
 	protected int duration = 150;
+	/**
+	 * defines thornball projectile
+	 * @param coordinates, game, game object
+	 */
 	public Projectile_ThornBall(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
 		flyRight = new ImageSequence("/image/projectiles/thornBall", 3);
@@ -26,6 +30,9 @@ public class Projectile_ThornBall extends Projectile{
 		//this.setStartingVelocity(flySpeed);
 	}
 	
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		counter++;

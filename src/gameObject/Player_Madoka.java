@@ -18,6 +18,10 @@ import game.Game;
 */
 public class Player_Madoka extends Player{
 
+	/**
+	* defines new character
+	* @param coordinates, game object
+	*/
 	public Player_Madoka(int x, int y, Game game) {
 		super(x, y, game);
 		playerBackground = MenuChar.mdBg;
@@ -72,7 +76,9 @@ public class Player_Madoka extends Player{
 		ultyTimer=60;
 		
 	}
-	
+	/**
+	* applies unique character attributes
+	*/
 	public void useUltimate(){
 		if(ultyTimer<ultyCd){
 			GameSystem.playError();

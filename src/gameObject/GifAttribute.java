@@ -21,6 +21,10 @@ public class GifAttribute {
 	private int width,height,x,y;
 	private Image image;
 	
+	/**
+	 * defines .git image attributes
+	 * @panam gif image
+	 */
 	public GifAttribute(Image gif){
 		this.image=gif;
 		height=(int)scale;

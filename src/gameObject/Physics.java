@@ -16,6 +16,10 @@ import system.GameSystem;
 * @since 2014-03-31
 */
 public class Physics {
+	/**
+	 * defines collision
+	 * @panam player object, powerups list
+	 */
 	public static int collision(Player p,LinkedList<PowerUps> powerUpList){
 		for(int i=0;i<powerUpList.size();i++){
 			if(p.getBounds(p.collisionWidth,p.collisionHeight).intersects(powerUpList.get(i).getBounds(powerUpList.get(i).collisionWidth,powerUpList.get(i).collisionHeight))){
@@ -24,7 +28,10 @@ public class Physics {
 		}
 		return -1;
 	}
-	
+	/**
+	 * defines when player moves onto location of bomb
+	 * @panam game object, bomb lists
+	 */
 	public static int onTopOfBomb(GameObject gameObject,LinkedList<Bomb> bList){
 		for(int i=0;i<bList.size();i++){
 			if(gameObject.xGridNearest==bList.get(i).xGridNearest&&gameObject.yGridNearest==bList.get(i).yGridNearest){
@@ -33,7 +40,10 @@ public class Physics {
 		}
 		return -1;
 	}
-	
+	/**
+	 * defines when player is behind bomb
+	 * @panam game object, bomb list
+	 */
 	public static int behindBomb(GameObject gameObject,LinkedList<Bomb> bList){
 		if(gameObject.orientation==ORIENTATION.UP){
 			for(int i=0;i<bList.size();i++){
@@ -65,7 +75,10 @@ public class Physics {
 		}
 		return -1;
 	}
-	
+	/**
+	 * defines when collision occurs
+	 * @panam game object, enemy list
+	 */
 	public static LinkedList<Enemy> collision(GameObject w,LinkedList<Enemy> ei){
 		LinkedList<Enemy> ret= new LinkedList<Enemy>();
 		for(int i=0;i<ei.size();i++){
@@ -75,7 +88,10 @@ public class Physics {
 		}
 		return ret;
 	}
-	
+	/**
+	 * defines when character hits player
+	 * @panam game object, player list
+	 */
 	public static LinkedList<Player> hitPlayer(GameObject w,LinkedList<Player> players){
 		LinkedList<Player> ret= new LinkedList<Player>();
 		for(int i=0;i<players.size();i++){
@@ -87,7 +103,10 @@ public class Physics {
 	}
 	
 	
-	
+	/**
+	 * defines when player is in same coordinates as enemy
+	 * @panam enemy, enemy list
+	 */
 	public static boolean overlapWithOtherEnemies(Enemy w,LinkedList<Enemy> ei){
 		for(int i=0;i<ei.size();i++){
 			Enemy tempEnemy=ei.get(i);
@@ -99,6 +118,10 @@ public class Physics {
 		}
 		return false;
 	}
+	/**
+	 * defines when player is blocked
+	 * @panam enemy source, enemy list, coordinates
+	 */
 	public static boolean blockedByEnemy(Enemy source, LinkedList<Enemy> list,int targetX,int targetY){
 		for(int i=0;i<list.size();i++){
 			Enemy tempEnemy=list.get(i);
@@ -110,7 +133,10 @@ public class Physics {
 		}
 		return false;
 	}
-	
+	/**
+	 * defines when player hits bomb
+	 * @panam game object, bomb list
+	 */
 	public static int hitBomb(GameObject w,LinkedList<Bomb> list){
 		for(int i=0;i<list.size();i++){
 			if(w.getBounds(w.collisionWidth-1,w.collisionHeight-1).intersects(list.get(i).getBounds(GameSystem.GRID_SIZE-1,GameSystem.GRID_SIZE-1))){
@@ -119,7 +145,10 @@ public class Physics {
 		}
 		return -1;
 	}
-	
+	/**
+	 * defines when there is a collision with the wall
+	 * @panam game object, brick list
+	 */
 	public static int hitWall(GameObject f,LinkedList<HitableBrick> linkedList){
 		for(int i=0;i<linkedList.size();i++){
 			if(f.getBounds(f.collisionWidth-1, f.collisionHeight-1).intersects(linkedList.get(i).getBounds(GameSystem.GRID_SIZE-1, GameSystem.GRID_SIZE-1)))
@@ -127,6 +156,10 @@ public class Physics {
 		}
 		return -1;
 	}
+	/**
+	 * defines place holder
+	 * @panam game object, place holder list
+	 */
 	public static int hitPlaceHolder(GameObject f,LinkedList<PlaceHolder> linkedList){
 		for(int i=0;i<linkedList.size();i++){
 			if(f.getBounds(f.collisionWidth-1, f.collisionHeight-1).intersects(linkedList.get(i).getBounds(GameSystem.GRID_SIZE-1, GameSystem.GRID_SIZE-1)))
@@ -134,14 +167,20 @@ public class Physics {
 		}
 		return -1;
 	}
-	
+	/**
+	 * defines collision
+	 * @panam game object coordinates
+	 */
 	public static boolean collide(GameObject x,GameObject y){
 		if(x.getBounds(x.collisionWidth-1, x.collisionHeight-1).intersects(y.getBounds(y.collisionWidth-1,y.collisionHeight-1))){
 			return true;
 		}
 		return false;
 	}
-	
+	/**
+	 * defines projectile hit
+	 * @panam game object, projectile list
+	 */
 	public static LinkedList<Projectile> projectileHit(GameObject x,LinkedList<Projectile> list){
 		LinkedList<Projectile> ret = new LinkedList<Projectile>();
 		for(int i=0;i<list.size();i++){

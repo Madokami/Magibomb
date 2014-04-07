@@ -1,5 +1,11 @@
 package system;
-
+/**
+* Description:
+* Convert an integer to an image
+* @author Team 6
+* @version 1.0
+* @since 2014-03-27
+*/
 import gameObject.SpriteData;
 import gameObject.SpriteSheet;
 
@@ -7,6 +13,11 @@ import java.awt.image.BufferedImage;
 
 public class IntToImage {
 	 
+	 /**
+	 * Convert an integer to a image 
+	 * @param value the integer value to be converted
+	 * @return a BufferedImage type array which has the integer on the images 
+	 */
 	public static BufferedImage[] toImageSmall(int value){
 		SpriteSheet numbers = SpriteData.num_18_16;
 		
@@ -19,6 +30,11 @@ public class IntToImage {
 		}
 		return ret;
 	}
+	/**
+	 * Convert an integer to a image 
+	 * @param value the integer value to be converted
+	 * @return a BufferedImage type array which has the integer on the images 
+	 */
 	public static BufferedImage[] toImageGriefSyndrome(int value){
 		SpriteSheet numbers = SpriteData.num_20_36;
 		
@@ -32,6 +48,11 @@ public class IntToImage {
 		return ret;
 	}
 	
+	/**
+	 * Convert an integer to a image 
+	 * @param value the integer value to be converted
+	 * @return a BufferedImage type array which has the integer on the images 
+	 */
 	public static BufferedImage[] toImageDamage(int value){
 		SpriteSheet numbers = SpriteData.numDamage;
 		

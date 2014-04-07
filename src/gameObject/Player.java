@@ -90,6 +90,7 @@ public abstract class Player extends MovableObject{
 	 * <b>Inputs:</b>
 	 * <br><b>x</b>,<b>y</b> - coordinates of the player
 	 * <br><b>game</b> - Game object
+	 * @param coordinates, game object
 	 */
 	public Player(int x, int y, Game game) {
 		super(x, y, game);
@@ -214,6 +215,7 @@ public abstract class Player extends MovableObject{
 	
 	/**
 	 * Renders graphics based on dimensions and position as well as colour
+	 * @param graphic object
 	 */
 	public void renderSkills(Graphics g){
 		int spacing = 100;
@@ -285,6 +287,10 @@ public abstract class Player extends MovableObject{
 		g.drawString(Integer.toString(skillUltCost), x+3*spacing, y+70);
 	}
 	
+	/**
+	 * renders player status
+	 * @param graphic object
+	 */
 	public void renderPlayerStatus(Graphics g){
 		int y = GameSystem.ABSHEIGHT-Player.H_STATUS-6;
 		g.setFont(new Font("arial",Font.BOLD,11));
@@ -303,6 +309,10 @@ public abstract class Player extends MovableObject{
 		}
 	}
 	
+	/**
+	 * renders player soulgem
+	 * @param graphic object
+	 */
 	public void renderSoulGem(Graphics g){
 		g.setFont(new Font("serif",Font.BOLD,12));
 		g.setColor(Color.LIGHT_GRAY);
@@ -312,12 +322,20 @@ public abstract class Player extends MovableObject{
 			g.drawImage(soulGemValueImage[i],GameSystem.GAME_WIDTH/2-430+i*20,GameSystem.GAME_HEIGHT+60,null);
 		}
 	}
+	/**
+	 * renders experience
+	 * @param graphic object
+	 */
 	public void renderExp(Graphics g){
 		g.drawImage(expBar, 115+34, GameSystem.GAME_HEIGHT+93, null);
 		double ratio = this.expCurrent/this.levelUpdater.expRequired;
 		g.setColor(Color.YELLOW);
 		g.fillRect(120+34, GameSystem.GAME_HEIGHT+96, (int)(ratio*67), 4);
 	}
+	/**
+	 * renders player level
+	 * @param graphic object
+	 */
 	public void renderPlayerLevel(Graphics g){
 		for(int i=0;i<levelImage.length;i++){
 			g.drawImage(levelImage[i],131+i*12,GameSystem.GAME_HEIGHT+89,null);
@@ -326,6 +344,9 @@ public abstract class Player extends MovableObject{
 	
 	
 	public abstract void updatePlayerData();
+	/**
+	 * determines level of health of player
+	 */
 	private void playPlayerHpMissingVoices(){
 		if(animation==ANIMATION.DYING){
 			return;
@@ -352,6 +373,9 @@ public abstract class Player extends MovableObject{
 			soulGemDarkSoundPlayed=true;
 		}
 	}
+	/**
+	 * determines player hp range
+	 */
 	private String checkPlayerHpRange(){
 		String ret=null;
 		if(hp/maxHp>0.6){
@@ -365,6 +389,10 @@ public abstract class Player extends MovableObject{
 		}
 		return ret;
 	}
+	/**
+	 * accelerates or decelerates player
+	 * @param value, duration
+	 */
 	public void changeSpeed(int value, int duration){
 		speedChangeDuration=duration;
 		speedChangeTimer=0;
@@ -375,6 +403,9 @@ public abstract class Player extends MovableObject{
 	public void restoreSpeed(){
 		spd=spdOriginal;
 	}
+	/**
+	 * searches for power ups
+	 */
 	private void searchForPowerups(){
 		if(animation==ANIMATION.DYING){
 			return;
@@ -399,6 +430,10 @@ public abstract class Player extends MovableObject{
 			game.setPlayerIsAlive(false);
 		}
 	}
+	/**
+	 * plays animation of player dying
+	 * @param duration
+	 */
 	public void startDying(int duration){
 		if(dying) return;
 		if(animation!=ANIMATION.DYING) {
@@ -414,6 +449,9 @@ public abstract class Player extends MovableObject{
 	public void remove(){
 		this.game.getController().removePlayer(this);
 	}
+	/**
+	 * loads multiplayer data from save slot
+	 */
 	public void loadFromMultiplayerData(){
 		hp=MultiplayerStats.HP;
 		mp=MultiplayerStats.MP;
@@ -428,7 +466,9 @@ public abstract class Player extends MovableObject{
 	public BufferedImage getPlayerBackground(){
 		return this.playerBackground;
 	}
-	
+	/**
+	 * defines ability for player
+	 */
 	public void useAbility1(){
 		if(mp<skill1Cost||dying||Physics.onTopOfBomb(this, controller.getBList())!=-1){
 			return;
@@ -443,6 +483,9 @@ public abstract class Player extends MovableObject{
 			pVoice.playCdSound();
 		}
 	}
+	/**
+	 * defines ability for player
+	 */
 	public void useAbility2(){
 		if(mp<skill2Cost||dying){
 			return;
@@ -457,6 +500,9 @@ public abstract class Player extends MovableObject{
 			pVoice.playCdSound();
 		}
 	}
+	/**
+	 * defines ability for player
+	 */
 	public void useAbility3(){
 		if(skill3Timer<skill3Cd){
 			GameSystem.playError();

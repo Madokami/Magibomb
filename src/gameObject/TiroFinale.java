@@ -13,6 +13,10 @@ import system.GameSystem;
 * @since 2014-03-31
 */
 public class TiroFinale extends Projectile{
+	/**
+	 * Define individual projectile
+	 * @param coordinates, game, game object o
+	 */
 	public TiroFinale(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
 		flyRight = new ImageSequence("/image/projectiles/tiroFinaleRight", 6);
@@ -34,6 +38,9 @@ public class TiroFinale extends Projectile{
 		allignOrientationWithOwner(owner);
 		//collisionAdjust();
 	}
+	/**
+	 * Checks current conditions to determine future scenario such as collision
+	 */
 	public void tick(){
 		super.tick();
 		setCollisionToImageSize();

@@ -13,6 +13,10 @@ import game.Game;
 */
 public class Projectile_PinkArrow extends Projectile{
 
+	/**
+	 * defines pink arrow projectile
+	 * @param coordinates, game, game object
+	 */
 	public Projectile_PinkArrow(int x, int y, Game game,GameObject o) {
 		super(x, y, game,o);
 		flyRight = new ImageSequence("/image/projectiles/pinkArrowRight", 5);
@@ -29,6 +33,9 @@ public class Projectile_PinkArrow extends Projectile{
 		this.setStartingVelocity(flySpeed);
 		setDamage(((Player)owner).bombStrength/2);
 	}
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		setCollisionToImageSize();

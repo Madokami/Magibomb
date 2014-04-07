@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* Set game character data and images
+* @author Team 6
+* @version 1.0
+* @since 2014-03-27
+*/
 import game.Game;
 import game.PlayerData;
 
@@ -36,8 +42,10 @@ public class AttributeHandler {
 		
 	}
 
-	//sets the original values of the parameters as well as the current value;
-	//this is done so that you can not lower a stat past its original level while letting you reset stats if you screw up.
+	/**
+	 * sets the original values of the parameters as well as the current value;
+	 *
+	 */
 	public void updateOriginalValue() {
 		if(MenuChar.cSelected==CHARACTER.SAYAKA){
 			hpOriginal=pData.saHp;
@@ -85,6 +93,10 @@ public class AttributeHandler {
 			BPOriginal=pData.kyBP;
 		}	
 	}
+	
+	/**
+	 * set current game character data
+	 */
 	public void setCurrentValue(){
 		hpCur=hpOriginal;
 		mpCur=mpOriginal;
@@ -94,8 +106,11 @@ public class AttributeHandler {
 		bombLengthCur=bombLengthOriginal;
 		BPCur=BPOriginal;
 	}
+	
+	/**
+	 * set new game character data
+	 */
 	public void setNewValues(){
-		//sets game's pData to new data;
 		if(MenuChar.cSelected==CHARACTER.SAYAKA){
 			pData.saHp=hpCur;
 			pData.saMp=mpCur;
@@ -142,7 +157,10 @@ public class AttributeHandler {
 			pData.kyBP=BPCur;
 		}	
 	}
-	//let's you restore the original values if you press cancel or smth.
+
+	/**let's you restore the original values if you press cancel or smth
+	 * 
+	 */
 	public void restoreOriginalValue(){
 		if(MenuChar.cSelected==CHARACTER.SAYAKA){
 			pData.saHp=hpOriginal;
@@ -191,7 +209,10 @@ public class AttributeHandler {
 		}	
 	}
 	
-	//sets the image arrays that are rendered onto screen;
+	/**
+	 * sets the image arrays that are rendered onto screen
+	 * 
+	 */
 	public void setImageArrays(){
 		hp=IntToImage.toImageSmall((int) hpCur);
 		mp=IntToImage.toImageSmall((int)mpCur);
@@ -255,6 +276,10 @@ public class AttributeHandler {
 		*/
 	}
 	
+	/**
+	 * draw character data images on the screen
+	 * @param g current graphic
+	 */
 	public void render(Graphics g){
 		for(int i=0;i<BPCurImg.length;i++){
 			g.drawImage(BPCurImg[i], attributeX+12*i+65, attributeY-25, null);
@@ -281,11 +306,19 @@ public class AttributeHandler {
 			g.drawImage(bombLength[i], attributeX+12*i, attributeY+MenuChar.statsShift*5, null);
 		}
 	}
+	
+	/**
+	 * update game character data and images
+	 */
 	public void refreshAll(){
 		this.updateOriginalValue();
 		setCurrentValue();
 		this.setImageArrays();
 	}
+	
+	/**
+	 * Refresh images rendered onto screen
+	 */
 	public void refreshImage(){
 		this.setImageArrays();
 	}

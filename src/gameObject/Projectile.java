@@ -32,6 +32,9 @@ public abstract class Projectile extends MovableObject {
 		invincibleDuration = 10;
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		if(GameSystem.TWO_PLAYER_MODE){
 			if(owner==Game.getPlayer()||owner==Game.getPlayer2()){
@@ -68,12 +71,17 @@ public abstract class Projectile extends MovableObject {
 		y+=getVelY();
 		pAnimate.tick();
 	}
-	
+	/**
+	 * removes image if moves off boundary of grid
+	 */
 	public void removeIfOutSideScreen(){
 		if(x<=-ssWidth||y<=-ssHeight||x>=GameSystem.GAME_WIDTH||y>=GameSystem.GAME_HEIGHT){
 			remove();
 		}
 	}
+	/**
+	 * removes image if there is a collision with a wall
+	 */
 	public void removeIfHitWall(){
 		if(Physics.hitWall(this, controller.getBrickList())!=-1){
 			remove();
@@ -83,6 +91,10 @@ public abstract class Projectile extends MovableObject {
 		}
 	}
 	
+	/**
+	 * aligns image with owner object
+	 * @param owner object
+	 */
 	public void allignOrientationWithOwner(GameObject owner){
 		if(owner.orientation==ORIENTATION.DOWN){
 			this.orientation=ORIENTATION.DOWN;
@@ -101,6 +113,9 @@ public abstract class Projectile extends MovableObject {
 			x-=imageWidth;
 		}
 	}
+	/**
+	 * initializes the starting animation
+	 */
 	public void setStartingAnimation(){
 		if(this.orientation==ORIENTATION.RIGHT||this.orientation==ORIENTATION.LEFT){
 			pAnimate.startSequence(flyRight);
@@ -113,6 +128,7 @@ public abstract class Projectile extends MovableObject {
 	/**
 	 * Defines speed of the projectile
 	 * <br>distance/time
+	 * @param fly speed
 	 */
 	public void setStartingVelocity(int flySpeed){
 		if(orientation==ORIENTATION.RIGHT){
@@ -132,6 +148,9 @@ public abstract class Projectile extends MovableObject {
 			direction="down";
 		}
 	}
+	/**
+	 * removes entity
+	 */
 	public void remove(){
 		game.getController().removeEntity(this);
 	}

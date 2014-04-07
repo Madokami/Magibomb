@@ -16,6 +16,10 @@ public class Scissors extends Projectile{
 	private int counter;
 	private int duration = 30;
 	
+	/**
+	 * defines scissor projectile
+	 * @param coordinates, game, game object
+	 */
 	public Scissors(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
 		this.damage=20;
@@ -28,6 +32,9 @@ public class Scissors extends Projectile{
 		
 		this.setStartingVelocity(flySpeed);
 	}
+	/**
+	 * checks current status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		counter++;

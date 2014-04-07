@@ -1,7 +1,12 @@
 package story;
 
-
-
+/**
+* Description:
+* Story mode of the game
+* @author Team 6
+* @version 1.3
+* @since 2014-04-04
+*/
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,11 +16,9 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URLDecoder;
+
 
 import system.BufferedImageLoader;
 import system.GameSystem;
@@ -39,7 +42,6 @@ public class Story {
 	
 	private int shiftX,shiftY;
 	
-	@SuppressWarnings("deprecation")
 	public Story(){
 		loader = new BufferedImageLoader();
 		//sprite = loader.loadImage("/image/mdStand1.png");
@@ -71,10 +73,19 @@ public class Story {
 		readNextLine();
 		*/
 	}
+	
+	/**
+	 * initialize shiftX and shiftY
+	 */
 	public void tick() {
 			shiftX=125;
 			shiftY=110;
 	}
+	
+	/**
+	 * Draw story mode background images
+	 * @param g current graphic
+	 */
 	public void render(Graphics g){
 		Graphics2D g2d = (Graphics2D)g;
 		Font f1 = new Font("arial",Font.PLAIN,22);
@@ -94,6 +105,11 @@ public class Story {
 		g.setColor(Color.BLACK);
 		renderLines(g);
 	}
+	
+	/**
+	 * Draw story script string lines
+	 * @param g current graphic
+	 */
 	private void renderLines(Graphics g) {
 		try{
 			for(int i=0;i<lineNum;i++){
@@ -112,6 +128,12 @@ public class Story {
 		}
 		
 	}
+	
+	/**
+	 * If "z" or "enter" key pressed on the keyboard, call readNextLine()
+	 * If "x" key pressed, call toMenu()
+	 * @param e pressed keyboard key 
+	 */
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if(key==KeyEvent.VK_ENTER||key==KeyEvent.VK_Z){
@@ -123,6 +145,9 @@ public class Story {
 		
 	}
 	
+	/**
+	 * read next line of story script
+	 */
 	private static void readNextLine(){
 		if(lineNum>3){
 			lineNum=0;
@@ -144,6 +169,11 @@ public class Story {
 		}
 		lineNum++;
 	}
+	/**
+	 * Check if the script line has special meaning
+	 * @param line the current script line 
+	 * @return a boolean indicating whether the line has special meaning
+	 */
 	private static boolean isSpecialString(String line){
 		if(isEndOfSection(line)){
 			changeToGameState();
@@ -170,11 +200,19 @@ public class Story {
 		}
 		return false;
 	}
-	private static void changeToGameState() {
+/**
+ * Go to game state
+ */
+	private static void changeToGameState() {	
 		GameSystem.turnOffBgm();
 		Menu.toGameMode();
 	}
 
+	/**
+	 * Checking if the end of a script section has reached
+	 * @param s current script line
+	 * @return a boolean indicating whether the end of a script section has reached
+	 */
 	private static boolean isEndOfSection(String s) {
 		if(s.equals("END")){
 			return true;
@@ -182,7 +220,11 @@ public class Story {
 		return false;
 	}
 
-
+	/**
+	 * Checking if the script line is stating a character name
+	 * @param s current script line
+	 * @return a boolean indicating whether the script line is stating a character name
+	 */
 	private static boolean isCharacterName(String s) {
 		if(s.equals("MADOKA:")){
 			textBox=mdTextBox;
@@ -221,7 +263,12 @@ public class Story {
 		}
 		return false;
 	}
-	private static boolean isSetSprite(String line){
+	/**
+	 * Checking if the script requires to set sprite
+	 * @param line current script line
+	 * @return a boolean indicating whether the script requires to set sprite
+	 */
+	private static boolean isSetSprite(String line){	
 		if(line.equals("SP_R:NULL")){
 			spriteRight=null;
 			return true;
@@ -249,6 +296,11 @@ public class Story {
 		return false;
 	}
 	
+	/**
+	 * Checking if the script requires to play audio
+	 * @param line current script line
+	 * @return a boolean indicating whether the script requires to play audio
+	 */
 	private static boolean isPlayAudio(String line){
 		if(line.equals("AUDIO_BGM:NULL")){
 			GameSystem.turnOffBgm();
@@ -267,6 +319,12 @@ public class Story {
 		}
 		return false;
 	}
+	
+	/**
+	 * Checking if the script requires to change background
+	 * @param line current script line
+	 * @return a boolean indicating whether the script requires to change background
+	 */
 	public static boolean isChangeBackground(String line){
 		if(line.startsWith("BG:")){
 			background=loader.loadImage(line.substring(3));
@@ -274,6 +332,10 @@ public class Story {
 		}
 		return false;
 	}
+	
+	/**
+	 * Go to  main menu
+	 */
 	public void toMenu(){
 		GameSystem.state=STATE.MENU;
 		Menu.mState=MENUSTATE.MAIN;

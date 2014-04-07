@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* Game score menu
+* @author Team 6
+* @version 1.4
+* @since 2014-04-06
+*/
 import game.Game;
 import gameObject.Player;
 
@@ -27,6 +33,9 @@ public class MenuScore implements GeneralMenu{
 		
 	}
 	
+	/**
+	 * Draw menu button onto screen
+	 */
 	public void render(Graphics g){
 		g.setColor(Color.WHITE);
 		
@@ -43,6 +52,9 @@ public class MenuScore implements GeneralMenu{
 		renderSelected(g);
 	}
 	@Override
+	/**
+	 * Draw "selected" menu button
+	 */
 	public void renderSelected(Graphics g) {
 		if(selected==SELECTED.CONTINUE){
 			g.drawImage(Menu.pointer, Menu.POINTER_X_START,Menu.POINTER_Y_START, null);
@@ -52,6 +64,10 @@ public class MenuScore implements GeneralMenu{
 		}
 		
 	}
+	/**
+	 * Execute keyboard key functions
+	 * @param key keyboard key pressed
+	 */
 	public void keyPressed(int key) {
 		if(key==GameSystem.CONFIRM){
 			if(selected==SELECTED.CONTINUE){

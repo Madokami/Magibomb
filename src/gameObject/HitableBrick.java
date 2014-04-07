@@ -11,7 +11,10 @@ import game.Game;
 * @since 2014-03-31
 */
 public class HitableBrick extends Brick{
-
+	/**
+	 * defines brick
+	 * @panam coordinates, game object
+	 */
 	public HitableBrick(int x, int y, Game game) {
 		super(x, y, game);
 		// TODO Auto-generated constructor stub

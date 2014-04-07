@@ -20,6 +20,7 @@ public class Animation {
 	
 	/**
 	* Defines MoveableObject
+	* @panam moveable object o
 	*/
 	public Animation(MovableObject o){
 		this.owner=o;
@@ -94,6 +95,7 @@ public class Animation {
 	
 	/**
 	* Displays animated image at the beginning of cycle
+	* @panam sequence, next sequence
 	*/
 	public void startSequence(ImageSequence sequence, ImageSequence nextSequence ){
 		sequencePlaying=true;
@@ -109,6 +111,7 @@ public class Animation {
 	
 	/**
 	* Displays animated image at the beginning of cycle
+	* @panam sequence
 	*/
 	public void startOneTimeSequence(ImageSequence sequence){
 		oneTimeSequence=true;

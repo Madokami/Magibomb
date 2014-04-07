@@ -1,5 +1,11 @@
 package system;
-
+/**
+* Description:
+* Build a game timer and show it on the game screen
+* @author Team 6
+* @version 1.45
+* @since 2014-04-06
+*/
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -21,6 +27,9 @@ public class GameTimer {
 		
 	}
 	
+	/**
+	 * Build a timer
+	 */
 	public void tick(){
 		timeCounter++;
 		if(timeCounter>=30){
@@ -37,6 +46,10 @@ public class GameTimer {
 		
 	}
 
+	/**
+	 * Draw the timer onto game screen
+	 * @param g current game graphic
+	 */
 	public void render(Graphics g) {
 		
 		g.setColor(Color.BLACK);
@@ -56,6 +69,10 @@ public class GameTimer {
 		}
 		
 	}
+	
+	/**
+	 * reset timer from 0
+	 */
 	public static void resetTimer(){
 		sGameTime=0;
 		mGameTime=0;

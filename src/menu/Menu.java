@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* execute main menu
+* @author Team 6
+* @version 1.45
+* @since 2014-04-06
+*/
 import game.Game;
 import game.Game.GameState;
 
@@ -51,8 +57,11 @@ public class Menu {
 	public Game game;
 	Image gif;
 	
-	//enum: only 1 state can be true at a time.
-	//used to track state of game and change what gets rendered;
+	/**
+	 * used to track state of game and change what gets rendered;
+	 *enum: only 1 state can be true at a time.
+	 *
+	 */
 	public static enum MENUSTATE{
 		MAIN,
 		CHOOSECHAR,
@@ -66,8 +75,10 @@ public class Menu {
 		TWO_PLAYERS
 	};
 	
-	//determines what menu option is currently selected by the user
-	//"selected" options will light up
+	/**
+	 * determines what menu option is currently selected by the user
+	 *"selected" options will light up
+	 */
 	public static enum SELECTED{
 		START,
 		NETWORK,
@@ -102,9 +113,10 @@ public class Menu {
 		POINTER_Y_START=Y_START-pointer.getHeight();
 	}
 	
-	//this method is called automatically by GameSystem
-	//use this method to update variables continuously
-	//this method will be called exactly 30 times per second.
+	/**this method is called automatically by GameSystem
+	* use this method to update variables continuously
+	* this method will be called exactly 30 times per second.
+	*/
 	public void tick(){
 		SPACING=300;
 		if(mState==MENUSTATE.CHOOSECHAR){
@@ -118,12 +130,15 @@ public class Menu {
 		}
 	}
 	
-	//this method draws stuff. this method will only activate when GameSystem.state is set to MENU
-	//this method will be called continuously. 
-	//NOTE: if you need to update a variable for example: update a position variable every time the game loop finish, do it in tick()
-	// because tick() is designed to be ran 60 times per second, and if it lags during intense times, 
-	//it will be ran bonus times later to make up for the lack of update.
-	// on the other hand, the render method has no restrictions on how many times it's ran per second.
+	/**
+	 * this method draws stuff. this method will only activate when GameSystem.state is set to MENU
+	 * this method will be called continuously. 
+	 * NOTE: if you need to update a variable for example: update a position variable every time the game loop finish, do it in tick()
+	 * because tick() is designed to be ran 60 times per second, and if it lags during intense times, 
+     	 * it will be ran bonus times later to make up for the lack of update.
+	 * on the other hand, the render method has no restrictions on how many times it's ran per second.
+	 * @param g current graphic
+	 */
 	public void render(Graphics g){
 		Font f1 = new Font("arial",Font.BOLD,50);
 		g.setFont(f1);
@@ -146,7 +161,10 @@ public class Menu {
 		renderSelected(g);
 	}
 	
-	//this method simply filters what to draw out based on the current Menu.SELECTED state
+	/**
+	 * this method simply filters what to draw out based on the current Menu.SELECTED state
+	 * @param g current graphic
+	 */
 	public void renderSelected(Graphics g){
 		if(mState==MENUSTATE.MAIN){
 			if(selected==SELECTED.START){
@@ -167,7 +185,11 @@ public class Menu {
 		}
 	
 	}
-	//change what is render based on the current MENUSTATE
+	
+	/**
+	 * change what is render based on the current MENUSTATE
+	 * @param g current graphic
+	 */
 	public void renderCurrentState(Graphics g){
 		if(mState == MENUSTATE.MAIN){
 			return;
@@ -193,7 +215,10 @@ public class Menu {
 		}
 	}
 	
-	//detects user keyboard input. the parameter "key" is passed down from GameSystem.keyPressed
+	/**
+	 * detects user keyboard input. the parameter "key" is passed down from GameSystem.keyPressed
+	 * @param key key pressed on the keyboard
+	 */
 	public void keyPressed(int key) {
 		if(mState==MENUSTATE.CHOOSECHAR){
 			mChar.keyPressed(key);
@@ -278,35 +303,60 @@ public class Menu {
 		}
 		
 	}
+	
+	/**
+	 * switch to story mode
+	 */
 	public static void toStoryMode() {
 		GameSystem.turnOffBgm();
 		Story.loadFile(Game.curLevel);
 		GameSystem.state=STATE.STORY;
 	}
 	
+	/**
+	 * switch to "choose character" menu
+	 */
 	public static void toChooseChar(){
 		MenuChar.setChooseChar();
 		MenuChar.yShift=1;
 		Menu.mState=Menu.MENUSTATE.CHOOSECHAR;
 	}
+	
+	/**
+	 * switch to two players menu
+	 */
 	public static void toTwoPlayers(){
 		Menu.mState=Menu.MENUSTATE.TWO_PLAYERS;
 	}
+	
+	/**
+	 * switch to character status menu
+	 */
 	public static void toCharStats(){
 		MenuChar.setDisplayStats();
 		Menu.mState=Menu.MENUSTATE.CHOOSECHAR;
 	}
+	
+	/**
+	 * switch to Network menu
+	 */
 	public static void toNetwork(){
 		Menu.mState=Menu.MENUSTATE.NETWORK;
 	}
 	
+	/**
+	 * set to game mode
+	 */
 	public static void toGameMode() {
 		GameSystem.turnOffBgm();
 		Game.gState=GameState.WAIT;
 		GameSystem.state=STATE.GAME;
 	}
-	//2 ways to play bgm
-	//first one plays the default bgm
+	/**
+	  * back to main menu
+	  * 2 ways to play background music
+	  * only the first player plays the background music
+	  */
 	public static void backToMenu() {
 		GameSystem.turnOffBgm();
 		System.gc();
@@ -314,6 +364,10 @@ public class Menu {
 		GameSystem.turnOnBgm("/sound/music/title.wav");
 		Menu.mState=MENUSTATE.MAIN;
 	}
+	
+	/**
+	 * switch to difficulty menu
+	 */
 	public static void toDifficulty(){
 		Menu.mState=MENUSTATE.DIFFICULTY;
 	}

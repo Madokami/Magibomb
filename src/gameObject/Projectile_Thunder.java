@@ -13,6 +13,10 @@ import game.Game;
 */
 public class Projectile_Thunder extends Projectile{
 
+	/**
+	 * defines thunder projectile
+	 * @param coordinates, game, game object
+	 */
 	public Projectile_Thunder(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
 		flyRight = new ImageSequence("/image/projectiles/sparkRight", 5);

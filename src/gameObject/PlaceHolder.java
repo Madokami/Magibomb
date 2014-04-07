@@ -12,6 +12,10 @@ import game.Game;
 */
 public class PlaceHolder extends Brick{
 
+	/**
+	 * sets place holder
+	 * @param coordinates, game object
+	 */
 	public PlaceHolder(int x, int y, Game game) {
 		super(x, y, game);
 		// TODO Auto-generated constructor stub

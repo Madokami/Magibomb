@@ -1,4 +1,11 @@
 package system;
+/**
+* Description:
+* Load sound audio
+* @author Team 6
+* @version 1.0
+* @since 2014-03-27
+*/
 
 import java.io.IOException;
 
@@ -29,6 +36,12 @@ public class AudioLoader {
 		}
 	}
 	*/
+	
+	/**
+	 * Load a audio clip
+	 * @param path source path of audio file
+	 * @return a Clip type variable which is the audio clip obtain from the audio source
+	 */
 	public Clip newClip(String path){
 		Clip c = null;
 		try {

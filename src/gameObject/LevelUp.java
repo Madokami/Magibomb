@@ -19,6 +19,7 @@ public class LevelUp {
 	/**
 	 * Checks for conditions of leveling up
 	 * <br>ex. the character does not level up if it dies
+	 * @param player object
 	 */
 	public void checkIfLevelUp(Player p){
 		if(p.animation==ANIMATION.DYING){

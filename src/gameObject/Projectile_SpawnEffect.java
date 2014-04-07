@@ -15,6 +15,10 @@ import game.Game;
 public class Projectile_SpawnEffect extends Projectile{
 	private int counter;
 	private int duration = 15;
+	/**
+	 * defines spawn effect projectile
+	 * @param coordinates, game, game object
+	 */
 	public Projectile_SpawnEffect(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
 		flyRight = new ImageSequence("/image/projectiles/effectRing", 6);
@@ -24,6 +28,9 @@ public class Projectile_SpawnEffect extends Projectile{
 		this.damage=0;
 		invincibleDuration=30;
 	}
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		counter++;

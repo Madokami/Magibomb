@@ -15,7 +15,10 @@ import game.Game;
 public abstract class Enemy_4 extends Enemy{
 	
 	protected ImageSequence attack,open;
-	
+	/**
+	 * defines new enemy
+	 * @panam coordinates, game object
+	 */	
 	public Enemy_4(int x, int y, Game game) {
 		super(x, y, game);
 		abi1Cd=300+rand.nextInt(30);

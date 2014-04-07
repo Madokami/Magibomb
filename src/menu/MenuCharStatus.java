@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* Character status menu
+* @author Team 6
+* @version 1.0
+* @since 2014-03-27
+*/
 import java.awt.Graphics;
 
 public class MenuCharStatus implements GeneralMenu{

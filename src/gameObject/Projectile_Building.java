@@ -15,6 +15,10 @@ import game.Game;
 public class Projectile_Building extends Projectile{
 	private int duration=500;
 	private int counter;
+	/**
+	 * defines building projectile
+	 * @param coordinates, game, game object
+	 */
 	public Projectile_Building(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
 		flyDown=new ImageSequence("/image/projectiles/building", 1);
@@ -47,6 +51,9 @@ public class Projectile_Building extends Projectile{
 		setVelY(vy);
 		pAnimate.startSequence(flyDown);
 	}
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		counter++;

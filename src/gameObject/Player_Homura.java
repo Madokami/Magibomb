@@ -21,6 +21,11 @@ import system.IntToImage;
 */
 public class Player_Homura extends Player{
 	Image damaged;
+
+	/**
+	* defines new character
+	* @param coordinates, game object
+	*/
 	public Player_Homura(int x, int y, Game game) {
 		
 		super(x, y, game);
@@ -59,10 +64,16 @@ public class Player_Homura extends Player{
 		ultyCd = 300;
 		ultyTimer=300;
 	}
-	
+	/**
+	 * renders graphics
+	 * @param graphic
+	 */
 	public void render(Graphics g){
 		super.render(g);
 	}
+	/**
+	* applies unique character attributes
+	*/
 	public void useUltimate(){
 		if(ultyTimer<ultyCd){
 			GameSystem.playError();

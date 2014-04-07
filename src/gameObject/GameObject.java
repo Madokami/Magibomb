@@ -92,6 +92,7 @@ public abstract class GameObject{
 		 * <b>Inputs:</b>
 		 * <br><b>x</b>,<b>y</b> - coordinates
 		 * <br><b>game</b> - Game object
+		 * @panam coordinates, game object
 		 */
 		public GameObject(int x, int y,Game game){
 			setSerialNumber();
@@ -161,6 +162,7 @@ public abstract class GameObject{
 		 * <b>Inputs:</b>
 		 * <br><b>width</b> - width of rectangle
 		 * <br><b>height</b> - height of rectangle
+		 * @panam width, height
 		 */
 		public final Rectangle getBounds(int width, int height){
 			double xCord=this.x;
@@ -170,11 +172,19 @@ public abstract class GameObject{
 		public void playDeathSound(){
 			
 		}
+		/**
+		 * defines invincibility
+		 * @panam duration
+		 */
 		public void setInvincible(int time){
 			invincibleTime=time;
 			invincibleTimer=0;
 			invincible=true;
 		}
+		/**
+		 * defines received damage
+		 * @panam damage
+		 */
 		public void takeDamage(int damage){
 			this.hp-=damage;
 			this.damageRenderer.renderDamage(damage);
@@ -187,6 +197,7 @@ public abstract class GameObject{
 		 * <br><b>value</b> - amount of damage
 		 * <br><b>invincibleDuration</b> - time in which the character does not receive damage
 		 * <br><b>target</b> - target object
+		 * @panam value, duration, target object
 		 */
 		public void applyDamage(int value, int invincibleDuration, GameObject target){
 			if(target.invincible) return;
@@ -195,6 +206,15 @@ public abstract class GameObject{
 				target.takeDamage(value);
 			}
 		}
+		/**
+		 * Applies damage to character
+		 * <br><br>
+		 * <b>Inputs:</b>
+		 * <br><b>value</b> - amount of damage
+		 * <br><b>invincibleDuration</b> - time in which the character does not receive damage
+		 * <br><b>target</b> - target object
+		 * @panam value, duration, target object
+		 */
 		public void applyDamage(int value,int randomValue, int invincibleDuration, GameObject target){
 			if(target.invincible) return;
 			else{
@@ -222,6 +242,9 @@ public abstract class GameObject{
 			}
 			controller.addEntity(new Bomb(this.xGridNearest,this.yGridNearest,game,bombStrength,bombLength,duration));
 		}
+		/**
+		 * defines kick bomb
+		 */
 		public void kickBomb(){
 			int kickedNum = Physics.behindBomb(this, game.getBombList());
 			if(kickedNum!=-1){
@@ -255,6 +278,10 @@ public abstract class GameObject{
 			GameSystem.sendCommand="!"+s+","+Integer.toString(this.serialNumber)+";";
 		}
 		*/
+		/**
+		 * send command
+		 * @panam string s
+		 */
 		public void sendCommand(String s){
 			if(!GameSystem.LAN_TWO_PLAYER_MODE){
 				return;
@@ -273,7 +300,10 @@ public abstract class GameObject{
 				GameSystem.sendCommandSelf="!"+s+","+Integer.toString(this.serialNumber)+";";
 			}
 		}
-		
+		/**
+		 * send command to other
+		 * @panam string s
+		 */
 		public void sendCommandToOther(String s){
 			if(!GameSystem.LAN_TWO_PLAYER_MODE){
 				return;
