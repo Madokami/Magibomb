@@ -23,7 +23,7 @@ public class PowerUps_HpUp extends PowerUps{
 
 	@Override
 	/**
-	 * applies effect
+	 * increases hp by 20
 	 * @param player object
 	 */
 	public void applyEffect(Player player) {
