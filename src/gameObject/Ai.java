@@ -42,6 +42,7 @@ public class Ai
 	 * <br><b>map</b> - two-dimensional array that contains coordinates
 	 * <br><b>number</b> - indicates size of for loop when manipulating points
 	 * @param map coordinates, loop size
+	 * @return random valid points
 	 */
 	public LinkedList<Point> obtainRandomValidPoints(boolean[][] map, int number){
 		LinkedList<Point> ret= new LinkedList<Point>();
@@ -100,6 +101,7 @@ public class Ai
 	 * <br><b>pX</b>,<b>pY</b> - coordinates of character
 	 * <br><b>aiX</b><b>aiY</b> - coordinates of enemy
 	 * @param player and enemy coordinates
+	 * @return check if on player
 	 */
 	public boolean onTopOfPlayer(int pX,int pY,int aiX,int aiY){
 		if(pX==aiX&&pY==aiY){
@@ -115,6 +117,7 @@ public class Ai
 	 * <br><b>pX</b>,<b>pY</b> - coordinates of character
 	 * <br><b>aiX</b><b>aiY</b> - coordinates of enemy
 	 * @param player and enemy coordinates
+	 * @return check is straight line
 	 */
 	public String isValidStraightLine(boolean[][] m,int pX,int pY,int aiX,int aiY){
 		if(pX==aiX&&pY==aiY) return "stop";
@@ -161,6 +164,7 @@ public class Ai
 	 * <br><b>pX</b>,<b>pY</b> - coordinates of character
 	 * <br><b>aiX</b><b>aiY</b> - coordinates of enemy
 	 * @param player and enemy coordinates
+	 * @return steps
 	 */
 	public String makeStep(boolean[][] m,int playerx,int playery,int aix,int aiy)
 	{
@@ -189,6 +193,7 @@ public class Ai
 	/**
 	 * Searches coordinates of map
 	 * @param player and enemy coordinates
+	 * @return searching of points
 	 */
 	private void search(int a, int n)
 	{
