@@ -14,6 +14,9 @@ public class Event {
 	private int value;
 	private boolean on;
 	
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		durationTimer++;
 		if(durationTimer>duration){
