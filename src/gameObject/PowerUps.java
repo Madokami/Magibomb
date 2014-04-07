@@ -15,6 +15,7 @@ public abstract class PowerUps extends GameObject{
 	/**
 	 * defines power up
 	 * @param coordinates, game object
+	 * @return power up
 	 */
 	public PowerUps(int x, int y, Game game) {
 		super(x, y, game);
