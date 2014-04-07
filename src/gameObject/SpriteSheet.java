@@ -18,6 +18,7 @@ public class SpriteSheet {
 	/**
 	 * Draws image
 	 * @param image
+	 * @return buffered image
 	 */
 	public SpriteSheet(BufferedImage img){
 		this.image = img;
@@ -26,6 +27,7 @@ public class SpriteSheet {
 	/**
 	 * Grabs image
 	 * @param coordinates, dimensions
+	 * @return buffered image
 	 */
 	public BufferedImage grabImage(int x,int y, int width, int height){
 		BufferedImage img = image.getSubimage((x*width-width), (y*height-height), width, height);
