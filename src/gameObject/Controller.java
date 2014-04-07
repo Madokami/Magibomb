@@ -75,6 +75,7 @@ public class Controller{
 	/**
 	 * Renders each graphic by running through loops based on list sizes
 	 * @panam graphic object
+	 * @return graphics render
 	 */
 	public void render(Graphics g){
 		
@@ -140,6 +141,7 @@ public class Controller{
 	/**
 	 * adds bomb entity
 	 * @panam bomb
+	 * @return adding of bomb
 	 */
 	public void addEntity(Bomb o){
 		bombList.add(o);
@@ -150,6 +152,7 @@ public class Controller{
 	/**
 	 * remove bomb entity
 	 * @panam bomb
+	 * @return removal of bomb
 	 */
 	public void removeEntity(Bomb o){
 		bombList.remove(o);
@@ -229,6 +232,7 @@ public class Controller{
 	 * <br><b>size</b> - size of explosion
 	 * <br><b>strength</b> - magnitude of damage inflicted to enemy and character from explosion
 	 * @panam coordinates, size, strength
+	 * @return explosion
 	 */
 	public void createExplosion(int x, int y, int size,int strength){
 		GameSystem.musicPlayer.playExplosion();

@@ -33,6 +33,7 @@ public abstract class Enemy extends MovableObject{
 	 * <br><b>x</b>,<b>y</b> - coordinates of enemy
 	 * <br><b>game</b> - Game object
 	 * @panam coordinates, game object
+	 * @return enemy
 	 */
 	public Enemy(int x,int y, Game game){
 		super(x,y,game);
@@ -157,6 +158,7 @@ public abstract class Enemy extends MovableObject{
 	/**
 	 * changes experience of player
 	 * @panam player object
+	 * @return points of player
 	 */
 	public void providePoints(Player p){
 		p.expCurrent+=exp;
@@ -258,6 +260,7 @@ public abstract class Enemy extends MovableObject{
 	 * <br><b>speed</b> - the rate at which the enemy travels over time
 	 * <br><b>duration</b> - the time that the enemy charges at the character
 	 * @panam speed, duration
+	 * @return charge movmenet
 	 */
 	public boolean chargeAtPlayer(int speed,int duration){
 		String dir=ai.isValidStraightLine(game.getWallArray(), Game.getPlayer().xGridNearest, Game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
@@ -286,6 +289,7 @@ public abstract class Enemy extends MovableObject{
 	/**
 	 * Enemy moves in one of the four directions: up, down, left, right
 	 * @panam direction
+	 * @return movement
 	 */
 	public void moveToDirection(String dir){
 		
@@ -332,6 +336,7 @@ public abstract class Enemy extends MovableObject{
 	/**
 	 * sets value
 	 * @panam value
+	 * @return set hp
 	 */
 	public void setSpeed(double value){
 		this.spd=(int) (value*Game.DIFFICULTY);
@@ -339,6 +344,7 @@ public abstract class Enemy extends MovableObject{
 	/**
 	 * sets collision damage
 	 * @panam damage
+	 * @return set damage
 	 */
 	public void setCollisionDamage(int value){
 		this.collisionDamage=(int) (value*Game.DIFFICULTY);
@@ -346,6 +352,7 @@ public abstract class Enemy extends MovableObject{
 	/**
 	 * sets experience
 	 * @panam expierence
+	 * @return set experience
 	 */
 	public void setExp(int value){
 		this.exp=value;
