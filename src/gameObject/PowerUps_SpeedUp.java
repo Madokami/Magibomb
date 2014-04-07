@@ -14,6 +14,7 @@ public class PowerUps_SpeedUp extends PowerUps{
 	/**
 	 * defines power ups
 	 * @param coordinates, game object
+	 * @return power up speed up
 	 */
 	public PowerUps_SpeedUp(int x, int y, Game game) {
 		super(x, y, game);
@@ -25,6 +26,7 @@ public class PowerUps_SpeedUp extends PowerUps{
 	/**
 	 * increases speed by 1
 	 * @param player object
+	 * @return applies effect
 	 */
 	public void applyEffect(Player player) {
 		player.increaseSpeed(1);
