@@ -20,6 +20,10 @@ public class ImageSequence {
 	private BufferedImage[] images;
 	private int x,y,width,height,frames;
 	private double animationSpeed;
+	/**
+	 * defines image sequence
+	 * @panam path, frames
+	 */
 	public ImageSequence(String path,int frames){
 		this.frames=frames;
 		images=new BufferedImage[frames];
@@ -90,6 +94,10 @@ public class ImageSequence {
 	public void setAnimationSpeed(double animationSpeed) {
 		this.animationSpeed = animationSpeed;
 	}
+	/**
+	 * scales the dimensions
+	 * @panam ratio
+	 */
 	public void scale(double ratio){
 		double tempX = (width-width*ratio)/2;
 		double tempY = (height-height*ratio)/2;
