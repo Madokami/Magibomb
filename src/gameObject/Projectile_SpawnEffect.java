@@ -18,6 +18,7 @@ public class Projectile_SpawnEffect extends Projectile{
 	/**
 	 * defines spawn effect projectile
 	 * @param coordinates, game, game object
+	 * @return projectile
 	 */
 	public Projectile_SpawnEffect(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
