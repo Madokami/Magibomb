@@ -23,6 +23,8 @@ public class Player_Sayaka extends Player{
 		super(x, y, game);
 		playerBackground = MenuChar.saBg;
 		
+		this.skillUlt=loader.loadImage("/image/skills/saSkillUlt.png");
+		this.skillUltName="Dash";
 		pVoice=new SaVoice();
 		status = SpriteData.saStatus;
 		setStatusImages();

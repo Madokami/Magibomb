@@ -97,6 +97,7 @@ public abstract class Player extends MovableObject{
 		skill1Name=skill2Name=skill3Name=skillUltName=tempName;
 		skill1Name = "place bomb";
 		skill2Name = "kick bomb";
+		skill3Name = "restore mp";
 		skillUltCost = 50;
 		skill1Cost = 20;
 		skill2Cost = 30;
@@ -123,6 +124,7 @@ public abstract class Player extends MovableObject{
 		skill1=skill2=skill3=skillUlt=skillPlaceholder;
 		skill1=loader.loadImage("/image/skills/placeBomb.png");
 		skill2=loader.loadImage("/image/skills/kickBomb.png");
+		skill3=loader.loadImage("/image/skills/restoreMana.png");
 		
 		
 		expBar=loader.loadImage("/image/expBar.png");

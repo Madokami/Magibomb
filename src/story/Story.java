@@ -24,18 +24,18 @@ import menu.Menu;
 import menu.Menu.MENUSTATE;
 
 public class Story {
-	BufferedImageLoader loader;
-	BufferedImage spriteLeft,spriteMiddle,spriteRight;
-	BufferedImage background,mdTextBox,textBox,naTextBox,hoTextBox,maTextBox,saTextBox,kyTextBox,qbTextBox;
+	static BufferedImageLoader loader;
+	private static BufferedImage spriteLeft,spriteMiddle,spriteRight;
+	private static BufferedImage background,mdTextBox,textBox,naTextBox,hoTextBox,maTextBox,saTextBox,kyTextBox,qbTextBox;
 	public static Rectangle helpButton = new Rectangle(GameSystem.WIDTH/2 + 120, 250,100,50);
 	public static Rectangle quitButton = new Rectangle(GameSystem.WIDTH/2 + 120, 350,100,50);
-	BufferedReader br;
+	static BufferedReader br;
 	int w = 320;
 	int h = 400;
-	String path;
-	String[] lines = new String[4];
-	int lineNum;
-	private boolean speaking;
+	static String path;
+	static String[] lines = new String[4];
+	static int lineNum;
+	private static boolean speaking;
 	
 	private int shiftX,shiftY;
 	
@@ -57,6 +57,8 @@ public class Story {
 		speaking = false;
 			//path=getClass().getResource("/script/script.txt").getFile();
 			//path = URLDecoder.decode(path);
+		
+		/*
 			path = "system/script/script.txt";
 			try {
 				br = new BufferedReader(new FileReader(path));
@@ -67,6 +69,7 @@ public class Story {
 				e.printStackTrace();
 			}
 		readNextLine();
+		*/
 	}
 	public void tick() {
 			shiftX=125;
@@ -96,21 +99,6 @@ public class Story {
 			for(int i=0;i<lineNum;i++){
 				g.drawString(lines[i],120+shiftX, 408+i*20+shiftY);
 			}
-			//the above forloop is basically a simplification of the following
-			/*
-			if(lineNum>0){
-				g.drawString(line1, (int)textBox.getX()+10, (int)textBox.getY()+20);
-			}
-			if(lineNum>1){
-				g.drawString(line2,(int)textBox.getX()+10, (int)textBox.getY()+57);
-			}
-			if(lineNum>2){
-				g.drawString(line3,(int)textBox.getX()+10, (int)textBox.getY()+94);
-			}
-			if(lineNum>3){
-				g.drawString(line4,(int)textBox.getX()+10, (int)textBox.getY()+131);
-			}
-			*/
 		}
 		catch(NullPointerException e){
 			try {
@@ -135,7 +123,7 @@ public class Story {
 		
 	}
 	
-	public void readNextLine(){
+	private static void readNextLine(){
 		if(lineNum>3){
 			lineNum=0;
 		}
@@ -143,6 +131,7 @@ public class Story {
 		lines[lineNum]=br.readLine();
 		}catch(Exception abc){
 			System.out.println("can't read from line");
+			Menu.toGameMode();
 		}
 		while(isSpecialString(lines[lineNum])){
 			lineNum=0;
@@ -155,15 +144,9 @@ public class Story {
 		}
 		lineNum++;
 	}
-	private boolean isSpecialString(String line){
+	private static boolean isSpecialString(String line){
 		if(isEndOfSection(line)){
-			try {
-				br = new BufferedReader(new FileReader(path));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			//changeToGameState();
+			changeToGameState();
 			//also should load some file or else get nullpointer
 			return true;
 		}
@@ -187,12 +170,12 @@ public class Story {
 		}
 		return false;
 	}
-	private void changeToGameState() {
+	private static void changeToGameState() {
 		GameSystem.turnOffBgm();
-		GameSystem.state=GameSystem.STATE.GAME;
+		Menu.toGameMode();
 	}
 
-	private boolean isEndOfSection(String s) {
+	private static boolean isEndOfSection(String s) {
 		if(s.equals("END")){
 			return true;
 		}
@@ -200,7 +183,7 @@ public class Story {
 	}
 
 
-	private boolean isCharacterName(String s) {
+	private static boolean isCharacterName(String s) {
 		if(s.equals("MADOKA:")){
 			textBox=mdTextBox;
 			speaking = true;
@@ -238,7 +221,7 @@ public class Story {
 		}
 		return false;
 	}
-	public boolean isSetSprite(String line){
+	private static boolean isSetSprite(String line){
 		if(line.equals("SP_R:NULL")){
 			spriteRight=null;
 			return true;
@@ -266,7 +249,7 @@ public class Story {
 		return false;
 	}
 	
-	public boolean isPlayAudio(String line){
+	private static boolean isPlayAudio(String line){
 		if(line.equals("AUDIO_BGM:NULL")){
 			GameSystem.turnOffBgm();
 		}
@@ -284,9 +267,9 @@ public class Story {
 		}
 		return false;
 	}
-	public boolean isChangeBackground(String line){
+	public static boolean isChangeBackground(String line){
 		if(line.startsWith("BG:")){
-			this.background=loader.loadImage(line.substring(3));
+			background=loader.loadImage(line.substring(3));
 			return true;
 		}
 		return false;
@@ -295,5 +278,21 @@ public class Story {
 		GameSystem.state=STATE.MENU;
 		Menu.mState=MENUSTATE.MAIN;
 		
+	}
+	
+	public static void loadFile(int level){
+		path = "system/script/script";
+		path = path+Integer.toString(level);
+		path = path+".txt";
+		try {
+			br = new BufferedReader(new FileReader(path));
+			//line1 = br.readLine();
+			lineNum=0;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Menu.toGameMode();
+		}
+		readNextLine();
 	}
 }

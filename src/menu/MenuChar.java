@@ -434,6 +434,8 @@ public class MenuChar implements GeneralMenu{
 								else if(cSelected == CHARACTER.KYOUKO){
 									Game.cChosen=Game.CHARACTER.KYOUKO;
 								}
+								GameSystem.playConfirm();
+								playSelectionSound();
 								Menu.toChooseChar();
 							}
 							else{
@@ -452,8 +454,11 @@ public class MenuChar implements GeneralMenu{
 								else if(cSelected == CHARACTER.KYOUKO){
 									Game.cChosenP2=Game.CHARACTER.KYOUKO;
 								}
-								Menu.toGameMode();
-								GameSystem.setTwoPlayerKeyLayout();
+								//Menu.toGameMode();
+								handler.setNewValues();
+								GameSystem.playConfirm();
+								playSelectionSound();
+								Menu.toStoryMode();
 							}
 						}
 						else{
@@ -478,13 +483,12 @@ public class MenuChar implements GeneralMenu{
 								setSecondPlayer();
 								
 							}
-							Menu.toGameMode();
+							//Menu.toGameMode();
+							handler.setNewValues();
+							GameSystem.playConfirm();
+							playSelectionSound();
+							Menu.toStoryMode();
 						}
-						
-						handler.setNewValues();
-						GameSystem.playConfirm();
-						playSelectionSound();
-						
 					}
 				}
 				else if(key==GameSystem.CANCEL){

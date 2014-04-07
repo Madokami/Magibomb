@@ -6,13 +6,10 @@ import game.Game.GameState;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import system.BufferedImageLoader;
+import story.Story;
 import system.Client;
 import system.GameSystem;
 import system.GameSystem.STATE;
@@ -90,17 +87,10 @@ public class Menu {
 		mNetwork = new MenuNetwork();
 		mDifficulty = new MenuDifficulty();
 		mTwoPlayer = new MenuTwoPlayer();
-		
-		//sample usage
-		//NOTE: use loader.loadGif(path) to load .gif, or else doesn't work.
-		start = GameSystem.loader.loadImage("/homu.png");
-		//menu = loader.loadImage("/menu.png");
-		menu=GameSystem.loader.loadImage("/image/menu/test2.png");
-		help = GameSystem.loader.loadImage("/help.png");
+
+		menu=GameSystem.loader.loadImage("/image/menu/test.png");
 		pointer=GameSystem.loader.loadImage("/image/menu/griefSeed2.png");
 		logo=GameSystem.loader.loadImage("/image/menu/magibomb.png");
-		//example .gif loading
-		gif = GameSystem.loader.loadGif("/homura.gif");
 		startImage=GameSystem.loader.loadImage("/image/menu/start2.png");
 		startImageOn=GameSystem.loader.loadImage("/image/menu/start.png");
 		quitImage=GameSystem.loader.loadImage("/image/menu/quit2.png");
@@ -290,6 +280,7 @@ public class Menu {
 	}
 	public static void toStoryMode() {
 		GameSystem.turnOffBgm();
+		Story.loadFile(Game.curLevel);
 		GameSystem.state=STATE.STORY;
 	}
 	

@@ -25,6 +25,7 @@ public class Player_Madoka extends Player{
 		pVoice=new MdVoice();
 		name="Madoka";
 		skillUlt=loader.loadImage("/image/skills/mdSkill1.png");
+		skillUltName="Charged Arrow";
 		
 		
 		//standGif=loader.loadGif("/image/spriteSheet/mdStand3.gif");

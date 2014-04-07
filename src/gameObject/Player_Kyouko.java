@@ -20,6 +20,8 @@ public class Player_Kyouko extends Player{
 	public Player_Kyouko(int x, int y, Game game) {
 		super(x, y, game);
 		playerBackground = MenuChar.kyBg;
+		this.skillUlt=loader.loadImage("/image/skills/kySkillUlt.png");
+		this.skillUltName="Flame Guard";
 		
 		name="Kyouko";
 		

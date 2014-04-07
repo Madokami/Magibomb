@@ -48,7 +48,7 @@ public abstract class Enemy extends MovableObject{
 		counter = 0;
 		rand = new Random();
 		ai=new Ai();
-		actionOffSet = rand.nextInt(20);
+		actionOffSet = rand.nextInt(10);
 		
 		controller.addEntity(new Projectile_SpawnEffect(xGridNearest,yGridNearest,game,this));
 	}
@@ -81,16 +81,23 @@ public abstract class Enemy extends MovableObject{
 		}
 		counter++;
 		if(this.canMove){
-			if(counter>(20+actionOffSet)){
+			if(counter>(10+actionOffSet)){
 				counter=0;
-				actionOffSet=rand.nextInt(20);
+				actionOffSet=rand.nextInt(10);
 				if(rand.nextInt(10)<8){
-					if(GameSystem.isPlayerOne){
-						//moveRandomly();
-						try{
-						chasePlayer();
-						}catch(Exception e){
-							moveRandomly();
+					if(GameSystem.TWO_PLAYER_MODE){
+						int p1Distance = Math.abs(xGridNearest-Game.getPlayer().xGridNearest)+Math.abs(yGridNearest-Game.getPlayer().yGridNearest);
+						int p2Distance = Math.abs(xGridNearest-Game.getPlayer2().xGridNearest)+Math.abs(yGridNearest-Game.getPlayer2().yGridNearest);
+						if(p1Distance<p2Distance){
+							chasePlayer();
+						}
+						else{
+							chasePlayer2();
+						}
+					}
+					else{
+						if(GameSystem.isPlayerOne){
+							chasePlayer();
 						}
 					}
 					
@@ -179,6 +186,37 @@ public abstract class Enemy extends MovableObject{
 	public void chasePlayer(){
 		String s;
 		s=ai.makeStep(game.getWallArray(), Game.getPlayer().xGridNearest, Game.getPlayer().yGridNearest, lastX, lastY);
+		if(s.equals("up")) {
+			if(!Physics.blockedByEnemy(this, game.getEnemyList(), lastX, lastY-1)){
+				this.sendCommand("moveUp");
+				moveUp();
+			}
+		}
+		else if(s.equals("down")) {
+			if(!Physics.blockedByEnemy(this, game.getEnemyList(), lastX, lastY+1)){
+				sendCommand("moveDown");
+				moveDown();
+			}
+		}
+		else if(s.equals("left")) {
+			if(!Physics.blockedByEnemy(this, game.getEnemyList(), lastX-1, lastY)) {
+				sendCommand("moveLeft");
+				moveLeft();
+			}
+		}
+		else if(s.equals("right")) {
+			if(!Physics.blockedByEnemy(this, game.getEnemyList(), lastX+1, lastY-1)) {
+				sendCommand("moveRight");
+				moveRight();
+			}
+		}
+		else if(s.equals("stop")) {
+			moveRandomly();
+		}
+	}
+	public void chasePlayer2(){
+		String s;
+		s=ai.makeStep(game.getWallArray(), Game.getPlayer2().xGridNearest, Game.getPlayer2().yGridNearest, lastX, lastY);
 		if(s.equals("up")) {
 			if(!Physics.blockedByEnemy(this, game.getEnemyList(), lastX, lastY-1)){
 				this.sendCommand("moveUp");

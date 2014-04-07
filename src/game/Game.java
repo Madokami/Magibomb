@@ -174,6 +174,7 @@ public class Game {
 			if(!playerIsAlive){
 				setWait();
 				goToDeath();
+				GameSystem.setDefaultKeyLayout();
 				return;
 			}
 			if(victory){
@@ -181,6 +182,7 @@ public class Game {
 				if(curLevel>lastStage){
 					curLevel=1;
 				}
+				GameSystem.setDefaultKeyLayout();
 				player.updatePlayerData();
 				gameData.updateGameData(this);
 				goToScore();
@@ -218,6 +220,9 @@ public class Game {
 			}
 			if(timeStop){
 				player.tick();
+				if(GameSystem.TWO_PLAYER_MODE){
+					player2.tick();
+				}
 				for(int i=0;i<this.bombList.size();i++){
 					bombList.get(i).tick();
 				}
@@ -595,6 +600,9 @@ public class Game {
 					player2.useUltimate();
 					
 				}
+				else if(key==GameSystem.UTILITY2){
+					player2.useAbility3();
+				}
 				else if(key==GameSystem.CONFIRM2){
 					player2.useAbility1();										
 				}
@@ -711,6 +719,9 @@ public class Game {
 		else{
 			if(player.hp>=0){
 				g.fillRect(x, y, (int) (player.hp/player.maxHp*width), height);
+				g.setFont(new Font("serif",Font.BOLD,18));
+				g.setColor(Color.RED);
+				g.drawString(Integer.toString((int)player.hp), x+width/2, y+height);
 			}
 			g.setColor(Color.WHITE);
 			g.drawRect(x, y, width,height);
@@ -738,6 +749,10 @@ public class Game {
 		}
 		else{
 			g.fillRect(x, y, (int) (player.mp/player.maxMp*width), height);
+			g.setFont(new Font("serif",Font.BOLD,12));
+			g.setColor(Color.RED);
+			g.drawString(Integer.toString((int)player.mp), x+width/2, y+height);
+			
 			g.setColor(Color.WHITE);
 			g.drawRect(x, y,width,height);
 		}

@@ -26,6 +26,7 @@ public class Player_Mami extends Player{
 		
 		name="  Mami";
 		skillUlt = loader.loadImage("/image/skills/maSkillUlt.png");
+		skillUltName="Tiro Finale";
 		
 		
 		run=new ImageSequence("/image/spriteSheet/actors/player/mami/run",8);
