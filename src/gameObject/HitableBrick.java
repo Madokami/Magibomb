@@ -14,6 +14,7 @@ public class HitableBrick extends Brick{
 	/**
 	 * defines brick
 	 * @panam coordinates, game object
+	 * @return brick
 	 */
 	public HitableBrick(int x, int y, Game game) {
 		super(x, y, game);
