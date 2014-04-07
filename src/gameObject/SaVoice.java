@@ -15,6 +15,9 @@ import system.GameSystem;
 */
 public class SaVoice implements PlayerVoice{
 	private Random rand;
+	/**
+	 * defines SaVoice
+	 */
 	public SaVoice(){
 		rand=new Random();
 	}
