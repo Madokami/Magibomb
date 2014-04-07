@@ -93,6 +93,7 @@ public abstract class GameObject{
 		 * <br><b>x</b>,<b>y</b> - coordinates
 		 * <br><b>game</b> - Game object
 		 * @panam coordinates, game object
+		 * @return game object
 		 */
 		public GameObject(int x, int y,Game game){
 			setSerialNumber();
@@ -198,6 +199,7 @@ public abstract class GameObject{
 		 * <br><b>invincibleDuration</b> - time in which the character does not receive damage
 		 * <br><b>target</b> - target object
 		 * @panam value, duration, target object
+		 * @return application of damage
 		 */
 		public void applyDamage(int value, int invincibleDuration, GameObject target){
 			if(target.invincible) return;
@@ -214,6 +216,7 @@ public abstract class GameObject{
 		 * <br><b>invincibleDuration</b> - time in which the character does not receive damage
 		 * <br><b>target</b> - target object
 		 * @panam value, duration, target object
+		 * @return application of damage
 		 */
 		public void applyDamage(int value,int randomValue, int invincibleDuration, GameObject target){
 			if(target.invincible) return;
@@ -281,6 +284,7 @@ public abstract class GameObject{
 		/**
 		 * send command
 		 * @panam string s
+		 * @return sending of command
 		 */
 		public void sendCommand(String s){
 			if(!GameSystem.LAN_TWO_PLAYER_MODE){
