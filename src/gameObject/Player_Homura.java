@@ -25,6 +25,7 @@ public class Player_Homura extends Player{
 	/**
 	* defines new character
 	* @param coordinates, game object
+	* @return player
 	*/
 	public Player_Homura(int x, int y, Game game) {
 		
@@ -67,6 +68,7 @@ public class Player_Homura extends Player{
 	/**
 	 * renders graphics
 	 * @param graphic
+	 * @return graphic render
 	 */
 	public void render(Graphics g){
 		super.render(g);
