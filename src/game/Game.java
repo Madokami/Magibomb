@@ -258,6 +258,7 @@ public class Game {
 	/**
 	 * renders stage title
 	 * @panam duration
+	 * @return rendering of stage title
 	 */
 	public void renderStageTitle(int duration){
 		levelLoader.renderStart(duration);
@@ -290,6 +291,7 @@ public class Game {
 	 * Renders graphics
 	 * <br>Incorporates background, maps, obstacles, characters, enemies, etc.
 	 * @panam graphic object
+	 * @return render graphic
 	 */
 	public void render(Graphics g){
 	
@@ -346,6 +348,7 @@ public class Game {
 	/**
 	 * renders two player game
 	 * @panam graphic object
+	 * @return rendering of two player soul gem
 	 */
 	private void renderTwoPlayerSoulGem(Graphics g) {
 		int soulX = GameSystem.GAME_WIDTH/2-440;
@@ -370,6 +373,7 @@ public class Game {
 	/**
 	 * renders two player level
 	 * @panam graphic object
+	 * @return rendering of two player level
 	 */
 	private void renderTwoPlayerLevel(Graphics g) {
 		int shift = 454;
@@ -385,6 +389,7 @@ public class Game {
 	/**
 	 * renders two player skills
 	 * @panam graphic object
+	 * @return rendering of two player skills
 	 */
 	private void renderTwoPlayerSkills(Graphics g) {
 		int shift = 454;
@@ -514,6 +519,7 @@ public class Game {
 	/**
 	 * renders two player experience
 	 * @panam graphic object
+	 * @return rendering of two player experience
 	 */
 	private void renderTwoPlayerExp(Graphics g) {
 		int shift = 454;
@@ -533,6 +539,7 @@ public class Game {
 	/**
 	 * renders two player status
 	 * @panam graphic object
+	 * @return rendering of two player status
 	 */
 	private void renderTwoPlayerStatus(Graphics g) {
 		int shift = 454;
@@ -581,6 +588,7 @@ public class Game {
 	/**
 	 * Interface between key that is pressedby user and the function that it corresponds to
 	 * @panam key integer
+	 * @return pressed key
 	 */
 	public void keyPressed(int key) {
 		if(key==KeyEvent.VK_P){
@@ -671,6 +679,7 @@ public class Game {
 	/**
 	 * defines key that is released and its effects to players movement
 	 * @panam key integer
+	 * @return released key
 	 */
 	public void keyReleased(int key) {
 		if(key==GameSystem.RIGHT&&player.orientation==ORIENTATION.RIGHT){			
@@ -752,6 +761,7 @@ public class Game {
 	/**
 	 * renders the health of the player
 	 * @panam graphic object
+	 * @return rendering of player health
 	 */
 	public void renderPlayerHealth(Graphics g){
 		int x = 241;
@@ -789,6 +799,7 @@ public class Game {
 	/**
 	 * renders player mana
 	 * @panam graphic object
+	 * @return rendering of player mana
 	 */
 	public void renderPlayerMana(Graphics g){
 		int x = 241;
@@ -855,6 +866,7 @@ public class Game {
 	/**
 	 * renders stage objects
 	 * @panam graphic object
+	 * @return rendering of stage objects
 	 */
 	public void renderStageObjects(Graphics g){
 		if(curLevel==1){
