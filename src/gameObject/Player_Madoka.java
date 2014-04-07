@@ -21,6 +21,7 @@ public class Player_Madoka extends Player{
 	/**
 	* defines new character
 	* @param coordinates, game object
+	* @return player
 	*/
 	public Player_Madoka(int x, int y, Game game) {
 		super(x, y, game);
@@ -29,7 +30,6 @@ public class Player_Madoka extends Player{
 		pVoice=new MdVoice();
 		name="Madoka";
 		skillUlt=loader.loadImage("/image/skills/mdSkill1.png");
-		skillUltName="Charged Arrow";
 		
 		
 		//standGif=loader.loadGif("/image/spriteSheet/mdStand3.gif");
