@@ -18,6 +18,7 @@ public class Projectile_ThornBall extends Projectile{
 	/**
 	 * defines thornball projectile
 	 * @param coordinates, game, game object
+	 * @return projectile
 	 */
 	public Projectile_ThornBall(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
