@@ -18,6 +18,7 @@ public class Enemy_1_2 extends Enemy{
 	/**
 	 * defines new enemy
 	 * @panam coordinates, game object
+	 * @return enemy
 	 */
 	public Enemy_1_2(int x, int y, Game game) {
 		super(x, y, game);
