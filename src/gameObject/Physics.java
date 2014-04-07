@@ -19,6 +19,7 @@ public class Physics {
 	/**
 	 * defines collision
 	 * @panam player object, powerups list
+	 * @return powerups list
 	 */
 	public static int collision(Player p,LinkedList<PowerUps> powerUpList){
 		for(int i=0;i<powerUpList.size();i++){
@@ -31,6 +32,7 @@ public class Physics {
 	/**
 	 * defines when player moves onto location of bomb
 	 * @panam game object, bomb lists
+	 * @return bombs list
 	 */
 	public static int onTopOfBomb(GameObject gameObject,LinkedList<Bomb> bList){
 		for(int i=0;i<bList.size();i++){
@@ -43,6 +45,7 @@ public class Physics {
 	/**
 	 * defines when player is behind bomb
 	 * @panam game object, bomb list
+	 * @return behind bomb
 	 */
 	public static int behindBomb(GameObject gameObject,LinkedList<Bomb> bList){
 		if(gameObject.orientation==ORIENTATION.UP){
@@ -78,6 +81,7 @@ public class Physics {
 	/**
 	 * defines when collision occurs
 	 * @panam game object, enemy list
+	 * @return enemy list
 	 */
 	public static LinkedList<Enemy> collision(GameObject w,LinkedList<Enemy> ei){
 		LinkedList<Enemy> ret= new LinkedList<Enemy>();
@@ -91,6 +95,7 @@ public class Physics {
 	/**
 	 * defines when character hits player
 	 * @panam game object, player list
+	 * @return player list
 	 */
 	public static LinkedList<Player> hitPlayer(GameObject w,LinkedList<Player> players){
 		LinkedList<Player> ret= new LinkedList<Player>();
@@ -106,6 +111,7 @@ public class Physics {
 	/**
 	 * defines when player is in same coordinates as enemy
 	 * @panam enemy, enemy list
+	 * @return check if overlap of enemies
 	 */
 	public static boolean overlapWithOtherEnemies(Enemy w,LinkedList<Enemy> ei){
 		for(int i=0;i<ei.size();i++){
@@ -136,6 +142,7 @@ public class Physics {
 	/**
 	 * defines when player hits bomb
 	 * @panam game object, bomb list
+	 * @return hit bomb
 	 */
 	public static int hitBomb(GameObject w,LinkedList<Bomb> list){
 		for(int i=0;i<list.size();i++){
@@ -148,6 +155,7 @@ public class Physics {
 	/**
 	 * defines when there is a collision with the wall
 	 * @panam game object, brick list
+	 * @return hit wall
 	 */
 	public static int hitWall(GameObject f,LinkedList<HitableBrick> linkedList){
 		for(int i=0;i<linkedList.size();i++){
@@ -159,6 +167,7 @@ public class Physics {
 	/**
 	 * defines place holder
 	 * @panam game object, place holder list
+	 * @return hit place holder
 	 */
 	public static int hitPlaceHolder(GameObject f,LinkedList<PlaceHolder> linkedList){
 		for(int i=0;i<linkedList.size();i++){
@@ -170,6 +179,7 @@ public class Physics {
 	/**
 	 * defines collision
 	 * @panam game object coordinates
+	 * @return collision
 	 */
 	public static boolean collide(GameObject x,GameObject y){
 		if(x.getBounds(x.collisionWidth-1, x.collisionHeight-1).intersects(y.getBounds(y.collisionWidth-1,y.collisionHeight-1))){
@@ -180,6 +190,7 @@ public class Physics {
 	/**
 	 * defines projectile hit
 	 * @panam game object, projectile list
+	 * @return projectile hit list
 	 */
 	public static LinkedList<Projectile> projectileHit(GameObject x,LinkedList<Projectile> list){
 		LinkedList<Projectile> ret = new LinkedList<Projectile>();
