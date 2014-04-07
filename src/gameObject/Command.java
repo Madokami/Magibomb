@@ -11,6 +11,10 @@ public class Command {
 	private String command;
 	private int key;
 	
+	/**
+	 * defines command
+	 * @panam command, key integer
+	 */
 	public Command(String command,int key){
 		this.command = command;
 		this.key = key;
