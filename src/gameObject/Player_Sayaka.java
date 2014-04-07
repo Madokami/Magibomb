@@ -21,13 +21,12 @@ public class Player_Sayaka extends Player{
 	/**
 	 * defines new character
 	 * @param coordinates, game object
+	 * @return player
 	 */
 	public Player_Sayaka(int x, int y, Game game) {
 		super(x, y, game);
 		playerBackground = MenuChar.saBg;
 		
-		this.skillUlt=loader.loadImage("/image/skills/saSkillUlt.png");
-		this.skillUltName="Dash";
 		pVoice=new SaVoice();
 		status = SpriteData.saStatus;
 		setStatusImages();
