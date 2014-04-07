@@ -114,6 +114,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * loads player status and attributes
 	 * @panam player object
+	 * @return loaded player status
 	 */
 	public void loadPlayerStatus(Player_Sayaka sa){
 		sa.hp=saHp;
@@ -132,6 +133,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * loads player status and attributes
 	 * @panam player object
+	 * @return loaded player status
 	 */
 	public void loadPlayerStatus(Player_Homura ho){
 		ho.hp=hoHp;
@@ -150,6 +152,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * loads player status and attributes
 	 * @panam player object
+	 * @return loaded player status
 	 */
 	public void loadPlayerStatus(Player_Madoka md){
 		md.hp=mdHp;
@@ -168,6 +171,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * loads player status and attributes
 	 * @panam player object
+	 * @return loaded player status
 	 */
 	public void loadPlayerStatus(Player_Mami ma){
 		ma.hp=maHp;
@@ -186,6 +190,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * loads player status and attributes
 	 * @panam player object
+	 * @return loaded player status
 	 */
 	public void loadPlayerStatus(Player_Kyouko	ky){
 		ky.hp=kyHp;
@@ -207,6 +212,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * updates player status and attributes
 	 * @panam player object
+	 * @return updated player data
 	 */
 	public void upDatePlayerData(Player_Sayaka sa){
 		/*
@@ -227,6 +233,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * loads player status and attributes
 	 * @panam player object
+	 * @return updated player data
 	 */
 	public void upDatePlayerData(Player_Homura ho){
 		/*
@@ -247,6 +254,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * loads player status and attributes
 	 * @panam player object
+	 * @return updated player data
 	 */
 	public void upDatePlayerData(Player_Madoka md){
 		/*
@@ -267,6 +275,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * loads player status and attributes
 	 * @panam player object
+	 * @return updated player data
 	 */
 	public void upDatePlayerData(Player_Mami ma){
 		/*
@@ -287,6 +296,7 @@ public class PlayerData implements Serializable {
 	/**
 	 * loads player status and attributes
 	 * @panam player object
+	 * @return updated player data
 	 */
 	public void upDatePlayerData(Player_Kyouko ky){
 		/*
