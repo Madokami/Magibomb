@@ -34,7 +34,7 @@ public class Enemy_1_3 extends Enemy{
 
 	@Override
 	/**
-	 * defines enemy attricutes
+	 * defines enemy attributes
 	 */
 	public void useUltimate() {
 		String dir = ai.isValidStraightLine(controller.getWallArray(), this.xGridNearest,yGridNearest,Game.getPlayer().xGridNearest,Game.getPlayer().yGridNearest);
