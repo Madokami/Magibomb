@@ -17,6 +17,11 @@ import game.Game;
 * @since 2014-03-31
 */
 public class Player_Kyouko extends Player{
+	
+	/**
+	* defines new character
+	* @param coordinates, game object
+	*/
 	public Player_Kyouko(int x, int y, Game game) {
 		super(x, y, game);
 		playerBackground = MenuChar.kyBg;
@@ -63,7 +68,9 @@ public class Player_Kyouko extends Player{
 		ultyCd = 100;
 		ultyTimer=100;
 	}
-	
+	/**
+	* applies unique character attributes
+	*/
 	public void useUltimate(){
 		if(ultyTimer<ultyCd){
 			GameSystem.playError();
