@@ -17,6 +17,7 @@ public class SaDash extends Projectile{
 	/**
 	 * defines SaDash
 	 * @param coordinates, game, game object
+	 * @return projectile
 	 */
 	public SaDash(int x, int y, Game game, GameObject o, int duration) {
 		super(x, y, game, o);
