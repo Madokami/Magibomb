@@ -15,7 +15,10 @@ import game.Game;
 */
 public class Enemy_Boss_2_small extends Enemy{
 
-	
+	/**
+	 * defines new enemy boss
+	 * @panam coordinates, game object
+	 */	
 	public Enemy_Boss_2_small(int x, int y, Game game) {
 		super(x, y, game);
 		damage=new ImageSequence("/image/spriteSheet/actors/enemy/boss_2_small/damage",5);	
@@ -34,6 +37,9 @@ public class Enemy_Boss_2_small extends Enemy{
 	}
 
 	@Override
+	/**
+	 * defines boss attributes
+	 */
 	public void useUltimate() {
 		
 		
