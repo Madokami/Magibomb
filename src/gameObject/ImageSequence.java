@@ -98,6 +98,7 @@ public class ImageSequence {
 	/**
 	 * scales the dimensions
 	 * @panam ratio
+	 * @return scale
 	 */
 	public void scale(double ratio){
 		double tempX = (width-width*ratio)/2;
