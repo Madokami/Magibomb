@@ -24,6 +24,7 @@ public class GifAttribute {
 	/**
 	 * defines .git image attributes
 	 * @panam gif image
+	 * @return gif attributes
 	 */
 	public GifAttribute(Image gif){
 		this.image=gif;
