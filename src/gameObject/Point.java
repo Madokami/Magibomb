@@ -12,15 +12,21 @@ public class Point {
 	private int x;
 	private int y;
 	
+	/**
+	 * defines point
+	 * @param x and y coordinates
+	 */
 	public Point(int x,int y){
 		this.x=x;
 		this.y=y;
 	}
 	
+	//getX
 	public int getX(){
 		return x;
 	}
 	
+	//getY
 	public int getY(){
 		return y;
 	}
