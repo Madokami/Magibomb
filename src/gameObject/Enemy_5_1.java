@@ -15,7 +15,10 @@ import game.Game;
 * @since 2014-03-31
 */
 public class Enemy_5_1 extends Enemy_4{
-
+	/**
+	 * defines new enemy
+	 * @panam coordinates, game object
+	 */
 	public Enemy_5_1(int x, int y, Game game) {
 		super(x, y, game);
 		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_5_1/run",8);
