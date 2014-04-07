@@ -33,16 +33,32 @@ public abstract class Projectile extends MovableObject {
 		// TODO Auto-generated constructor stub
 	}
 	public void tick(){
-		if(owner==Game.getPlayer()){
-			LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
-			for(int i=0;i<enemies.size();i++){
-				applyDamage(damage,invincibleDuration,enemies.get(i));
+		if(GameSystem.TWO_PLAYER_MODE){
+			if(owner==Game.getPlayer()||owner==Game.getPlayer2()){
+				LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
+				for(int i=0;i<enemies.size();i++){
+					applyDamage(damage,invincibleDuration,enemies.get(i));
+				}
+			}
+			else{
+				LinkedList<Player> playerHit = Physics.hitPlayer(this, controller.getPlayerList());
+				for(int i=0;i<playerHit.size();i++){
+					applyDamage(damage,invincibleDuration,playerHit.get(i));
+				}
 			}
 		}
 		else{
-			LinkedList<Player> playerHit = Physics.hitPlayer(this, controller.getPlayerList());
-			for(int i=0;i<playerHit.size();i++){
-				applyDamage(damage,invincibleDuration,playerHit.get(i));
+			if(owner==Game.getPlayer()){
+				LinkedList<Enemy> enemies=Physics.collision(this, game.getEnemyList());
+				for(int i=0;i<enemies.size();i++){
+					applyDamage(damage,invincibleDuration,enemies.get(i));
+				}
+			}
+			else{
+				LinkedList<Player> playerHit = Physics.hitPlayer(this, controller.getPlayerList());
+				for(int i=0;i<playerHit.size();i++){
+					applyDamage(damage,invincibleDuration,playerHit.get(i));
+				}
 			}
 		}
 		if(hp<=0){
