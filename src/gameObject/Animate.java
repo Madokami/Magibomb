@@ -24,6 +24,7 @@ public class Animate {
 	<br>
 	Each frame of corresponding image is displayed consecutively
 	@param game object o
+	@return animation of o
 	*/
 	public static void animate(GameObject o){
 		if(o.direction.equals("up")){
@@ -58,6 +59,7 @@ public class Animate {
 	<br>
 	Divides spritesheet into equal quadrangles corresponding to individual frames
 	@param player object p
+	@return animation of p
 	*/
 	public static void animateGem(Player p) {
 		p.soulGemImage=p.soulGemSprite.grabImage(1, 1, Player.soulGemWidth, Player.soulGemHeight);
@@ -84,6 +86,7 @@ public class Animate {
 	/**
 	Displays .gif animaions based on their corresponding orientations
 	@param moveable object o
+	@return animation of gif
 	*/
 	public static void animateWithGif(MovableObject o){
 		if(o.animation==ANIMATION.MOVELEFT) {
