@@ -15,6 +15,7 @@ public class PlaceHolder extends Brick{
 	/**
 	 * sets place holder
 	 * @param coordinates, game object
+	 * @return place holder
 	 */
 	public PlaceHolder(int x, int y, Game game) {
 		super(x, y, game);
