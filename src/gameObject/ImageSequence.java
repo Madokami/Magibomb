@@ -23,6 +23,7 @@ public class ImageSequence {
 	/**
 	 * defines image sequence
 	 * @panam path, frames
+	 * @return image sequence
 	 */
 	public ImageSequence(String path,int frames){
 		this.frames=frames;
