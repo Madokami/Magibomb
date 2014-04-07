@@ -42,7 +42,9 @@ public class SpriteData {
 	
 	
 	
-	
+	/**
+	 * declares sprite data for different spritesheets
+	 */
 	public SpriteData(){
 		loader = new BufferedImageLoader();
 		char2 = new SpriteSheet(loader.loadImage("/PuellaSet2.png"));
