@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* Character Death menu
+* @author Team 6
+* @version 1.4
+* @since 2014-04-06
+*/
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -29,6 +35,11 @@ public class MenuDeath{
 	public void tick(){
 		
 	}
+	
+	/**
+	 * Draw menu button onto screen
+	 * @param g current graphic
+	 */
 	public void render(Graphics g){
 		g.setColor(Color.WHITE);
 		g.drawImage(dBackground,0, 0, GameSystem.ABSWIDTH+10, GameSystem.ABSHEIGHT+10,null);
@@ -40,6 +51,12 @@ public class MenuDeath{
 		g.drawString("Back to Menu",GameSystem.ABSWIDTH/2+100,400);
 		renderSelected(g);
 	}
+	
+	/**
+	 * 	
+	 * draw "selected" menu button
+	 * @param g current graphic
+	 */
 	public void renderSelected(Graphics g) {
 			if(dSelected==DEATH.RESTART){
 				g.setColor(Color.RED);
@@ -51,6 +68,10 @@ public class MenuDeath{
 			} 		
 	}
 	
+	/**
+	 * restart the game or back to menu depending on keyboard key pressed
+	 * @param key keyboard key pressed
+	 */
 	public void keyPressed(int key) {
 		if(key==GameSystem.DOWN){
 			if(dSelected==DEATH.RESTART){
