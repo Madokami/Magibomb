@@ -16,6 +16,7 @@ public class Projectile_PinkArrow extends Projectile{
 	/**
 	 * defines pink arrow projectile
 	 * @param coordinates, game, game object
+	 * @return projectile
 	 */
 	public Projectile_PinkArrow(int x, int y, Game game,GameObject o) {
 		super(x, y, game,o);
