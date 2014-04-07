@@ -29,6 +29,7 @@ public class DamageRenderer {
 	/**
 	 * renders damage
 	 * @panam game object o
+	 * @return render damage
 	 */
 	public DamageRenderer(GameObject o){
 		owner = o;
@@ -45,6 +46,7 @@ public class DamageRenderer {
 	/**
 	 * renders damage
 	 * @panam damage value
+	 * @return render damage value
 	 */
 	public void renderDamage(int damageValue){
 		if(counter[currentCounter]<renderDuration) {
@@ -70,6 +72,7 @@ public class DamageRenderer {
 	/**
 	 * renders graphics
 	 * @panam graphic object
+	 * @return render graphic
 	 */
 	public void render(Graphics g){
 		for(int i=0;i<counter.length;i++){
