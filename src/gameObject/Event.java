@@ -23,11 +23,19 @@ public class Event {
 	public boolean isOn(){
 		return on;
 	}
+	/**
+	 * defines start
+	 * @panam duration
+	 */
 	public void start(int duration){
 		this.duration=duration;
 		this.durationTimer=0;
 		this.on=true;
 	}
+	/**
+	 * defines start
+	 * @panam duration, value
+	 */
 	public void start(int duration,int value){
 		this.duration=duration;
 		this.durationTimer=0;
