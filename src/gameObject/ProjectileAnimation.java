@@ -19,6 +19,7 @@ public class ProjectileAnimation {
 	/**
 	 * defines projectile object
 	 * @param projectile object
+	 * @return projectile animation
 	 */
 	
 	public ProjectileAnimation(Projectile o){
@@ -64,6 +65,7 @@ public class ProjectileAnimation {
 	/**
 	 * defines sequence of images during animation
 	 * @param sequence object
+	 * @return start sequence
 	 */
 	public void startSequence(ImageSequence sequence){
 		currentSequence=sequence;
