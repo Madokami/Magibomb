@@ -18,6 +18,7 @@ public class Enemy_Boss_2_small extends Enemy{
 	/**
 	 * defines new enemy boss
 	 * @panam coordinates, game object
+	 * @return enemy
 	 */	
 	public Enemy_Boss_2_small(int x, int y, Game game) {
 		super(x, y, game);
