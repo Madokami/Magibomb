@@ -11,6 +11,10 @@ import game.Game;
 * @since 2014-03-31
 */
 public class PowerUps_SpeedUp extends PowerUps{
+	/**
+	 * defines power ups
+	 * @param coordinates, game object
+	 */
 	public PowerUps_SpeedUp(int x, int y, Game game) {
 		super(x, y, game);
 		ss = SpriteData.upgrades;
@@ -18,6 +22,10 @@ public class PowerUps_SpeedUp extends PowerUps{
 		type = "speed";
 	}
 	@Override
+	/**
+	 * applies effect
+	 * @param player object
+	 */
 	public void applyEffect(Player player) {
 		player.increaseSpeed(1);
 		
