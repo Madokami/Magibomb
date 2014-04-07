@@ -16,6 +16,10 @@ public class Projectile_blackBeam extends Projectile{
 
 	public int counter;
 	public int duration = 20;
+	/**
+	 * defines blackBeam projectile
+	 * @param coordinates, game, game object
+	 */
 	public Projectile_blackBeam(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
 		flyRight = new ImageSequence("/image/projectiles/blackBeamRight", 10);
@@ -35,7 +39,9 @@ public class Projectile_blackBeam extends Projectile{
 		imageHeight=1000;
 		allignOrientationWithOwner(owner);
 	}
-	
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		setCollisionToImageSize();
