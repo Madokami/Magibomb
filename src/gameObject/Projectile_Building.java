@@ -18,6 +18,7 @@ public class Projectile_Building extends Projectile{
 	/**
 	 * defines building projectile
 	 * @param coordinates, game, game object
+	 * @return projectile
 	 */
 	public Projectile_Building(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
