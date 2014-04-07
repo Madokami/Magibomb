@@ -54,6 +54,10 @@ public class LevelLoader {
 	private long renderStageStart;
 	private int duration;
 	
+	/**
+	 * loads level
+	 * @panam game object
+	 */
 	public LevelLoader(Game game){
 		this.game=game;
 		loader = new BufferedImageLoader();
@@ -62,6 +66,10 @@ public class LevelLoader {
 		//gif = Toolkit.getDefaultToolkit().createImage(path);
 		gif=loader.loadGif("/witch1.gif");
 	}
+	/**
+	 * loads level for two players at same time
+	 * @panam game object
+	 */
 	public synchronized void load(){
 		int stage = game.getCurLevel();
 		
@@ -113,6 +121,9 @@ public class LevelLoader {
 		}
 		updateList();
 	}
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage1(){
 		GameSystem.turnOnBgm("/sound/music/stage1.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -132,7 +143,9 @@ public class LevelLoader {
 		this.loadFromArray(data);
 	}
 	
-	
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage2(){
 		GameSystem.turnOnBgm("/sound/music/stage1.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -159,6 +172,9 @@ public class LevelLoader {
 		};
 		this.loadFromArray(data);
 	}
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage3(){
 		GameSystem.turnOnBgm("/sound/music/boss1.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -202,7 +218,9 @@ public class LevelLoader {
 		};
 		this.loadFromArray(data);
 	}
-
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage5(){
 		GameSystem.turnOnBgm("/sound/music/stage2.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -221,7 +239,9 @@ public class LevelLoader {
 		};
 		this.loadFromArray(data);
 	}
-	
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage6(){
 		GameSystem.turnOnBgm("/sound/music/boss1.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -242,7 +262,9 @@ public class LevelLoader {
 		this.loadFromArray(data);
 	}
 	
-	
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage7(){
 		GameSystem.turnOnBgm("/sound/music/stage3.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -263,7 +285,9 @@ public class LevelLoader {
 		};
 		this.loadFromArray(data);
 	}
-	
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage8(){
 		GameSystem.turnOnBgm("/sound/music/stage3.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -282,7 +306,9 @@ public class LevelLoader {
 		};
 		this.loadFromArray(data);
 	}
-	
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage9(){
 		GameSystem.turnOnBgm("/sound/music/boss1.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -300,6 +326,9 @@ public class LevelLoader {
 		};
 		this.loadFromArray(data);
 	}
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage10(){
 		GameSystem.turnOnBgm("/sound/music/stage5.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -317,6 +346,9 @@ public class LevelLoader {
 		};
 		this.loadFromArray(data);
 	}
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage11(){
 		GameSystem.turnOnBgm("/sound/music/stage5.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -334,6 +366,9 @@ public class LevelLoader {
 		};
 		this.loadFromArray(data);
 	}
+	/**
+	 * stage design using integers that correspond to grid images as well as music and state
+	 */
 	public void stage12(){
 		GameSystem.turnOnBgm("/sound/music/boss2.wav");
 		game.setBackground(loader.loadImage("/image/stage/ch1Bg.jpg"));
@@ -352,7 +387,9 @@ public class LevelLoader {
 		this.loadFromArray(data);
 	}
 	
-	
+	/**
+	 * resets stage
+	 */
 	public void reset(){
 		GameSystem.otherPlayerIsReady=false;
 		GameSystem.serialNumber=0;
@@ -383,11 +420,19 @@ public class LevelLoader {
 		game.setBombArray(game.getController().getBombArray());
 	}
 	
+	/**
+	 * renders start
+	 * @panam duration
+	 */
 	public void renderStart(int duration){
 		this.renderStageStart = System.currentTimeMillis();
 		this.duration = duration;
 	}
 	
+	/**
+	 * redners graphics
+	 * @panam graphic object
+	 */
 	public void render(Graphics g){
 		title = "Stage".concat(" ").concat(Integer.toString(game.getCurLevel()));
 		g.drawImage(gif, 100, 100, null);
@@ -405,6 +450,7 @@ public class LevelLoader {
 	
 	/**
 	 * Creates player from one of the five character classes
+	 * @panam i j
 	 */
 	private void createPlayer(int i, int j) {
 		if(game.cChosen==Game.CHARACTER.MADOKA){
@@ -426,6 +472,7 @@ public class LevelLoader {
 	
 	/**
 	 * Creates player from one of the five character classes
+	 * @panam i j
 	 */
 	private void createPlayer2(int i, int j) {
 		if(game.cChosenP2==Game.CHARACTER.MADOKA){
@@ -454,6 +501,7 @@ public class LevelLoader {
 	
 	/**
 	 * Loads map graphics data
+	 * @panam mapData array
 	 */
 	private void loadFromArray(int[][] mapData){
 		for(int i=0;i<mapData.length;i++){
@@ -549,6 +597,10 @@ public class LevelLoader {
 			}
 		}
 	}
+	/**
+	 * adds enemy
+	 * @panam enemy object
+	 */
 	private void addEnemy(Enemy e){
 		game.getController().addEntity(e);
 		game.setEnemyCount(game.getEnemyCount() + 1);
