@@ -23,7 +23,7 @@ public class PowerUps_SpeedUp extends PowerUps{
 	}
 	@Override
 	/**
-	 * applies effect
+	 * increases speed by 1
 	 * @param player object
 	 */
 	public void applyEffect(Player player) {
