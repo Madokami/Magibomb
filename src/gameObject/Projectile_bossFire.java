@@ -17,6 +17,7 @@ public class Projectile_bossFire extends Projectile{
 	/**
 	 * defines boosFire projectile
 	 * @param coordinates, game, game object
+	 * @return projectile
 	 */
 	public Projectile_bossFire(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
