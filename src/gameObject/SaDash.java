@@ -14,6 +14,10 @@ import game.Game;
 public class SaDash extends Projectile{
 	int duration;
 	int durationTimer;
+	/**
+	 * defines SaDash
+	 * @param coordinates, game, game object
+	 */
 	public SaDash(int x, int y, Game game, GameObject o, int duration) {
 		super(x, y, game, o);
 		this.duration = duration;
@@ -23,6 +27,9 @@ public class SaDash extends Projectile{
 		setStartingAnimation();
 		setStartingVelocity(0);
 	}
+	/**
+	 * uses currennt status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		durationTimer++;
