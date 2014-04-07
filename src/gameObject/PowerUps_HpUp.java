@@ -14,6 +14,7 @@ public class PowerUps_HpUp extends PowerUps{
 	/**
 	 * defines power ups
 	 * @param coordinates, game object
+	 * @return power up hp up
 	 */
 	public PowerUps_HpUp(int x, int y, Game game) {
 		super(x, y, game);
@@ -25,6 +26,7 @@ public class PowerUps_HpUp extends PowerUps{
 	/**
 	 * increases hp by 20
 	 * @param player object
+	 * @return applies effect
 	 */
 	public void applyEffect(Player player) {
 		player.hp+=20;
