@@ -26,6 +26,10 @@ public class DamageRenderer {
 	private int x;
 	private int y;
 	
+	/**
+	 * renders damage
+	 * @panam game object o
+	 */
 	public DamageRenderer(GameObject o){
 		owner = o;
 		rand=new Random();
@@ -38,6 +42,10 @@ public class DamageRenderer {
 		}
 		currentCounter=0;
 	}
+	/**
+	 * renders damage
+	 * @panam damage value
+	 */
 	public void renderDamage(int damageValue){
 		if(counter[currentCounter]<renderDuration) {
 			currentCounter++;
@@ -51,11 +59,18 @@ public class DamageRenderer {
 		x=(int)owner.getXAbsolute();
 		y=(int)owner.getYAbsolute();
 	}
+	/**
+	 * uses current conditions to determine next iteration
+	 */
 	public void tick(){
 		for(int i=0;i<counter.length;i++){
 			counter[i]++;
 		}
 	}
+	/**
+	 * renders graphics
+	 * @panam graphic object
+	 */
 	public void render(Graphics g){
 		for(int i=0;i<counter.length;i++){
 			if(counter[i]<renderDuration){
