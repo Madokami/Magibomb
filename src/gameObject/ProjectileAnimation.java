@@ -16,10 +16,17 @@ public class ProjectileAnimation {
 	private ImageSequence currentSequence;
 	private Projectile owner;
 
+	/**
+	 * defines projectile object
+	 * @param projectile object
+	 */
 	
 	public ProjectileAnimation(Projectile o){
 		this.owner=o;
 	}
+	/**
+	 * plays series of frames based on orientation and dimensions
+	 */
 	public void animate(){
 		if(owner.orientation==ORIENTATION.RIGHT||owner.orientation==ORIENTATION.DOWN){
 			owner.image=currentSequence.getImage((int)counter);
@@ -43,6 +50,9 @@ public class ProjectileAnimation {
 			owner.renderYShift=currentSequence.getY()+currentSequence.getHeight();
 		}
 	}
+	/**
+	 * uses current status to determine next iteration
+	 */
 	public void tick(){
 		
 		if(currentSequence!=null){
@@ -51,6 +61,10 @@ public class ProjectileAnimation {
 			counter+=currentSequence.getAnimationSpeed();
 		}
 	}
+	/**
+	 * defines sequence of images during animation
+	 * @param sequence object
+	 */
 	public void startSequence(ImageSequence sequence){
 		currentSequence=sequence;
 		counter=0;
