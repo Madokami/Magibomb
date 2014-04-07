@@ -34,7 +34,7 @@ public class Enemy_2_1 extends Enemy{
 
 	@Override
 	/**
-	 * defines enemy attricutes
+	 * defines enemy attributes
 	 */
 	public void useUltimate() {
 		if(chargeAtPlayer(20,20)){
