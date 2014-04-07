@@ -13,7 +13,10 @@ import game.Game;
 * @since 2014-03-31
 */
 public class Enemy_1_3 extends Enemy{
-
+	/**
+	 * defines new enemy
+	 * @panam coordinates, game object
+	 */
 	public Enemy_1_3(int x, int y, Game game) {
 		super(x, y, game);
 		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_1_3/run",9);
@@ -30,6 +33,9 @@ public class Enemy_1_3 extends Enemy{
 	}
 
 	@Override
+	/**
+	 * defines enemy attricutes
+	 */
 	public void useUltimate() {
 		String dir = ai.isValidStraightLine(controller.getWallArray(), this.xGridNearest,yGridNearest,Game.getPlayer().xGridNearest,Game.getPlayer().yGridNearest);
 		if(dir!="stop"){
