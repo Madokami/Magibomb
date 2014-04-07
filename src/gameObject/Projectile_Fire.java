@@ -9,6 +9,7 @@ public class Projectile_Fire extends Projectile{
 	/**
 	 * defines fire projectile
 	 * @param coordinates, game, game object
+	 * @return projectile
 	 */
 	public Projectile_Fire(int x, int y, Game game, GameObject o) {
 		super(x, y, game, o);
