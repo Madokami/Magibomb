@@ -17,7 +17,10 @@ import game.Game;
 * @since 2014-03-31
 */
 public class Player_Mami extends Player{
-
+	/**
+	* defines new character
+	* @param coordinates, game object
+	*/
 	public Player_Mami(int x, int y, Game game) {
 		super(x, y, game);
 		playerBackground = MenuChar.maBg;
@@ -50,6 +53,9 @@ public class Player_Mami extends Player{
 		maxMp=mp;
 		maxSoul=soul;
 	}
+	/**
+	 * checks current status to determine next iteration
+	 */
 	public void tick(){
 		super.tick();
 		if(channelling){
@@ -59,6 +65,9 @@ public class Player_Mami extends Player{
 			mp-=maxMp*0.06/30+50/30.0;
 		}
 	}
+	/**
+	* applies unique character attributes
+	*/	
 	public void useUltimate(){
 		if(channelling==true) {
 			return;
