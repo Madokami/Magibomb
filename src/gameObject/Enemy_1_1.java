@@ -16,6 +16,10 @@ import game.Game;
 public class Enemy_1_1 extends Enemy{
 	private ImageSequence attack;
 	
+	/**
+	 * defines new enemy
+	 * @panam coordinates, game object
+	 */
 	public Enemy_1_1(int x, int y, Game game) {
 		super(x, y, game);
 		
@@ -37,6 +41,9 @@ public class Enemy_1_1 extends Enemy{
 	}
 
 	@Override
+	/**
+	 * defines enemy attricutes
+	 */
 	public void useUltimate() {
 		String dir = ai.isValidStraightLine(controller.wallArray, Game.getPlayer().xGridNearest, Game.getPlayer().yGridNearest, xGridNearest, yGridNearest);
 		if(dir!="stop"){
