@@ -1,5 +1,11 @@
 package menu;
-
+/**
+* Description:
+* Pause menu
+* @author Team 6
+* @version 1.4
+* @since 2014-04-06
+*/
 import game.Game;
 
 import java.awt.Color;
@@ -49,6 +55,9 @@ public class PauseMenu implements GeneralMenu{
 		//background = loader.loadImage("/image/white.png");
 	}
 	
+	/**
+	 * Draw images onto screen
+	 */
 	public void render(Graphics g) {
 		g.drawImage(background, 25, 10, GameSystem.GAME_WIDTH - 45, GameSystem.GAME_HEIGHT - 35, null);
 		g.setFont(new Font("Arial", Font.BOLD, 64));
@@ -125,9 +134,16 @@ public class PauseMenu implements GeneralMenu{
 			g.drawString("BACK", GameSystem.GAME_WIDTH/3, GameSystem.GAME_HEIGHT*4/5 + 30);
 		}
 	}
+	/**
+	 * update pointer
+	 */
 	public void tick(){
 		this.pointer=game.getPlayer().soulGemImage;
 	}
+	/**
+	 * pause,resume,set or quit the game depending on keyboard key pressed
+	 * @param key keyboard key pressed
+	 */
 	public void keyPressed(int key) {
 		if (key == KeyEvent.VK_P) {
 			GameSystem.state = STATE.GAME;
