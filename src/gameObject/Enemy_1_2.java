@@ -37,7 +37,7 @@ public class Enemy_1_2 extends Enemy{
 
 	@Override
 	/**
-	 * defines enemy attricutes
+	 * defines enemy attributes
 	 */
 	public void useUltimate() {
 		if(ai.onTopOfPlayer(this.xGridNearest,yGridNearest,Game.getPlayer().xGridNearest,Game.getPlayer().yGridNearest)){
