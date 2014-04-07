@@ -47,6 +47,7 @@ public class CommandHandler {
 
 	/**
 	 * Commands corresponding to different directional movements as well as stopping are executed
+	 * @panam command
 	 */
 	public void excuteCommand(Command command){
 		
