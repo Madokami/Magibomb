@@ -13,7 +13,10 @@ import game.Game;
 * @since 2014-03-31
 */
 public class Enemy_2_1 extends Enemy{
-
+	/**
+	 * defines new enemy
+	 * @panam coordinates, game object
+	 */
 	public Enemy_2_1(int x, int y, Game game) {
 		super(x, y, game);
 		run=new ImageSequence("/image/spriteSheet/actors/enemy/enemy_2_1/run",6);
@@ -30,6 +33,9 @@ public class Enemy_2_1 extends Enemy{
 	}
 
 	@Override
+	/**
+	 * defines enemy attricutes
+	 */
 	public void useUltimate() {
 		if(chargeAtPlayer(20,20)){
 			ultyTimer=350;
