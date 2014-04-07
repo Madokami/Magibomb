@@ -16,14 +16,22 @@ import system.GameSystem;
 public class Input extends KeyAdapter{
 	GameSystem sys;
 	
+	/**
+	 * defines input
+	 * @panam game system object
+	 */
 	public Input(GameSystem sys){
 		this.sys = sys;
 	}
-	
+	/**
+	 * keypress exception
+	 */
 	public void keyPressed(KeyEvent e){
 		sys.keyPressed(e);
 	}
-	
+	/**
+	 * keyrelease exception
+	 */
 	public void keyReleased(KeyEvent e){
 		sys.keyReleased(e);
 	}
