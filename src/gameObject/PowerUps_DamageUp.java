@@ -14,6 +14,7 @@ public class PowerUps_DamageUp extends PowerUps{
 	/**
 	 * defines power ups
 	 * @param coordinates, game object
+	 * @return power up damage up
 	 */
 	public PowerUps_DamageUp(int x, int y, Game game) {
 		super(x, y, game);
