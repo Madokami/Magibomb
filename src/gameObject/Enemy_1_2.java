@@ -15,6 +15,10 @@ import game.Game;
 public class Enemy_1_2 extends Enemy{
 	public int counter=0;
 	public int time=1;
+	/**
+	 * defines new enemy
+	 * @panam coordinates, game object
+	 */
 	public Enemy_1_2(int x, int y, Game game) {
 		super(x, y, game);
 		
@@ -32,6 +36,9 @@ public class Enemy_1_2 extends Enemy{
 	
 
 	@Override
+	/**
+	 * defines enemy attricutes
+	 */
 	public void useUltimate() {
 		if(ai.onTopOfPlayer(this.xGridNearest,yGridNearest,Game.getPlayer().xGridNearest,Game.getPlayer().yGridNearest)){
 			controller.addEntity(new Projectile_ThornBall(xGridNearest,yGridNearest,game,this));
